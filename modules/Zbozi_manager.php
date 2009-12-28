@@ -130,9 +130,10 @@ function  draw_counter($page){
 global $database;
 $q = "SELECT id FROM items";
 $result = $database->query($q);
-$sum = "";
+$sum = "Strana: ";
 $c = 1;
 $count = mysql_num_rows($result);
+if(!isset($_GET['limit'])){$_GET['limit'] = 0;}
 for($i = 0;$i < $count;$i += ITEMS_ON_PAGE)
 															{
 if($i == 0){
