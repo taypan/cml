@@ -1,0 +1,24 @@
+<script type="text/javascript">
+
+/* <![CDATA[ */
+
+function validate(sender) {
+
+	var element, message, res;
+
+	do {
+	element = document.getElementById("frm-username");
+	var val = element.value.replace(/^\s+|\s+$/g, '');
+	res = val!='' && val!="";
+	if (!res) { message = "Mus\u00edte zadat u\u017eivatelsk\u00e9 jm\u00e9no!"; if (element) element.focus(); alert(message); return false; }
+	} while(0);
+	do {
+	element = document.getElementById("frm-password");
+	var val = element.value.replace(/^\s+|\s+$/g, '');
+	res = val!='' && val!="";
+	if (!res) { message = "Mus\u00edte zadat heslo!"; if (element) element.focus(); alert(message); return false; }
+	} while(0);
+	return true;
+}
+/* ]]> */
+</script>
