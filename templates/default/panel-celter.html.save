@@ -1,0 +1,3 @@
+$fp = FOpen (”data.txt”, “r”); // otevře soubor data.txt pro čtení
+$data = FRead ($fp, FileSize (”data.txt”)); // načte do proměnné $data obsah souboru data.txt
+FClose ($fp); // zavře soubor data.txt, který jsme předtím otevřeli

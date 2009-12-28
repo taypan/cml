@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="IResource.php" local="128932592650000000" remote="128909206800000000" testing="129057926400000000" />
+<file name="IIdentity.php" local="128932592650000000" remote="128909206800000000" testing="129057926400000000" />
+<file name="IRole.php" local="128932592650000000" remote="128909206800000000" testing="129057927000000000" />
+<file name="Permission.php" local="128932592650000000" remote="128909206800000000" testing="129057927000000000" />
+<file name="SimpleAuthenticator.php" local="128932592650000000" remote="128909206800000000" testing="129057927000000000" />
+<file name="Identity.php" local="128932592650000000" remote="128909206800000000" testing="129057927000000000" />
+<file name="IAuthorizator.php" local="128932592650000000" remote="128909206800000000" testing="129057927000000000" />
+<file name="IPermissionAssertion.php" local="128932592650000000" remote="128909206800000000" testing="129057927000000000" />
+<file name="AuthenticationException.php" local="128932592650000000" remote="128909206800000000" testing="129057927000000000" />
+<file name="IAuthenticator.php" local="128932592650000000" remote="128909206800000000" testing="129057927000000000" />
+</dwsync>
