@@ -24,7 +24,7 @@ $_SESSION['items_codes']=array($code);
 
 }
 
-return "Položka by přidána do košíku. Pokud si přejete dokončit objednávku ...";
+return "Položka by přidána do košíku. Pokud si přejete dokončit objednávku pokračujte přes menu \"Košík\"";
 //Debug::dump($_SESSION);
 } else {return "Položka neexistuje!";}
 }
