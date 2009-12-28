@@ -2,10 +2,12 @@
 class Kosik extends Modul{
 //var $items = array();
 
+var $acl = array(	"remove" => "guest",
+					"get_default" => "guest"
+					);
 
 
-
-function get_content($n){
+/*function get_content($n){
 //global $model;
 //list_detail($this->$items)
 //$_SESSION['items'] = array(1 => "Polozka 1",2 => "Polozka 2",3 => "Polozka 3");
@@ -18,11 +20,12 @@ default:
 return $this->get_default();
 } 
 } else {return $this->get_default();}
-}
+}*/
 
 function get_title(){
 return "Košík";
 }
+
 
 function remove(){
 $code = $this->params_g['code'];

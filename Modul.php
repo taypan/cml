@@ -15,10 +15,10 @@ function get_content($n){                       // přepíná na akce podle para
 $validita = $this->isValidAction($_GET['action']);
 //echo $validita;
 if ($validita=="valid"){									// TODO - kontrola jesli ma uzivatel vubec prava vlozit modul do generalu
-return $this->$_GET['action']();
+return $this->$_GET['action']($n);
 }
 elseif($validita=="default"){
-return $this->get_default();
+return $this->get_default($n);
 }
 elseif($validita=="no_resource" || $validita== "unknown_action"){
 return $this->no_action();
@@ -89,8 +89,10 @@ try{
 if(isset($action) && $model->user->isAllowed($this->info['id']."_action_".$action,"execute") && method_exists($this->info['modul'],$action)){
 return "valid";
 }
-elseif(!isset($action)){
+elseif(!isset($action) && $model->user->isAllowed($this->info['id']."_action_get_default","execute")){
 return "default";
+}elseif(!isset($action)){
+return "forbidden";
 }  elseif(!$model->user->isAllowed($this->info['id']."_action_".$action,"execute")){
 return "forbidden";
 }elseif(!method_exists($this->info['modul'],$action)){
