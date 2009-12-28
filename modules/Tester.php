@@ -2,6 +2,7 @@
 class Tester extends Modul{
 
 var $acl = array(	"test" => "guest",
+					"get_default" => "administrator",
 					"test2" => "administrator",
 					"nevim" => "administrator");
 
