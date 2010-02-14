@@ -1,0 +1,6 @@
+#cont{background-image:url(images/head_02.jpg); height:auto; width:1026px; background-repeat:no-repeat;}
+#cont a{ float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
+#cont a:hover{color: #C00; text-decoration:underline;}
+#line{ float:left;background-image:url(images/line_02.jpg); background-repeat:repeat-y;   margin-left:auto; margin-right:auto; }
+#footer{background-image:url(images/foot_03.gif); position: fixed; margin-left:-1024px; width:1026px; height:233px; float:left;}
+

@@ -11,11 +11,11 @@ define("DB_PASS", "jirka");
 define("DB_NAME", "cml");
 }
 
- elseif ($_SERVER['HTTP_HOST'] == "omnique.ic.cz"){
-define("DB_SERVER", "mysql.ic.cz");
-define("DB_USER", "ic_omnique");
+ elseif ($_SERVER['HTTP_HOST'] == "cml"){
+define("DB_SERVER", "localhost");
+define("DB_USER", "jirka");
 define("DB_PASS", "jirka");
-define("DB_NAME", "ic_omnique");
+define("DB_NAME", "cml");
 }
 
 else 
