@@ -2,15 +2,14 @@
 class Tester extends Modul{
 
 var $acl = array(	"test" => "guest",
-					"get_default" => "administrator",
+					"get_default" => "guest",
 					"test2" => "administrator",
 					"nevim" => "administrator");
 
 function get_default($n){
-$m = 1;
-$n = 1;
+
 //$sum = $this->ack($m,$n);
-return $sum;
+return "OK";
 }
 function test(){
 return "test";
