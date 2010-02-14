@@ -22,7 +22,7 @@ $id = mysql_result($result,$i,'id');
 //TODO hází chybu pri pradani noveho menu resenim je "$controler->acl->hasResource('menus_item_'.$id) && " do podminky, ale to odsud nejde zavolat 
 try {
 if($model->user->isAllowed('menus_item_'.$id,'view')){
-$sum = $sum."<dt>".$tag->a($page,$alt)."</dt>";}
+$sum = $sum.$tag->a($page,$alt);}
 	}
 catch (InvalidStateException $vyjímka) {}
 }

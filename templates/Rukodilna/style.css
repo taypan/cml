@@ -51,14 +51,32 @@ h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:
 
 #line {float:left;background-image:url(images/line_02.jpg); background-repeat:repeat-y; width:1026px;  margin-left:auto; margin-right:auto;}
 
-#footer {background-image:url(images/foot_03.gif); position: fixed; width:1026px; height:233px; bottom:0px; float:left;}
+#footerg {background-image:url(images/foot_03.gif); position: fixed; width:1026px; height:233px; bottom:0px; float:left;}
+#footer {position: fixed; width:1026px; height:233px; bottom:0px; float:left;}
+
+#footerL{
+	background-image: url(images/foot_03_03.png);
+	width:678px;
+	height:68px;
+	bottom:0px;
+	float:left;
+	margin-top:165px;
+}
+
+#footerR{
+	background-image: url(images/foot_03_02.png);
+	width:348px;
+	height:233px;
+	bottom:0px;
+	float:left;
+}
 #clicker{width:250px; height:200px; float:right; margin-top:20px;}
 /* END OF Main */
 
 /* Obsah  */
 #zakulaceni	{background-image:url(images/obsah_03.png); background-repeat:no-repeat; float:left; width:770px; height:40px; margin-top:194px;}
 
-#obsah {background-color:#FFF; background-image:url(images/obsah_05.png); background-position:top; background-repeat:no-repeat; float:left;min-height: 650px; width:770px; margin-left:0px;}
+#obsah {background-color:#FFF; background-image:url(images/obsah_05.png); background-position:top; background-repeat:no-repeat; float:left; width:770px; margin-left:0px;}
 #obsah p {font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:40px; color:#333; line-height:18px; float:left; padding-top:15px; width:450px;}
 
 #kosik { float:left; width:600px; margin-left:20px; margin-top:570px; background-image: url(images/kosik_09.png); width:24px; height:17px; }
