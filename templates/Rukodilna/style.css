@@ -1,0 +1,79 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font-family, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, li, ul
+dl, dt, dd, li, ul, ol,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+a:visited{color:#666;}
+
+body {
+	background-image:url(images/bg_05.jpg);
+	background-repeat:repeat;
+	}
+	
+a{text-decoration:none;}
+
+ol, ul {list-style: none;}
+
+blockquote, q {quotes: none;}
+
+blockquote:before, blockquote:after, q:before, q:after {content: ''; content: none;}
+
+:focus {outline: 0;}
+
+ins {text-decoration: none;}
+
+del {text-decoration: line-through;}
+
+table {border-collapse: collapse; border-spacing: 0;}
+
+h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; color:#800; margin-left:40px; }
+
+/*end of reset*/
+
+/* Main */
+#zarovnani {width:1026px; margin-left:auto; margin-right:auto;}
+
+#cont {background-image:url(images/head_02.jpg); background-repeat:no-repeat; width:1026px; height:492px; margin-left:auto; margin-right:auto;}
+#cont a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
+#cont a:hover {color: #C00; text-decoration:underline;}
+
+#line {float:left;background-image:url(images/line_02.jpg); background-repeat:repeat-y; width:1026px;  margin-left:auto; margin-right:auto;}
+
+#footer {background-image:url(images/foot_03.gif); position: fixed; width:1026px; height:233px; bottom:0px; float:left;}
+#clicker{width:250px; height:200px; float:right; margin-top:20px;}
+/* END OF Main */
+
+/* Obsah  */
+#zakulaceni	{background-image:url(images/obsah_03.png); background-repeat:no-repeat; float:left; width:770px; height:40px; margin-top:194px;}
+
+#obsah {background-color:#FFF; background-image:url(images/obsah_05.png); background-position:top; background-repeat:no-repeat; float:left;min-height: 650px; width:770px; margin-left:0px;}
+#obsah p {font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:40px; color:#333; line-height:18px; float:left; padding-top:15px; width:450px;}
+
+#kosik { float:left; width:600px; margin-left:20px; margin-top:570px; background-image: url(images/kosik_09.png); width:24px; height:17px; }
+/* END OF Obsah */
+
+/*MENU*/
+#menu { float:left; width:200px;  margin-top: 420px; margin-left: 10px;}
+/*END OF MENU*/
+
+/* HOMEPAGE */
+#contHome { background-image:url(images/index_02.jpg);position: absolute; top: 50%; left: 50%; width:1026px; height:769px; margin: -384px 0 0 -513px;}
+#contHome a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
+#contHome a:hover {color: #C00; text-decoration:underline;}
+
+#kosikHome { float:left; width:600px; margin-left:70px; margin-top:570px; background-image:url(images/kosik_09.gif); width:24px; height:17px;}
+
+#logo {float:left; width:350px; height:210px; margin-left:520px; margin-top:550px;}
+/* END OF HOMEPAGE */
