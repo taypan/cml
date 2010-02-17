@@ -59,6 +59,14 @@ $img = IMG_DIR.NO_IMG;
 $img_sml = IMG_DIR.NO_IMG;
 }
 //echo IMG_DIR_BIG.$id.".jpg";
+return "
+	<div class=\"zboziCont\">
+	<h2>$nazev</h2>
+    <div class=\"popis\">cena $cena Kč</div>
+    <div class=\"add\">pridat do kosiku</div>
+    </div>";
+
+/*
 return "<table width=\"259\" border=\"1\">  <tr>    <th colspan=\"3\" scope=\"col\">$nazev - $id</th>
   </tr>
   <tr>
@@ -85,6 +93,7 @@ return "<table width=\"259\" border=\"1\">  <tr>    <th colspan=\"3\" scope=\"co
   </tr> 
 </table>
 </br>";
+*/
 
 
 }
@@ -94,7 +103,7 @@ global $database;
 if(!isset($_GET['limit'])){$_GET['limit'] = 0;}
 $q = "SELECT id FROM items";
 $result = $database->query($q);
-$sum = "";
+$sum = "<div class=\"counter\">";
 $c = 1;
 $count = mysql_num_rows($result);
 for($i = 0;$i < $count;$i += ITEMS_ON_PAGE)
@@ -114,7 +123,8 @@ $sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] + ITEMS_ON_PAGE). "\">N
 elseif (!(isset($_GET['limit'])) && ($c  == ceil($count / ITEMS_ON_PAGE))){$sum = $sum. "<a href=\"".$page."limit=".ITEMS_ON_PAGE. "\">Následující</a> ";}
 $c++;
 															}
-
+															
+$sum = $sum . "</div></br>";
 return $sum;
 }
 
