@@ -9,7 +9,7 @@ function Controler()
 {
 global $funkce, $status, $model,$database;
 $database->load_settings();
-$model->varchar = "panel-center,panel-header,panel-left,panel-right,panel-footer,panel-style";
+$model->varchar = "panel-center,panel-header,panel-left,panel-right,panel-footer,panel-style,panel-kosik";
 $model->path_to_template = TEMPLATES_DIRECTORY.CURRENT_TEMPLATE."/";
 $model->template = $funkce->load_file($model->path_to_template."template.html");
 $model->user = Environment::getUser();
