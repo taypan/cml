@@ -8,6 +8,7 @@ function get_content($n){
 global $database;
 $cena = 0;
 $count = 0;
+if(!isset($_SESSION['items'])){$_SESSION['items'] = array();}
 foreach($_SESSION['items'] as $key => $value)
 {
 if($this->isitem($value)){
