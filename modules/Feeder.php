@@ -9,7 +9,7 @@ function get_default(){
 if(isset($this->params_g['id'])){
 $id = $this->params_g['id'];
 if(isset($_SESSION['items'])){
-
+//if(!isset($_SESSION['items_codes'])){$_SESSION['items_codes'] = array();}
 for($code = $this->genRanStr(RAND_STRING_LENGHT);in_array($code, $_SESSION['items_codes']);$code = $this->genRanStr(RAND_STRING_LENGHT))
 {}
 array_push($_SESSION['items'],$id);
