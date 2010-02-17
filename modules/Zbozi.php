@@ -20,7 +20,15 @@ function get_items($c = 0,$from = 0)
 global $database;
 $sum = "";
 $limit = ITEMS_ON_PAGE;
+
+if(isset($_GET['cat'])) {
+$cat = $_GET['cat'];
+$q = "SELECT * FROM items WHERE cat='$cat' ORDER BY id LIMIT $from,$limit";
+} else {
 $q = "SELECT * FROM items ORDER BY id LIMIT $from,$limit";
+}
+
+
 
 $result = $database->query($q);
 $d = mysql_num_rows($result);
@@ -63,11 +71,11 @@ return "
 	<div class=\"zboziCont\">
 	<h2>$nazev</h2>
     <div class=\"popis\">cena $cena Kč</div>
-    <div class=\"add\">pridat do kosiku</div>
+    <div class=\"add\"><a href=\"index.php?page=Feeder&id=$id\">Přidat do košíku</a></div>
     </div>";
 
-/*
-return "<table width=\"259\" border=\"1\">  <tr>    <th colspan=\"3\" scope=\"col\">$nazev - $id</th>
+
+/*return "<table width=\"259\" border=\"1\">  <tr>    <th colspan=\"3\" scope=\"col\">$nazev - $id</th>
   </tr>
   <tr>
     <td width=\"57\">Popis:</td>
@@ -85,15 +93,12 @@ return "<table width=\"259\" border=\"1\">  <tr>    <th colspan=\"3\" scope=\"co
    <tr>
     <td height=\"28\" colspan=\"2\"></td>
     <td>
-	<form action=\"index.php\" method=\"get\">
-	<input name=\"page\" type=\"hidden\" value=\"Feeder\">
-	<input name=\"id\" type=\"hidden\" value=\"$id\">
-	<input type=\"submit\" value=\"Přidat do košíku\">
-	</form></td>
+	
+	</td>
   </tr> 
 </table>
-</br>";
-*/
+</br>";*/
+
 
 
 }

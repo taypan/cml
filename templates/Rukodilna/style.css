@@ -48,7 +48,7 @@ h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:
 
 #cont {background-image:url(images/head_02.jpg); background-repeat:no-repeat; width:1026px; height:492px; margin-left:auto; margin-right:auto;}
 #contShop {background-image: url(images/shopBG_03.jpg); background-repeat:no-repeat; width:1026px; height:465px; margin-left:auto; margin-right:auto;}
-#cont a, #contShop a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
+#cont #menu a, #contShop #menu a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
 #cont a:hover, #contShop a:hover {color: #C00; text-decoration:underline;}
 
 .zboziCont{ width:172px; height:180px; float:left; background-image:url(images/shop_03.png); background-position:bottom; background-repeat:no-repeat; margin-left:40px; margin-top:25px;  }
