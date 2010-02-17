@@ -23,13 +23,19 @@ $limit = ITEMS_ON_PAGE;
 
 if(isset($_GET['cat'])) {
 $cat = $_GET['cat'];
+if(isset($_GET['subcat'])) {
+$subcat = $_GET['subcat'];
+$q = "SELECT * FROM items WHERE cat='$cat' AND subcat='$subcat' ORDER BY id LIMIT $from,$limit";
+}
+else {
 $q = "SELECT * FROM items WHERE cat='$cat' ORDER BY id LIMIT $from,$limit";
+}
 } else {
 $q = "SELECT * FROM items ORDER BY id LIMIT $from,$limit";
 }
 
 
-
+//echo $q;
 $result = $database->query($q);
 $d = mysql_num_rows($result);
 for($i = 0;$i != $d;$i++)
@@ -106,7 +112,31 @@ return "
 function  draw_counter($page){
 global $database;
 if(!isset($_GET['limit'])){$_GET['limit'] = 0;}
+/*
+if(isset($_GET['cat'])) {
+$cat = $_GET['cat'];
+$q = "SELECT id FROM items WHERE cat='$cat'"; 
+} else {
+$q = "SELECT id FROM items"; 
+}*/
+
+
+if(isset($_GET['cat'])) {
+$cat = $_GET['cat'];
+if(isset($_GET['subcat'])) {
+$subcat = $_GET['subcat'];
+$q = "SELECT id FROM items WHERE cat='$cat' AND subcat='$subcat'";
+$cats = "&cat=$cat&subcat=$subcat";
+}
+else {
+$q = "SELECT id FROM items WHERE cat='$cat'";
+$cats = "&cat=$cat";
+}
+} else {
 $q = "SELECT id FROM items";
+}
+
+//echo $q;
 $result = $database->query($q);
 $sum = "<div class=\"counter\">";
 $c = 1;
@@ -115,17 +145,17 @@ for($i = 0;$i < $count;$i += ITEMS_ON_PAGE)
 															{
 if($i == 0){
 if(isset($_GET['limit']) && $_GET['limit'] >= ITEMS_ON_PAGE)
-{$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] - ITEMS_ON_PAGE)."\">Předchozí</a> ";}
+{$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] - ITEMS_ON_PAGE).$cats."\">Předchozí</a> ";}
 }
 
 if(isset($_GET['limit']) && $_GET['limit'] == (($c -1)*ITEMS_ON_PAGE))
 {$sum = $sum. $c. " ";}
-else {$sum = $sum. "<a href=\"".$page."limit=". $i. "\">".$c."</a> ";}
+else {$sum = $sum. "<a href=\"".$page."limit=". $i.$cats. "\">".$c."</a> ";}
 if($c  == ceil($count / ITEMS_ON_PAGE) && isset($_GET['limit']) && !(($_GET['limit']+ITEMS_ON_PAGE) >= $count ))
 {
-$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] + ITEMS_ON_PAGE). "\">Následující</a> ";
+$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] + ITEMS_ON_PAGE).$cats. "\">Následující</a> ";
 }
-elseif (!(isset($_GET['limit'])) && ($c  == ceil($count / ITEMS_ON_PAGE))){$sum = $sum. "<a href=\"".$page."limit=".ITEMS_ON_PAGE. "\">Následující</a> ";}
+elseif (!(isset($_GET['limit'])) && ($c  == ceil($count / ITEMS_ON_PAGE))){$sum = $sum. "<a href=\"".$page."limit=".ITEMS_ON_PAGE.$cats. "\">Následující</a> ";}
 $c++;
 															}
 															

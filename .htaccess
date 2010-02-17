@@ -1,2 +1,6 @@
 RewriteEngine on
 RewriteRule profil chybovka.html
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^/]+)/?$ index.php?page=$1
