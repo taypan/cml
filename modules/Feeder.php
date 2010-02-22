@@ -4,6 +4,7 @@ class Feeder extends Modul{
 var $acl = array(	"get_default" => "guest");
 
 function get_default(){
+Debug::dump($_SESSION);
 //$_SESSION['items'] = array();
 //$_SESSION['items_codes'] = array();
 if(isset($this->params_g['id'])){
