@@ -39,6 +39,7 @@ return $this->get_default();
 
 
 function get_default(){
+//Debug::dump($_SESSION['items_codes']);
 global $database;
 if(isset($_SESSION['items'])){
 $sum = "Polozky v kosiku:";

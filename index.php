@@ -53,6 +53,7 @@ header(`Pragma: no-cache`);
 
 //Debug::dump($_SESSION['items']);
 global $model;
+Debug::dump($_SESSION);
 if(!isset($_SESSION))
 {
 session_start();
