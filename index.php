@@ -44,7 +44,7 @@ $model->add_panel("left","Panel 2","Nadpis 2");
 //$model->panel_into_area("center","Obsah","Titulek");
 //$model->areas["left"]->add_panel("Obsah","Titulek");
 //echo $model->panels['<!--content-panel-left -->'];
-
+session_start();
 
 header(`Expires: Mon, 26 Jul 1997 05:00:00 GMT`);
 header(`Last-Modified: `.gmdate(`D, d M Y H:i:s`).` GMT`);
@@ -52,12 +52,14 @@ header(`Cache-Control: no-cache, must-revalidate`);
 header(`Pragma: no-cache`);
 
 //Debug::dump($_SESSION['items']);
-global $model;
+global $model,$PHPSESSID;
 //Debug::dump($_SESSION);
-//if(!isset($_SESSION))
-//{
-//session_start();
-//}
+echo "XX".$PHPSESSID;
+//if($PHPSESSID)
+{
+
+}
+echo "XX".$PHPSESSID;
 /*$objekt = new Clanky;
 echo $objekt->panel_count();
 echo $objekt->get_content(0);
