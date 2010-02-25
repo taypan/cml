@@ -28,12 +28,16 @@ return "Košík";
 
 
 function remove(){
+if (isset($this->params_g['code']) && !(array_search($this->params_g['code'],$_SESSION['items_codes']) === FALSE)){
 $code = $this->params_g['code'];
 //if(isset($_SESSION['items'])){echo "OK";}
 //echo $_SESSION['items'][1][1];
 unset($_SESSION['items'][array_search($code,$_SESSION['items_codes'])]);
 unset($_SESSION['items_codes'][array_search($code,$_SESSION['items_codes'])]);
-return $this->get_default();
+return $this->get_default();}
+else {
+echo array_search($this->params_g['code'],$_SESSION['items_codes']) ." \"".$this->params_g['code']."\"";
+return "Položka neexistuje";}
 }
 
 
