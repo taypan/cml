@@ -6,10 +6,11 @@ var $email;
 var $code;
 var $values;
 
+
 function get_content(){
 global $model;
 if($model->user->isAuthenticated()){  //prihlasen
-
+//if(isset($_GET['action'])&& $_GET['action'] == "remove"){echo "tady";return $this->remove();}
 if(isset($this->params_g['action'])){
 switch ($this->params_g['action']){
 case 'submit':
@@ -23,7 +24,18 @@ return $this->get_default();
 }
 ////////////////////////////////////////
  else {  //neprihlasen
-return $this->get_default_unreg().$this->getForm();
+ if(isset($this->params_g['action'])){
+switch ($this->params_g['action']){
+case 'remove':
+return $this->remove();
+default:
+return $this->get_default();
+} 
+}
+if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){
+return $this->draw_kosik_content().$this->get_default_unreg().$this->getForm();
+}
+else {return "Před odesláním objednávky musíte objednat nějaké zboží!";}
 }   
 ////////////////////////////////////////
 }
@@ -31,7 +43,7 @@ return $this->get_default_unreg().$this->getForm();
 function get_title(){
 return "Potvrzení objednávky";
 }
-
+/*
 function remove(){
 $code = $this->params_g['code'];
 //if(isset($_SESSION['items'])){echo "OK";}
@@ -39,7 +51,7 @@ $code = $this->params_g['code'];
 unset($_SESSION['items'][array_search($code,$_SESSION['items_codes'])]);
 unset($_SESSION['items_codes'][array_search($code,$_SESSION['items_codes'])]);
 return $this->get_default();
-} 
+} */
 
 function getForm(){
 $reg_form = new Form;
@@ -247,6 +259,42 @@ else {return TRUE;}
 
 }
 
+function draw_kosik_content(){
+//Debug::dump($_SESSION['items_codes']);
+global $database;
+if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){
+$sum = "Polozky v kosiku:\n<table>";
+//$counter = 0;
+foreach($_SESSION['items'] as $key => $value)
+{
+$q = "SELECT nazev FROM items WHERE id='$value'";
+$result = $database->query($q);
+$nazev = mysql_result($result,0,'nazev');
+$sum = $sum ."<tr><td>". $nazev." </td><td><a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">Odstranit</a></td><tr>";
+}
+return $sum."</table></br>";
+}
+else {return "Nebyly objednány žádné položky";}
+
+}
+
+function remove(){
+if (isset($this->params_g['code']) && !(array_search($this->params_g['code'],$_SESSION['items_codes']) === FALSE)){
+$code = $this->params_g['code'];
+//echo "OK";
+//if(isset($_SESSION['items'])){echo "OK";}
+//echo $_SESSION['items'][1][1];
+unset($_SESSION['items'][array_search($code,$_SESSION['items_codes'])]);
+unset($_SESSION['items_codes'][array_search($code,$_SESSION['items_codes'])]);
+unset($_GET['action']);
+if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){return "Položka byla odstraněna\n</br></br>\n".$this->draw_kosik_content().$this->get_default_unreg().$this->getForm();}
+else {return "Před odesláním objednávky musíte objednat nějaké zboží!";}
+//return $this->get_content();
+}
+else {
+//echo array_search($this->params_g['code'],$_SESSION['items_codes']) ." \"".$this->params_g['code']."\"";
+return "Položka neexistuje";}
+}
 
 }
 ?>

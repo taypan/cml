@@ -45,7 +45,7 @@ return "Položka neexistuje";}
 function get_default(){
 //Debug::dump($_SESSION['items_codes']);
 global $database;
-if(isset($_SESSION['items'])){
+if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){
 $sum = "Polozky v kosiku:";
 //$counter = 0;
 foreach($_SESSION['items'] as $key => $value)

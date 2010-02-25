@@ -164,6 +164,8 @@ $dostup = array(
 	1 => 'Skladem',
 	2 => 'Na ceste',
 );
+$cat = explode(",",CAT);
+$subcat = explode(",",SUBCAT);
 
 $pridavani = new Form;
 $pridavani->setAction("index.php?page=Zbozi_manager&action=add");
@@ -172,7 +174,8 @@ $pridavani->addText('nazev', 'Název:')
 	
 $pridavani->addText('popis', 'Popis:')
 	->addRule(Form::FILLED, 'Zadejte popis');
-
+$pridavani->addSelect('cat', 'Kategorie:', $cat);
+$pridavani->addSelect('subcat', 'Podkategorie:', $subcat);
 $pridavani->addText('rozmery', 'Rozměry:')
 	->addRule(Form::FILLED, 'Zadejte rozměry');
 
@@ -250,17 +253,17 @@ if ($pridavani->isSubmitted()) {
 	return $pridavani;
 	}
 
-
+}
 function add_item($values,$id = 0){
 global $database;
 //echo $id;
 if($id != 0 && $this->isitem($id)){
-$q = "UPDATE items SET nazev = '".$values['nazev']."', popis = '".$values['popis']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
+$q = "UPDATE items SET nazev = '".$values['nazev']."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
 //echo $q;
 $database->query($q);
 }
 else{ 
-$q = "insert into items values ('','".$values['nazev']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
+$q = "insert into items values ('','".$values['nazev']."','".$values['cat']."','".$values['subcat']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
 //echo $q;
 $database->query($q);
 $_SESSION['msg'] = 'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>';
@@ -270,7 +273,7 @@ image_upload ($id,TMP_DIR,IMG_DIR_BIG,IMG_DIR_SMALL,MODWIDTH_SML,MODWIDTH_BIG);
 //echo mysql_insert_id();
 return 0;
 }
-}
+
 function image_upload ($id,$tmpdir,$bigdir,$smldir,$modwidth_sml,$modwidth_big){
         if(isset($_POST['pridat'])){
 		//echo "XXX";
@@ -345,6 +348,7 @@ else{
 $q = "insert into items values ('','".$values['nazev']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
 //echo $q;
 $database->query($q);
+echo $q;
 $_SESSION['msg'] = 'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>';
 }
 if($id == 0){$id = mysql_insert_id();}
