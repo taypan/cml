@@ -8,7 +8,7 @@ $status = new Status;
 $database = new Database;
 $controler = new Controler;
 
-Debug::enable();
+//Debug::enable();
 //echo $scheme[$begin.'panel-header'.$end];
 //echo $scheme[$begin.'panel-right'.$end];
 //$model->panels
@@ -53,11 +53,11 @@ header(`Pragma: no-cache`);
 
 //Debug::dump($_SESSION['items']);
 global $model;
-Debug::dump($_SESSION);
-if(!isset($_SESSION))
-{
-session_start();
-}
+//Debug::dump($_SESSION);
+//if(!isset($_SESSION))
+//{
+//session_start();
+//}
 /*$objekt = new Clanky;
 echo $objekt->panel_count();
 echo $objekt->get_content(0);
