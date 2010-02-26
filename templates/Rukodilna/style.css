@@ -39,7 +39,7 @@ del {text-decoration: line-through;}
 table {border-collapse: collapse; border-spacing: 0;}
 
 h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; color:#800; margin-left:40px; }
-#obsahShop h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; padding-top:30px; color:#800; margin-left:40px; }
+#obsahShop h1, #obsahSekce h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; padding-top:30px; color:#800; margin-left:40px; }
 
 /*end of reset*/
 
@@ -47,9 +47,8 @@ h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:
 #zarovnani {width:1026px; margin-left:auto; margin-right:auto;}
 
 #cont {background-image:url(images/head_02.jpg); background-repeat:no-repeat; width:1026px; height:492px; margin-left:auto; margin-right:auto;}
-#contShop {background-image: url(images/shopBG_03.jpg); background-repeat:no-repeat; width:1026px; height:465px; margin-left:auto; margin-right:auto;}
-#cont #menu a, #contShop #menu a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
-#cont a:hover, #contShop a:hover {color: #C00; text-decoration:underline;}
+#contShop, #contSekce {background-image: url(images/shopBG_03.jpg); background-repeat:no-repeat; width:1026px; height:465px; margin-left:auto; margin-right:auto;}
+
 
 .zboziCont{ width:172px; height:180px; float:left; background-image:url(images/shop_03.png); background-position:bottom; background-repeat:no-repeat; margin-left:40px; margin-top:25px;  }
 .zboziCont h2{ margin-top:118px; color:#FFF; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:12px; font-style:normal; font-weight:normal; padding-left:9px;} 
@@ -84,17 +83,22 @@ h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:
 #zakulaceni	{background-image:url(images/obsah_03.png); background-repeat:no-repeat; float:left; width:770px; height:40px; margin-top:194px;}
 
 #obsah {background-color:#FFF; background-image:url(images/obsah_05.png); background-position:top; background-repeat:no-repeat; float:left; width:770px; margin-left:0px;}
-#obsahShop {background-color:#FFF; background-image: url(images/bgshop_03.jpg);  background-position:top; background-repeat:no-repeat; float:left; width:770px; margin-left:0px;}
+#obsahShop, #obsahSekce {background-color:#FFF; background-image: url(images/bgshop_03.jpg);  background-position:top; background-repeat:no-repeat; float:left; min-height:650px; width:770px; margin-left:0px;}
 
-#obsah p, #obsahShop p {font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:40px; color:#333; line-height:18px; float:left; padding-top:15px; width:450px;}
+#obsah p, #obsahShop p{font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:40px; color:#333; line-height:18px; float:left; padding-top:15px; width:450px;}
 
-#kosik { float:left; margin-left:20px; margin-top:570px; background-image: url(images/kosik_09.png); width:24px; height:17px; }
-#kosikU { float:right; margin-right:40px;  margin-top:15px;  background-image: url(images/kosik_09.png); background-position:right; background-repeat:no-repeat; width:224px; height:17px; }
-.kosikTXT{color:#663300; font-family: Arial, Helvetica, sans-serif; text-align:center;  font-size:12px; padding-right:5px; text-decoration:underline; }
+#kosik { float:left; width:600px; margin-left:20px; margin-top:570px; background-image: url(images/kosik_09.png); width:24px; height:17px; }
 /* END OF Obsah */
+
+.sekceCont{ background-image:url(images/sekce_03.jpg); background-position:bottom; background-repeat:no-repeat; width:184px; height:174px; float:left; margin-left:40px; margin-top:45px; }
+.sekceCont h2{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:normal; font-size:12px; color:#800;}
+.linkCont{ margin-top:110px; float:left; width:184px; height:50px;}
+.linkCont a{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:10px; color:#fff; float:left; width:154px; line-height:14px; padding-left:5px;}
+.sekceCont a:hover{ text-decoration:underline;}
 
 /*MENU*/
 #menu { float:left; width:200px;  margin-top: 420px; margin-left: 10px;}
+#menu a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
 /*END OF MENU*/
 
 /* HOMEPAGE */
@@ -106,5 +110,3 @@ h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:
 
 #logo {float:left; width:350px; height:210px; margin-left:520px; margin-top:550px;}
 /* END OF HOMEPAGE */
-
-.counter{}
