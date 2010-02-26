@@ -116,4 +116,5 @@ h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:
 #logo {float:left; width:350px; height:210px; margin-left:520px; margin-top:550px;}
 /* END OF HOMEPAGE */
 
-.counter{}
+.counter{
+white-space:nowrap}

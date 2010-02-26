@@ -38,6 +38,7 @@ $q = "SELECT * FROM items ORDER BY id LIMIT $from,$limit";
 //echo $q;
 $result = $database->query($q);
 $d = mysql_num_rows($result);
+if($d == 0) {return "Zadaná kategorie je prázdná";}
 for($i = 0;$i != $d;$i++)
 {
 

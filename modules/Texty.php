@@ -22,7 +22,7 @@ return;
 }*/
 
 function get_default($n){
-return "OK";
+return $this->show(DEFAULT_TEXT);
 }
 
 function get_title($n){
@@ -36,14 +36,23 @@ if(mysql_num_rows($result) == 1){
 $this->text = mysql_result($result,0,"text");
 $this->nadpis = mysql_result($result,0,"nadpis");
 return $this->nadpis;}
-else {return "unknown";}
+else {
+$q = "SELECT * from texty WHERE jmeno='rozcestnik'";
+$result = $database->query($q);
+if(mysql_num_rows($result) == 1){
+$this->text = mysql_result($result,0,"text");
+$this->nadpis = mysql_result($result,0,"nadpis");
+return $this->nadpis;} 
+else {return "";}
+//return "unknown";
+}
 }
 
 
-function show(){
+function show($popis = ""){
 global $database;
 if(isset($_GET['text'])){$this->popis = $_GET['text'];}
-else {$this->popis = "default";}
+else {$this->popis = $popis;}
 //if (valid($popis)){} TODO
 $q = "SELECT * from texty WHERE jmeno='$this->popis'";
 $result = $database->query($q);
