@@ -20,9 +20,9 @@ for($i = 0;$i != mysql_numrows($result);$i++){
 $page = mysql_result($result,$i,'link');
 $alt = mysql_result($result,$i,'alt');
 $level = mysql_result($result,$i,'level');
-$sum = $sum." | ".$tag->a($page,$alt);
+$sum = $sum.$tag->a($page,$alt);
 }
-return $sum." | ";
+return $sum;
 }
 
 

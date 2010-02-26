@@ -89,7 +89,11 @@ function get_content($n){
 global $model;
 //$user = Environment::getUser();
 if($model->user->isAuthenticated()){$this->logged_in_menu();}
-else {return $this->load_login_form();}
+else {
+if(isset($_GET['admin']) && $_GET['admin'] == "yes"){
+return $this->load_login_form();
+}
+}
 
 }
 
