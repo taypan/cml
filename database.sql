@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Počítač: localhost
--- Vygenerováno: Středa 17. února 2010, 22:00
+-- Vygenerováno: Pátek 26. února 2010, 22:22
 -- Verze MySQL: 5.1.41
 -- Verze PHP: 5.2.12-2
 
@@ -35,22 +35,21 @@ CREATE TABLE IF NOT EXISTS `items` (
   `dostupnost` int(11) NOT NULL,
   `rozmery` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=89 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=94 ;
 
 --
 -- Vypisuji data pro tabulku `items`
 --
 
 INSERT INTO `items` (`id`, `cat`, `subcat`, `nazev`, `popis`, `cena`, `dostupnost`, `rozmery`) VALUES
-(53, 'doplnkyahracky', '', 'sdf', 'sdf', 543, 1, 'sdf'),
+(53, '0', '0', 'ÄŒaj', 'sdf', 543, 1, '55x55'),
 (77, 'doplnkyahracky', '', 'Nazevsdfs', 'asdfsd', 4123, 1, 'sdf'),
 (76, 'detskynabytek', '', 'sdf', 'sdf', 543, 1, 'sdf'),
 (75, 'stoly', 'jidelni', 'sdf', 'sdf', 543, 1, 'sdf'),
 (74, 'stoly', 'jidelni', 'sdf', 'sdf', 543, 1, 'sdf'),
 (73, 'stoly', 'jidelni', 'sdf', 'sdf', 543, 1, 'sdf'),
 (72, 'stoly', 'jidelni', 'sdf', 'sdf', 543, 1, 'sdf'),
-(71, 'stoly', 'jidelni', 'sdf', 'sdf', 543, 1, 'sdf'),
-(69, 'stoly', 'jidelni', 'Nazevsdfs', 'asdfsd', 4123, 1, 'sdf'),
+(71, '1', '2', 'Loznice', 'sdf', 543, 1, 'sdf'),
 (78, 'stoly', 'konferencni', 'Nazevsdfs', 'asdfsd', 4123, 1, 'sdf'),
 (79, 'stoly', 'konferencni', 'Nazevsdfs', 'asdfsd', 4123, 1, 'sdf'),
 (80, 'stoly', 'konferencni', 'Nazevsdfs', 'asdfsd', 4123, 1, 'sdf'),
@@ -61,7 +60,12 @@ INSERT INTO `items` (`id`, `cat`, `subcat`, `nazev`, `popis`, `cena`, `dostupnos
 (85, 'stoly', 'jidelni', 'sdf', 'sdf', 543, 1, 'sdf'),
 (86, 'stoly', 'jidelni', 'sdf', 'sdf', 543, 1, 'sdf'),
 (87, 'stoly', 'jidelni', 'sdf', 'sdf', 543, 1, 'sdf'),
-(88, 'stoly', 'jidelni', 'Nazevsdfs', 'asdfsd', 4123, 1, 'sdf');
+(88, 'stoly', 'jidelni', 'Nazevsdfs', 'asdfsd', 4123, 1, 'sdf'),
+(89, 'xxx', '1', '1', 'xx', 56, 1, 'sdf'),
+(90, 'xxx', '1', '1', 'xx', 56, 1, 'sdf'),
+(91, 'novÃ¡', '2', '1', 'popis', 123, 1, 'roz'),
+(92, 'nová', '2', '1', 'popis', 123, 1, 'roz'),
+(93, '0', '0', 'novÃ¡cek', 'popis', 123, 1, 'roz');
 
 -- --------------------------------------------------------
 
@@ -99,22 +103,26 @@ CREATE TABLE IF NOT EXISTS `menus_items` (
   `menu` varchar(50) NOT NULL,
   `deny_for` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
 --
 -- Vypisuji data pro tabulku `menus_items`
 --
 
 INSERT INTO `menus_items` (`id`, `alt`, `link`, `position`, `level`, `menu`, `deny_for`) VALUES
-(1, 'Hlavni strana', 'index.php', 0, 'guest', 'main', ''),
-(2, 'Registrace', 'index.php?page=Registrator', 2, 'guest', 'main', 'member'),
+(1, 'Hlavni strana', 'index.php', 8, 'superadmin', 'main', ''),
+(2, 'Registrace', 'index.php?page=Registrator', 6, 'guest', 'main', 'member'),
 (3, 'Settings', 'index.php?page=Settings', 2, 'administrator', 'main', ''),
+(38, 'DoplÅˆky a hraÄky', 'index.php?page=Zbozi', 3, 'guest', 'main', ''),
 (7, 'OdhlÃ¡sit', 'logout.php', 2, 'member', 'Logged_in_menu', ''),
-(35, 'Kdo jsme', 'http://localhost/index.php?page=Texty&action=show&text=kdojsme', 0, 'guest', 'main', ''),
-(9, 'KoÅ¡Ã­k', 'index.php?page=Kosik', 10, 'guest', 'main', ''),
+(35, 'Kdo jsme', 'index.php?page=Texty&action=show&text=kdojsme', 0, 'guest', 'main', ''),
 (17, 'Objednavky ', 'index.php?page=Admin_prehled', 2, 'administrator', 'main', ''),
+(39, 'E-shop', 'index.php?page=Zbozi', 4, 'guest', 'main', ''),
 (16, 'SprÃ¡va zboÅ¾Ã­', 'index.php?page=Zbozi_manager', 8, 'administrator', 'main', ''),
-(34, 'Action', 'index.php?page=Tester&action=test', 56, 'superadmin', 'main', '');
+(34, 'Action', 'index.php?page=Tester&action=test', 56, 'superadmin', 'main', ''),
+(37, 'NÃ¡bytek', 'index.php?page=Texty&action=show&text=rozcestnik', 2, 'guest', 'main', ''),
+(36, 'Menuator', 'index.php?page=Menuator', 5, 'superadmin', 'main', ''),
+(40, 'Kontakty', 'index.php?page=Texty&action=show&text=kontakty', 5, 'guest', 'main', '');
 
 -- --------------------------------------------------------
 
@@ -327,7 +335,6 @@ INSERT INTO `panels` (`id`, `area`, `position`, `modul`, `arguments`, `level`, `
 (1, 'left', 1, 'Menu', 'menu=main', 'guest', ''),
 (2, 'center', 0, 'General', '', 'guest', ''),
 (3, 'left', 2, 'Login', 'menu=Logged_in_menu', 'guest', ''),
-(4, 'left', 3, 'Kosik_panel', '', 'guest', ''),
 (0, 'style', 3, 'Style', '', 'guest', ''),
 (6, 'kosik', 3, 'Kosik_info', '', 'guest', '');
 
@@ -343,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `value` varchar(1024) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Vypisuji data pro tabulku `settings`
@@ -353,7 +360,7 @@ INSERT INTO `settings` (`id`, `atribut`, `value`) VALUES
 (1, 'TEMPLATES_DIRECTORY', 'templates/'),
 (2, 'CURRENT_TEMPLATE', 'Rukodilna'),
 (3, 'MUDULES_DIRECTORY', 'modules/'),
-(4, 'general_enabled_panels', 'Tester,Admin_prehled,Confirm,Objednat,Feeder,Zbozi_manager,Zbozi,Clanky,Settings,Enter,Menuator,Logout,Registrator,Kosik,Texty'),
+(4, 'general_enabled_panels', 'Tester,Admin_prehled,Confirm,Objednat,Feeder,Zbozi_manager,Zbozi,Zbozi2,Clanky,Settings,Enter,Menuator,Logout,Registrator,Kosik,Texty,Login'),
 (7, 'RAND1', '0-9vVFO-9w3ldNhue_-p'),
 (6, 'DEFAULT_PAGE', 'Zbozi'),
 (8, 'RAND2', '_KoV5017zK03E_9gyPGB'),
@@ -380,7 +387,10 @@ INSERT INTO `settings` (`id`, `atribut`, `value`) VALUES
 (29, 'SITE', 'localhost/'),
 (30, 'HASH_START', '10'),
 (31, 'HASH_LENGHT', '31'),
-(35, 'mena', 'KÄ');
+(35, 'mena', 'KÄ'),
+(36, 'AREAS', 'panel-center,panel-header,panel-left,panel-right,panel-footer,panel-style,panel-kosik'),
+(37, 'CAT', 'ÄŒajovÃ© stolky a sety,LoÅ¾nice,Stoly a stolky,PracovnÃ­ stoly a skÅ™Ã­Åˆky,DÄ›tskÃ½ nÃ¡bytek, ZakÃ¡zkovÃ¡ vÃ½roba'),
+(38, 'SUBCAT', 'Bez podkategorie,--- LoÅ¾nice ---,Postele,NoÄnÃ­ stolky,Sety,--- Stoly a stolky ---,JÃ­delnÃ­,KonferenÄnÃ­,OdklÃ¡dacÃ­,--- DÄ›tskÃ½ nÃ¡bytek  ---,Postele,NoÄnÃ­ stolky,PracovnÃ­ stoly a police');
 
 -- --------------------------------------------------------
 
@@ -391,18 +401,20 @@ INSERT INTO `settings` (`id`, `atribut`, `value`) VALUES
 CREATE TABLE IF NOT EXISTS `texty` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jmeno` varchar(100) NOT NULL,
-  `text` blob NOT NULL,
-  `nadpis` varchar(100) NOT NULL,
+  `text` longtext NOT NULL,
+  `nadpis` varchar(100) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Vypisuji data pro tabulku `texty`
 --
 
 INSERT INTO `texty` (`id`, `jmeno`, `text`, `nadpis`) VALUES
-(1, 'kdojsme', 0x3c703e204c6f72656d20697073756d20646f6c6f722073697420616d65742c20636f6e73656374657475722061646970697363696e6720656c69742e204e756c6c61207075727573206c616375732c20636f6e7365717561742073697420616d657420626c616e6469742061742c20626962656e64756d207669746165206c65637475732e2050656c6c656e7465737175652072686f6e6375732061726375206e6f6e20657261742074696e636964756e74207363656c657269737175652e2051756973717565206665726d656e74756d206665726d656e74756d206e756c6c612e20496e20696d7065726469657420636f6d6d6f646f206c61637573206574206d6f6c6c69732e20457469616d20696163756c69732064696374756d206469616d2073697420616d657420646170696275732e2053656420612073617069656e206e756c6c612e205574206e6563206e65717565206d61757269732c206469676e697373696d206f726e61726520656e696d2e20496e7465676572207363656c6572697371756520736f6c6c696369747564696e207072657469756d2e205072616573656e7420616363756d73616e207068617265747261206f726e6172652e20467573636520736f6c6c696369747564696e2c20707572757320612064696374756d206c6163696e69612c20656c69742073617069656e206d616c65737561646120646f6c6f722c20657420616c697175616d20647569206d6574757320756c747269636965732075726e612e2053757370656e6469737365206f726369206d617373612c20766f6c75747061742065676574207363656c6572697371756520766976657272612c2076697665727261206174206e6962682e2043726173206e6563206e657175652073697420616d6574206c6967756c6120616c697175616d20616c697175616d2e204d61757269732064696374756d20637572737573206f7263692e3c2f703e0a0a202020203c703e204c6f72656d20697073756d20646f6c6f722073697420616d65742c20636f6e73656374657475722061646970697363696e6720656c69742e204e756c6c61207075727573206c616375732c20636f6e7365717561742073697420616d657420626c616e6469742061742c20626962656e64756d207669746165206c65637475732e2050656c6c656e7465737175652072686f6e6375732061726375206e6f6e20657261742074696e636964756e74207363656c657269737175652e2051756973717565206665726d656e74756d206665726d656e74756d206e756c6c612e20496e20696d7065726469657420636f6d6d6f646f206c61637573206574206d6f6c6c69732e20457469616d20696163756c69732064696374756d206469616d2073697420616d657420646170696275732e2053656420612073617069656e206e756c6c612e205574206e6563206e65717565206d61757269732c206469676e697373696d206f726e61726520656e696d2e20496e7465676572207363656c6572697371756520736f6c6c696369747564696e207072657469756d2e205072616573656e7420616363756d73616e207068617265747261206f726e6172652e20467573636520736f6c6c696369747564696e2c20707572757320612064696374756d206c6163696e69612c20656c69742073617069656e206d616c65737561646120646f6c6f722c20657420616c697175616d20647569206d6574757320756c747269636965732075726e612e2053757370656e6469737365206f726369206d617373612c20766f6c75747061742065676574207363656c6572697371756520766976657272612c2076697665727261206174206e6962682e2043726173206e6563206e657175652073697420616d6574206c6967756c6120616c697175616d20616c697175616d2e204d61757269732064696374756d20637572737573206f7263692e3c2f703e0a0a202020203c703e204c6f72656d20697073756d20646f6c6f722073697420616d65742c20636f6e73656374657475722061646970697363696e6720656c69742e204e756c6c61207075727573206c616375732c20636f6e7365717561742073697420616d657420626c616e6469742061742c20626962656e64756d207669746165206c65637475732e2050656c6c656e7465737175652072686f6e6375732061726375206e6f6e20657261742074696e636964756e74207363656c657269737175652e2051756973717565206665726d656e74756d206665726d656e74756d206e756c6c612e20496e20696d7065726469657420636f6d6d6f646f206c61637573206574206d6f6c6c69732e20457469616d20696163756c69732064696374756d206469616d2073697420616d657420646170696275732e2053656420612073617069656e206e756c6c612e205574206e6563206e65717565206d61757269732c206469676e697373696d206f726e61726520656e696d2e20496e7465676572207363656c6572697371756520736f6c6c696369747564696e207072657469756d2e205072616573656e7420616363756d73616e207068617265747261206f726e6172652e20467573636520736f6c6c696369747564696e2c20707572757320612064696374756d206c6163696e69612c20656c69742073617069656e206d616c65737561646120646f6c6f722c20657420616c697175616d20647569206d6574757320756c747269636965732075726e612e2053757370656e6469737365206f726369206d617373612c20766f6c75747061742065676574207363656c6572697371756520766976657272612c2076697665727261206174206e6962682e2043726173206e6563206e657175652073697420616d6574206c6967756c6120616c697175616d20616c697175616d2e204d61757269732064696374756d20637572737573206f7263692e3c2f703e0a0a0a0a2020203c703e204c6f72656d20697073756d20646f6c6f722073697420616d65742c20636f6e73656374657475722061646970697363696e6720656c69742e204e756c6c61207075727573206c616375732c20636f6e7365717561742073697420616d657420626c616e6469742061742c20626962656e64756d207669746165206c65637475732e2050656c6c656e7465737175652072686f6e6375732061726375206e6f6e20657261742074696e636964756e74207363656c657269737175652e2051756973717565206665726d656e74756d206665726d656e74756d206e756c6c612e20496e20696d7065726469657420636f6d6d6f646f206c61637573206574206d6f6c6c69732e20457469616d20696163756c69732064696374756d206469616d2073697420616d657420646170696275732e2053656420612073617069656e206e756c6c612e205574206e6563206e65717565206d61757269732c206469676e697373696d206f726e61726520656e696d2e20496e7465676572207363656c6572697371756520736f6c6c696369747564696e207072657469756d2e205072616573656e7420616363756d73616e207068617265747261206f726e6172652e20467573636520736f6c6c696369747564696e2c20707572757320612064696374756d206c6163696e69612c20656c69742073617069656e206d616c65737561646120646f6c6f722c20657420616c697175616d20647569206d6574757320756c747269636965732075726e612e2053757370656e6469737365206f726369206d617373612c20766f6c75747061742065676574207363656c6572697371756520766976657272612c2076697665727261206174206e6962682e2043726173206e6563206e657175652073697420616d6574206c6967756c6120616c697175616d20616c697175616d2e204d61757269732064696374756d20637572737573206f7263692e3c2f703e0a0a2020203c703e266e6273703b3c2f703e0a0a2020203c703e266e6273703b3c2f703e0a0a2020203c703e266e6273703b3c2f703e0a, 'Kdo jsme');
+(1, 'kdojsme', '<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla purus lacus, consequat sit amet blandit at, bibendum vitae lectus. Pellentesque rhoncus arcu non erat tincidunt scelerisque. Quisque fermentum fermentum nulla. In imperdiet commodo lacus et mollis. Etiam iaculis dictum diam sit amet dapibus. Sed a sapien nulla. Ut nec neque mauris, dignissim ornare enim. Integer scelerisque sollicitudin pretium. Praesent accumsan pharetra ornare. Fusce sollicitudin, purus a dictum lacinia, elit sapien malesuada dolor, et aliquam dui metus ultricies urna. Suspendisse orci massa, volutpat eget scelerisque viverra, viverra at nibh. Cras nec neque sit amet ligula aliquam aliquam. Mauris dictum cursus orci.</p>\n\n    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla purus lacus, consequat sit amet blandit at, bibendum vitae lectus. Pellentesque rhoncus arcu non erat tincidunt scelerisque. Quisque fermentum fermentum nulla. In imperdiet commodo lacus et mollis. Etiam iaculis dictum diam sit amet dapibus. Sed a sapien nulla. Ut nec neque mauris, dignissim ornare enim. Integer scelerisque sollicitudin pretium. Praesent accumsan pharetra ornare. Fusce sollicitudin, purus a dictum lacinia, elit sapien malesuada dolor, et aliquam dui metus ultricies urna. Suspendisse orci massa, volutpat eget scelerisque viverra, viverra at nibh. Cras nec neque sit amet ligula aliquam aliquam. Mauris dictum cursus orci.</p>\n\n    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla purus lacus, consequat sit amet blandit at, bibendum vitae lectus. Pellentesque rhoncus arcu non erat tincidunt scelerisque. Quisque fermentum fermentum nulla. In imperdiet commodo lacus et mollis. Etiam iaculis dictum diam sit amet dapibus. Sed a sapien nulla. Ut nec neque mauris, dignissim ornare enim. Integer scelerisque sollicitudin pretium. Praesent accumsan pharetra ornare. Fusce sollicitudin, purus a dictum lacinia, elit sapien malesuada dolor, et aliquam dui metus ultricies urna. Suspendisse orci massa, volutpat eget scelerisque viverra, viverra at nibh. Cras nec neque sit amet ligula aliquam aliquam. Mauris dictum cursus orci.</p>\n\n\n\n   <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla purus lacus, consequat sit amet blandit at, bibendum vitae lectus. Pellentesque rhoncus arcu non erat tincidunt scelerisque. Quisque fermentum fermentum nulla. In imperdiet commodo lacus et mollis. Etiam iaculis dictum diam sit amet dapibus. Sed a sapien nulla. Ut nec neque mauris, dignissim ornare enim. Integer scelerisque sollicitudin pretium. Praesent accumsan pharetra ornare. Fusce sollicitudin, purus a dictum lacinia, elit sapien malesuada dolor, et aliquam dui metus ultricies urna. Suspendisse orci massa, volutpat eget scelerisque viverra, viverra at nibh. Cras nec neque sit amet ligula aliquam aliquam. Mauris dictum cursus orci.</p>\n\n   <p>&nbsp;</p>\n\n   <p>&nbsp;</p>\n\n   <p>&nbsp;</p>\n', 'Kdo jsme'),
+(2, 'kontakty', '    <p> Kontakty</p>\n\n   <p> Ulice</p>\n\n   <p>Mesto</p>\n\n   <p>4131231231</p>\n\n   <p>&nbsp;</p>\n', 'Kontakty'),
+(27, 'rozcestnik', '\r\n		<div id="obsahSekce">\r\n		<div class="sekceCont"> <a href="index.php?page=Zbozi&limit=0&cat=0">\r\n       <h2>ÄŒajovÃ© stolky a sety</h2>\r\n       </a>\r\n     </div>\r\n     <div class="sekceCont"> <a href="index.php?page=Zbozi&limit=0&cat=1">\r\n       <h2>LoÅ¾nice</h2>\r\n       </a>\r\n       <div class="linkCont"> \r\n	   <a href="index.php?page=Zbozi&limit=0&cat=1&subcat=2">Postele</a> \r\n	   <a href="index.php?page=Zbozi&limit=0&cat=1&subcat=3">NoÄnÃ­ stolky</a> \r\n	   <a href="index.php?page=Zbozi&limit=0&cat=1&subcat=4">Sety</a> </div>\r\n     </div>\r\n     <div class="sekceCont"> <a href="index.php?page=Zbozi&limit=0&cat=2">\r\n       <h2>STOLY A STOLKY</h2>\r\n       </a>\r\n       <div class="linkCont"> \r\n	   <a href="index.php?page=Zbozi&limit=0&cat=2&subcat=6">JÃ­delnÃ­</a> \r\n	   <a href="index.php?page=Zbozi&limit=0&cat=2&subcat=7">KonferenÄnÃ­</a> \r\n	   <a href="index.php?page=Zbozi&limit=0&cat=2&subcat=8">OdklÃ¡dacÃ­</a> </div> </div>\r\n     <div class="sekceCont"> <a href="index.php?page=Zbozi&limit=0&cat=3">\r\n       <h2>PRACOVNÃ­ STOLY A SKÅ™Ã­ÅˆKY</h2>\r\n       </a>\r\n     </div>\r\n     <div class="sekceCont"> <a href="index.php?page=Zbozi&limit=0&cat=4">\r\n       <h2>DÄ›tskÃ½ nÃ¡bytek</h2>\r\n       </a>\r\n       <div class="linkCont">  \r\n	   <a href="index.php?page=Zbozi&limit=0&cat=4&subcat=10">Postele</a> \r\n	   <a href="index.php?page=Zbozi&limit=0&cat=4&subcat=11">NoÄnÃ­ stolky</a> \r\n	   <a href="index.php?page=Zbozi&limit=0&cat=4&subcat=12">PracovnÃ­ stoly a police</a> \r\n	    </div>\r\n     </div>\r\n     <div class="sekceCont"> <a href="index.php?page=Zbozi&limit=0&cat=5">\r\n       <h2>ZakÃ¡zkovÃ¡ vÃ½roba</h2>\r\n       </a>\r\n     </div></div>', 'NÃ¡bytek');
 
 -- --------------------------------------------------------
 
@@ -431,7 +443,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `group`, `username`, `password`, `jmeno`, `prijmeni`, `email`, `ulice`, `mesto`, `psc`, `tel_num`) VALUES
-(1, 'superadmin', 'jirka', '248a4bbbfc114108840d5ac78ed4d3bbb74dec2815b275d811cd908c164838a8', '', '', '', '', '', 0, ''),
+(1, 'administrator', 'jirka', '248a4bbbfc114108840d5ac78ed4d3bbb74dec2815b275d811cd908c164838a8', '', '', '', '', '', 0, ''),
 (13, 'member', 'bosss', '0379ae19f0781f96673cea395e6f5d78026f9f6c6d0b621ff5bb6ee5b5c5b6b3', '54', '2132', '5243@54.cz', '513', '561', 12345, '213122113213'),
 (14, 'member', 'bossss', '0379ae19f0781f96673cea395e6f5d78026f9f6c6d0b621ff5bb6ee5b5c5b6b3', 'sdfsd', 'sdf', 'sdf@sdf.cz', 'sdfsd', 'sd', 12354, 'sssssssssssss'),
 (15, 'member', 'jirik', '0379ae19f0781f96673cea395e6f5d78026f9f6c6d0b621ff5bb6ee5b5c5b6b3', 'djfhhj', 'hjfv', 'hj@djh.cz', 'hjgfhv', '1', 12345, 'dfnjkfbdfdfdff'),
