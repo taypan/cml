@@ -4,7 +4,7 @@ var $varianta;
 
 function get_title($n)
 {
-if($n == 0) {return "Správce zboží";}
+if($n == 0) {return "Správce zbo?í";}
 elseif ($n == 1) {return "Správce - Menu";}
 else {return FALSE;}
 }
@@ -32,7 +32,7 @@ return 2;
 
 function remove(){
 if(isset($_GET['id']) && $this->isitem($_GET['id'])){
-if($this->remove_item($_GET['id'])) {return "Polozka byla odstraněna";} 
+if($this->remove_item($_GET['id'])) {return "Polozka byla odstran?na";} 
 else {return "Polozku se nepodarilo odstranit";
 }
 
@@ -138,7 +138,7 @@ for($i = 0;$i < $count;$i += ITEMS_ON_PAGE)
 															{
 if($i == 0){
 if(isset($_GET['limit']) && $_GET['limit'] >= ITEMS_ON_PAGE)
-{$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] - ITEMS_ON_PAGE)."\">Předchozí</a> ";}
+{$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] - ITEMS_ON_PAGE)."\">P?edchozí</a> ";}
 }
 
 if(isset($_GET['limit']) && $_GET['limit'] == (($c -1)*ITEMS_ON_PAGE))
@@ -159,13 +159,12 @@ function get_default(){
 return "<p align=\"center\"><a href=\"index.php?page=Zbozi_manager&action=add\">Přidat</a></br><a href=\"index.php?page=Zbozi_manager&action=manage\">Upravit</a>";
 }
 
+
 function add(){
 $dostup = array(
 	1 => 'Skladem',
 	2 => 'Na ceste',
 );
-$cat = explode(",",CAT);
-$subcat = explode(",",SUBCAT);
 
 $pridavani = new Form;
 $pridavani->setAction("index.php?page=Zbozi_manager&action=add");
@@ -174,17 +173,16 @@ $pridavani->addText('nazev', 'Název:')
 	
 $pridavani->addText('popis', 'Popis:')
 	->addRule(Form::FILLED, 'Zadejte popis');
-$pridavani->addSelect('cat', 'Kategorie:', $cat);
-$pridavani->addSelect('subcat', 'Podkategorie:', $subcat);
-$pridavani->addText('rozmery', 'Rozměry:')
-	->addRule(Form::FILLED, 'Zadejte rozměry');
+
+$pridavani->addText('rozmery', 'Rozm?ry:')
+	->addRule(Form::FILLED, 'Zadejte rozm?ry');
 
 $pridavani->addRadioList('dostupnost', 'Dostupnost:', $dostup)
 		->addRule(Form::FILLED, 'Zadejte dostupnost');
 $pridavani->addText('cena', 'Cena:')
 	->addRule(Form::FILLED, 'Zadejte cenu')
-	->addRule(Form::INTEGER, 'Cena musí být číslo');
-	//->addRule(Form::RANGE, 'Věk musí být v rozmezí od %d do %d', array(5, 120));
+	->addRule(Form::INTEGER, 'Cena musí být ?íslo');
+	//->addRule(Form::RANGE, 'V?k musí být v rozmezí od %d do %d', array(5, 120));
 $pridavani->addFile('new_image', 'Obrázek (pouze JPEG do velikosti 2 MB)')
         ->addCondition(Form::FILLED)
 		->addRule(Form::MIME_TYPE, 'Soubor musí být obrázek', 'image/jpeg');
@@ -193,7 +191,7 @@ if(isset($_GET['id']))
 $pridavani->addHidden('id')->setValue($_GET['id']);
 }
 
-if(isset($_GET['id'])){$text = 'Uložit';} else {$text = 'Přidat';}
+if(isset($_GET['id'])){$text = 'Ulo?it';} else {$text = 'Přidat';}
 $pridavani->addSubmit('pridat', $text);
 
 
@@ -222,7 +220,7 @@ if ($pridavani->isSubmitted()) {
 
 	//echo $form->isSubmitted();
 	//$form['pridat']->isSubmittedBy()
-	// a jestliže jsou všechny položky vyplněny správně
+	// a jestli?e jsou v?echny polo?ky vypln?ny správn?
 	
 	if ($pridavani->isValid()) {
 		//$form->isValid()
@@ -245,8 +243,8 @@ if ($pridavani->isSubmitted()) {
 		'dostupnost' => '',
 		'cena' => '',
     	));*/
-		//echo 'Položka byla úspěšně přidána<br><a href="admin.php?add">Přidat další...</a>';
-		return 'Položka byla úspěšně upravena<br><a href="index.php?page=Zbozi_manager&action=manage">Upravit další...</a>';
+		//echo 'Polo?ka byla úsp??n? p?idána<br><a href="admin.php?add">Přidat dal?í...</a>';
+		return 'Polo?ka byla úsp??n? upravena<br><a href="index.php?page=Zbozi_manager&action=manage">Upravit další...</a>';
 	}
 
 } else {
@@ -254,19 +252,20 @@ if ($pridavani->isSubmitted()) {
 	}
 
 }
+
 function add_item($values,$id = 0){
 global $database;
 //echo $id;
 if($id != 0 && $this->isitem($id)){
-$q = "UPDATE items SET nazev = '".$values['nazev']."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
+$q = "UPDATE items SET nazev = '".$values['nazev']."', popis = '".$values['popis']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
 //echo $q;
 $database->query($q);
 }
 else{ 
-$q = "insert into items values ('','".$values['nazev']."','".$values['cat']."','".$values['subcat']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
+$q = "insert into items values ('','".$values['nazev']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
 //echo $q;
 $database->query($q);
-$_SESSION['msg'] = 'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>';
+$_SESSION['msg'] = 'Polo?ka byla úsp??n? p?idána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>';
 }
 if($id == 0){$id = mysql_insert_id();}
 image_upload ($id,TMP_DIR,IMG_DIR_BIG,IMG_DIR_SMALL,MODWIDTH_SML,MODWIDTH_BIG);
@@ -336,6 +335,9 @@ function image_upload ($id,$tmpdir,$bigdir,$smldir,$modwidth_sml,$modwidth_big){
  
           }
         }}
+	
+}	
+		/*
 function add_item($values,$id = 0){
 global $database;
 //echo $id;
@@ -348,13 +350,12 @@ else{
 $q = "insert into items values ('','".$values['nazev']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
 //echo $q;
 $database->query($q);
-echo $q;
-$_SESSION['msg'] = 'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>';
+$_SESSION['msg'] = 'Polo?ka byla úsp??n? p?idána<br><a href="index.php?page=Zbozi_manager&action=add">P?idat dal?í...</a>';
 }
 if($id == 0){$id = mysql_insert_id();}
 $this->image_upload ($id,TMP_DIR,IMG_DIR_BIG,IMG_DIR_SMALL,MODWIDTH_SML,MODWIDTH_BIG);
 //echo mysql_insert_id();
-return "Položka byla úspěšně upravena!";
-}
+return "Polo?ka byla úsp??n? upravena!";
+}*/
 
-}?>
+?>
