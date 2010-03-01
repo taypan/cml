@@ -210,6 +210,8 @@ $result = $database->query($q);
 $pridavani->setDefaults(array(
         'nazev' => mysql_result($result,0,"nazev"),
 		'popis' => mysql_result($result,0,"popis"),
+		'cat' => mysql_result($result,0,"cat"),
+		'subcat' => mysql_result($result,0,"subcat"),
 		'rozmery' => mysql_result($result,0,"rozmery"),
 		'dostupnost' => mysql_result($result,0,"dostupnost"),
 		'cena' => mysql_result($result,0,"cena"),
