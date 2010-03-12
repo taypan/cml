@@ -35,7 +35,7 @@ return $this->get_default();
 if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){
 return $this->draw_kosik_content().$this->get_default_unreg().$this->getForm();
 }
-else {return MSG_BEGIN."Před odesláním objednávky musíte objednat nějaké zboží!".MSG_END;}
+else {return MSG_BEGIN."Košík je prázdný.</br>Před odesláním objednávky musíte objednat nějaké zboží!".MSG_END;}
 }   
 ////////////////////////////////////////
 }
@@ -293,12 +293,12 @@ unset($_SESSION['items'][array_search($code,$_SESSION['items_codes'])]);
 unset($_SESSION['items_codes'][array_search($code,$_SESSION['items_codes'])]);
 unset($_GET['action']);
 if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){return MSG_BEGIN."Položka byla odstraněna".MSG_END.$this->draw_kosik_content().$this->get_default_unreg().$this->getForm();}
-else {return MSG_BEGIN."Před odesláním objednávky musíte objednat nějaké zboží!".MSG_END;}
+else {return MSG_BEGIN."Košík je prázdný!".MSG_END;}
 //return $this->get_content();
 }
 else {
 //echo array_search($this->params_g['code'],$_SESSION['items_codes']) ." \"".$this->params_g['code']."\"";
-return MSG_BEGIN."Položka neexistuje".MSG_END;}
+return $this->get_default();}
 }
 
 }
