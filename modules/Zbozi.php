@@ -137,13 +137,13 @@ return "
 
 function  draw_counter($page){
 global $database;
-echo "get_limit:".$_GET['limit'];
-echo " ses_limit:".$_SESSION['limit'];
+//echo "get_limit:".$_GET['limit'];
+//echo " ses_limit:".$_SESSION['limit'];
 
 if(!isset($_GET['limit'])){$limit = 0;}
 if(!isset($_GET['limit'])&& isset($_SESSION['limit'])){$limit = $_SESSION['limit'];}
 if(isset($_GET['limit'])){$limit = $_GET['limit'];}
-echo "limit: ".$limit;
+//echo "limit: ".$limit;
 /*
 if(isset($_GET['cat'])) {
 $cat = $_GET['cat'];
