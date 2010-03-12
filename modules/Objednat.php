@@ -186,7 +186,7 @@ return MSG_BEGIN."Objednávka byla uložena a byl odeslán ověřovací email. R
 } elseif (!$model->user->isAuthenticated() && sizeof($_SESSION['items']) != 0 )  { //neprihlasen
 if($this->createObjednavka(FALSE,$items)){
 unset($_SESSION['items']);
-return MSG_BEGIN."Objednávka byla uložena a byl odeslán ověřovací email. Realizace objednávky bude započata, až v ověřovacím emailu kliknete na kontrolní odkaz.</br> Děkujeme za nákup".MSG_ENG;
+return MSG_BEGIN."Objednávka byla uložena a byl odeslán ověřovací email. Realizace objednávky bude započata, až v ověřovacím emailu kliknete na kontrolní odkaz.</br></br>Děkujeme za nákup".MSG_END;
 } else {return MSG_BEGIN."Objednávka se nezdařila zkuste to znovu".MSG_END;}
 
 
