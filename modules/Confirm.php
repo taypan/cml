@@ -8,7 +8,7 @@ return "Ověření objednávky";
 function get_content($n){
 global $model;
 if($this->checkCode()){
-return "Vaše objednávka byla potvrzena a nyní čeká na zpracování. Budeme vás průběžně informovat e-mailem.";
+return MSG_BEGIN."Vaše objednávka byla potvrzena a nyní čeká na zpracování. Budeme vás průběžně informovat e-mailem.".MSG_END;
 } else {return "Neplatný kód!";}
 
 }
