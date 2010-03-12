@@ -6,8 +6,13 @@ class Zbozi extends Modul{
 
 function get_content($n){
 if(isset($this->params_g['limit'])){
+$_SESSION['limit'] = $this->params_g['limit'];
 return $this->draw_counter("index.php?page=Zbozi&").$this->get_items(0,$this->params_g['limit']);
-} else {return $this->draw_counter("index.php?page=Zbozi&").$this->get_items(0,0);}
+} elseif(isset($_SESSION['limit'])){
+return $this->draw_counter("index.php?page=Zbozi&").$this->get_items(0,$_SESSION['limit']);
+}
+
+ else {return $this->draw_counter("index.php?page=Zbozi&").$this->get_items(0,0);}
 }
 
 function get_title(){
@@ -132,7 +137,13 @@ return "
 
 function  draw_counter($page){
 global $database;
-if(!isset($_GET['limit'])){$_GET['limit'] = 0;}
+echo "get_limit:".$_GET['limit'];
+echo " ses_limit:".$_SESSION['limit'];
+
+if(!isset($_GET['limit'])){$limit = 0;}
+if(!isset($_GET['limit'])&& isset($_SESSION['limit'])){$limit = $_SESSION['limit'];}
+if(isset($_GET['limit'])){$limit = $_GET['limit'];}
+echo "limit: ".$limit;
 /*
 if(isset($_GET['cat'])) {
 $cat = $_GET['cat'];
@@ -176,18 +187,18 @@ $count = mysql_num_rows($result);
 for($i = 0;$i < $count;$i += ITEMS_ON_PAGE)
 															{
 if($i == 0){
-if(isset($_GET['limit']) && $_GET['limit'] >= ITEMS_ON_PAGE)
-{$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] - ITEMS_ON_PAGE).$cats."\"><</a> ";}
+if(isset($limit) && $limit >= ITEMS_ON_PAGE)
+{$sum = $sum. "<a href=\"".$page."limit=".($limit - ITEMS_ON_PAGE).$cats."\"><</a> ";}
 }
 
-if(isset($_GET['limit']) && $_GET['limit'] == (($c -1)*ITEMS_ON_PAGE))
-{$sum = $sum. $c. " ";}
+if(isset($limit) && $limit == (($c -1)*ITEMS_ON_PAGE))
+{$sum = $sum. "<strong>".$c. "</strong> ";}
 else {$sum = $sum. "<a href=\"".$page."limit=". $i.$cats. "\">".$c."</a> ";}
-if($c  == ceil($count / ITEMS_ON_PAGE) && isset($_GET['limit']) && !(($_GET['limit']+ITEMS_ON_PAGE) >= $count ))
+if($c  == ceil($count / ITEMS_ON_PAGE) && isset($limit) && !(($limit+ITEMS_ON_PAGE) >= $count ))
 {
-$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] + ITEMS_ON_PAGE).$cats. "\">></a> ";
+$sum = $sum. "<a href=\"".$page."limit=".($limit + ITEMS_ON_PAGE).$cats. "\">></a> ";
 }
-elseif (!(isset($_GET['limit'])) && ($c  == ceil($count / ITEMS_ON_PAGE))){$sum = $sum. "<a href=\"".$page."limit=".ITEMS_ON_PAGE.$cats. "\">></a> ";}
+elseif (!(isset($limit)) && ($c  == ceil($count / ITEMS_ON_PAGE))){$sum = $sum. "<a href=\"".$page."limit=".ITEMS_ON_PAGE.$cats. "\">></a> ";}
 $c++;
 															}
 if($sum != ""){
