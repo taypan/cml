@@ -25,9 +25,11 @@ $_SESSION['items_codes'][]= $code;
 
 }
 //echo $_SESSION['items'][0];
-$zbozi = new Zbozi;
+$info = array();
+$arg = array();
+$zbozi = new Zbozi($info,$arg);
 
-return MSG_BEGIN."<strong>Položka by přidána do košíku.</strong>".MSG_END.$zbozi->get_content();
+return MSG_BEGIN."<strong>Položka by přidána do košíku.</strong>".MSG_END.$zbozi->get_content(0);
 /* Pokud si přejete dokončit objednávku pokračujte přes menu \"Košík\"*/
 //Debug::dump($_SESSION);
 } else {return "Položka neexistuje!";}

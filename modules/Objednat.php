@@ -298,7 +298,13 @@ else {return MSG_BEGIN."Košík je prázdný!".MSG_END;}
 }
 else {
 //echo array_search($this->params_g['code'],$_SESSION['items_codes']) ." \"".$this->params_g['code']."\"";
-return $this->get_default();}
+if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){
+return $this->draw_kosik_content().$this->get_default_unreg().$this->getForm();
+}
+else {
+return $this->draw_kosik_content();
+}
+}
 }
 
 }
