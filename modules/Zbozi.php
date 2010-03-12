@@ -4,7 +4,6 @@ class Zbozi extends Modul{
 
 
 
-
 function get_content($n){
 if(isset($this->params_g['limit'])){
 return $this->draw_counter("index.php?page=Zbozi&").$this->get_items(0,$this->params_g['limit']);
@@ -21,19 +20,40 @@ global $database;
 $sum = "";
 $limit = ITEMS_ON_PAGE;
 
+//Debug::dump($_SESSION['cat']);
+//Debug::dump($_SESSION['subcat']);
+//Debug::dump($_GET);
+//$_SESSION['from'] = $from; 
+
 if(isset($_GET['cat'])) {
 $cat = $_GET['cat'];
+$_SESSION['cat'] = $_GET['cat'];
 if(isset($_GET['subcat'])) {
 $subcat = $_GET['subcat'];
+$_SESSION['subcat'] = $_GET['subcat'];
 $q = "SELECT * FROM items WHERE cat='$cat' AND subcat='$subcat' ORDER BY id LIMIT $from,$limit";
 }
 else {
+unset($_SESSION['subcat']);
 $q = "SELECT * FROM items WHERE cat='$cat' ORDER BY id LIMIT $from,$limit";
 }
-} else {
+} 
+else {
 $q = "SELECT * FROM items ORDER BY id LIMIT $from,$limit";
 }
 
+if(isset($_SESSION['cat']) && !(isset($_GET['cat'])))
+{
+$cat = $_SESSION['cat'];
+$q = "SELECT * FROM items WHERE cat='$cat' ORDER BY id LIMIT $from,$limit";
+}
+
+if(isset($_SESSION['cat']) && !(isset($_GET['cat'])) && isset($_SESSION['subcat']) && !(isset($_GET['subcat'])))
+{
+$cat = $_SESSION['cat'];
+$subcat = $_SESSION['subcat'];
+$q = "SELECT * FROM items WHERE cat='$cat' AND subcat='$subcat' ORDER BY id LIMIT $from,$limit";
+}
 
 //echo $q;
 $result = $database->query($q);
@@ -137,6 +157,17 @@ $cats = "&cat=$cat";
 $q = "SELECT id FROM items";
 }
 
+if(isset($_SESSION['cat']) && !isset($_GET['cat'])){
+$cat = $_SESSION['cat'];
+$q = "SELECT id FROM items WHERE cat='$cat'";
+}
+
+if(isset($_SESSION['cat']) && !isset($_GET['cat']) && isset($_SESSION['subcat']) && !isset($_GET['subcat'])){
+$cat = $_SESSION['cat'];
+$subcat = $_SESSION['subcat'];
+$q = "SELECT id FROM items WHERE cat='$cat' AND subcat='$subcat'";
+}
+
 //echo $q;
 $result = $database->query($q);
 $sum = "";
@@ -146,7 +177,7 @@ for($i = 0;$i < $count;$i += ITEMS_ON_PAGE)
 															{
 if($i == 0){
 if(isset($_GET['limit']) && $_GET['limit'] >= ITEMS_ON_PAGE)
-{$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] - ITEMS_ON_PAGE).$cats."\">Předchozí</a> ";}
+{$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] - ITEMS_ON_PAGE).$cats."\"><</a> ";}
 }
 
 if(isset($_GET['limit']) && $_GET['limit'] == (($c -1)*ITEMS_ON_PAGE))
@@ -154,9 +185,9 @@ if(isset($_GET['limit']) && $_GET['limit'] == (($c -1)*ITEMS_ON_PAGE))
 else {$sum = $sum. "<a href=\"".$page."limit=". $i.$cats. "\">".$c."</a> ";}
 if($c  == ceil($count / ITEMS_ON_PAGE) && isset($_GET['limit']) && !(($_GET['limit']+ITEMS_ON_PAGE) >= $count ))
 {
-$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] + ITEMS_ON_PAGE).$cats. "\">Následující</a> ";
+$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] + ITEMS_ON_PAGE).$cats. "\">></a> ";
 }
-elseif (!(isset($_GET['limit'])) && ($c  == ceil($count / ITEMS_ON_PAGE))){$sum = $sum. "<a href=\"".$page."limit=".ITEMS_ON_PAGE.$cats. "\">Následující</a> ";}
+elseif (!(isset($_GET['limit'])) && ($c  == ceil($count / ITEMS_ON_PAGE))){$sum = $sum. "<a href=\"".$page."limit=".ITEMS_ON_PAGE.$cats. "\">></a> ";}
 $c++;
 															}
 if($sum != ""){
