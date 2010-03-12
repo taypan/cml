@@ -14,7 +14,7 @@ global $database;
 //Debug::dump($_SESSION['items']);
 if(isset($_SESSION['items']) && sizeof($_SESSION['items']) != 0){
 //echo "OK";
-$sum = "Polozky v kosiku:";
+$sum = "Položky v košíku:";
 $counter = 0;
 foreach($_SESSION['items'] as $key => $value)
 {

@@ -38,7 +38,7 @@ $q = "SELECT * FROM items ORDER BY id LIMIT $from,$limit";
 //echo $q;
 $result = $database->query($q);
 $d = mysql_num_rows($result);
-if($d == 0) {return "Zadaná kategorie je prázdná";}
+if($d == 0) {return MSG_BEGIN."Zadaná kategorie je prázdná".MSG_END;}
 for($i = 0;$i != $d;$i++)
 {
 
@@ -139,7 +139,7 @@ $q = "SELECT id FROM items";
 
 //echo $q;
 $result = $database->query($q);
-$sum = "<div class=\"counter\">";
+$sum = "";
 $c = 1;
 $count = mysql_num_rows($result);
 for($i = 0;$i < $count;$i += ITEMS_ON_PAGE)
@@ -159,8 +159,9 @@ $sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] + ITEMS_ON_PAGE).$cats.
 elseif (!(isset($_GET['limit'])) && ($c  == ceil($count / ITEMS_ON_PAGE))){$sum = $sum. "<a href=\"".$page."limit=".ITEMS_ON_PAGE.$cats. "\">Následující</a> ";}
 $c++;
 															}
-															
-$sum = $sum . "</div></br>";
+if($sum != ""){
+$sum = "<div class=\"counter\">Strana: ".$sum . "</div>";
+}
 return $sum;
 }
 

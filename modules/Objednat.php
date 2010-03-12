@@ -35,7 +35,7 @@ return $this->get_default();
 if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){
 return $this->draw_kosik_content().$this->get_default_unreg().$this->getForm();
 }
-else {return "Před odesláním objednávky musíte objednat nějaké zboží!";}
+else {return MSG_BEGIN."Před odesláním objednávky musíte objednat nějaké zboží!".MSG_END;}
 }   
 ////////////////////////////////////////
 }
@@ -133,25 +133,26 @@ else {return '';}
 function get_default(){
 global $database;
 if(isset($_SESSION['items'])){
-$sum = "Polozky v kosiku:";
+$sum = $this->draw_kosik_content();
 //$counter = 0;
-foreach($_SESSION['items'] as $key => $value)
+/*foreach($_SESSION['items'] as $key => $value)
 {
 $q = "SELECT nazev FROM items WHERE id='$value'";
 $result = $database->query($q);
 $nazev = mysql_result($result,0,'nazev');
 $sum = $sum ."<br>". $nazev." <a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">Odstranit</a>";
-}
+}*/
+
 if(sizeof($_SESSION['items']) != 0){
 $sum = $sum . "<form action=\"index.php\" method=\"get\">
 <input type=\"hidden\" name=\"page\" value=\"Objednat\">
 <input type=\"hidden\" name=\"action\" value=\"submit\">
 <input type=\"submit\" value=\"Potvrdit objednávku\" />
 </form>";}
-else {$sum = $sum . "</br>Ve vašem košíku není žádné zboží.";}
+else {$sum = $sum . MSG_BEGIN ."</br>Ve vašem košíku není žádné zboží.".MSG_END;}
 return $sum;
 }
-else {return "Nebyly vybrány žádné položky";}
+else {return MSG_BEGIN ."Nebyly vybrány žádné položky".MSG_END;}
 
 }
 
@@ -178,19 +179,19 @@ $credentials = $this->fetch_user($user);
 
 if($this->createObjednavka(TRUE,$items)){
 unset($_SESSION['items']);
-return "Objednávka byla uložena a byl odeslán ověřovací email. Realizace objednávky bude započata, až v ověřovacím emailu kliknete na kontrolní odkaz.</br> Děkujeme za nákup";
-} else {return "Objednávka se nezdařila zkuste to znovu";}
+return MSG_BEGIN."Objednávka byla uložena a byl odeslán ověřovací email. Realizace objednávky bude započata, až v ověřovacím emailu kliknete na kontrolní odkaz.</br> Děkujeme za nákup".MSG_END;
+} else {return MSG_BEGIN."Objednávka se nezdařila zkuste to znovu".MSG_END;}
 
 
 } elseif (!$model->user->isAuthenticated() && sizeof($_SESSION['items']) != 0 )  { //neprihlasen
 if($this->createObjednavka(FALSE,$items)){
 unset($_SESSION['items']);
-return "Objednávka byla uložena a byl odeslán ověřovací email. Realizace objednávky bude započata, až v ověřovacím emailu kliknete na kontrolní odkaz.</br> Děkujeme za nákup";
-} else {return "Objednávka se nezdařila zkuste to znovu";}
+return MSG_BEGIN."Objednávka byla uložena a byl odeslán ověřovací email. Realizace objednávky bude započata, až v ověřovacím emailu kliknete na kontrolní odkaz.</br> Děkujeme za nákup".MSG_ENG;
+} else {return MSG_BEGIN."Objednávka se nezdařila zkuste to znovu".MSG_END;}
 
 
 } else {   //prázdná session
-return "Objednávka nemohla být realizovaná z důvodu absence položek v košíku!";
+return MSG_BEGIN."Objednávka nemohla být realizovaná z důvodu absence položek v košíku!".MSG_END;
 }
 
 
@@ -263,18 +264,22 @@ function draw_kosik_content(){
 //Debug::dump($_SESSION['items_codes']);
 global $database;
 if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){
-$sum = "Polozky v kosiku:\n<table>";
+$sum = "<table><tr><th colspan=\"2\">Položky v košíku:</th></tr>";
 //$counter = 0;
 foreach($_SESSION['items'] as $key => $value)
 {
 $q = "SELECT nazev FROM items WHERE id='$value'";
 $result = $database->query($q);
 $nazev = mysql_result($result,0,'nazev');
-$sum = $sum ."<tr><td>". $nazev." </td><td><a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">Odstranit</a></td><tr>";
+$sum = $sum ."<tr><td width=\"100\">". $nazev."</td><td><a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">
+<img src=\"".TEMPLATES_DIRECTORY.CURRENT_TEMPLATE."/images/drop.png\" alt=\"Odstranit\"></a></td><tr>";
+
+/*<a href="index.php?page=Settings&action=remove_att&id=14"><img src="templates/Rukodilna/images/drop.png" alt="Odstranit"></a>*/
+
 }
 return $sum."</table></br>";
 }
-else {return "Nebyly objednány žádné položky";}
+else {return MSG_BEGIN."Nebyly objednány žádné položky".MSG_END;}
 
 }
 
@@ -287,13 +292,13 @@ $code = $this->params_g['code'];
 unset($_SESSION['items'][array_search($code,$_SESSION['items_codes'])]);
 unset($_SESSION['items_codes'][array_search($code,$_SESSION['items_codes'])]);
 unset($_GET['action']);
-if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){return "Položka byla odstraněna\n</br></br>\n".$this->draw_kosik_content().$this->get_default_unreg().$this->getForm();}
-else {return "Před odesláním objednávky musíte objednat nějaké zboží!";}
+if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){return MSG_BEGIN."Položka byla odstraněna".MSG_END.$this->draw_kosik_content().$this->get_default_unreg().$this->getForm();}
+else {return MSG_BEGIN."Před odesláním objednávky musíte objednat nějaké zboží!".MSG_END;}
 //return $this->get_content();
 }
 else {
 //echo array_search($this->params_g['code'],$_SESSION['items_codes']) ." \"".$this->params_g['code']."\"";
-return "Položka neexistuje";}
+return MSG_BEGIN."Položka neexistuje".MSG_END;}
 }
 
 }

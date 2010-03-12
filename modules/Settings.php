@@ -49,7 +49,7 @@ for($i = 0;$i != mysql_numrows($result);$i++){
 $atribut = stripslashes(mysql_result($result,$i,"atribut"));
 $value =  stripslashes(htmlspecialchars(mysql_result($result,$i,"value"), ENT_QUOTES));
 $id = mysql_result($result,$i,"id");
-$this->sum("<tr><td>$atribut</td><td><input type=\"text\" name=\"$id\" value = \"$value\"/></td><td>".$tag->a("index.php?page=$page&action=remove_att&id=$id",$tag->img(IMAGES_DIRECTORY."drop.png","Odstranit"))."</td></tr>");
+$this->sum("<tr><td>$atribut</td><td><input type=\"text\" name=\"$id\" value = \"$value\"/></td><td>".$tag->a("index.php?page=$page&action=remove_att&id=$id",$tag->img(TEMPLATES_DIRECTORY.CURRENT_TEMPLATE."/images/drop.png","Odstranit"))."</td></tr>");
 }
 $this->sum("</table><input type=\"submit\" value=\"Uložit\" /></form>");
 

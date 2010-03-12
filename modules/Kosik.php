@@ -46,7 +46,7 @@ function get_default(){
 //Debug::dump($_SESSION['items_codes']);
 global $database;
 if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){
-$sum = "Polozky v kosiku:";
+$sum = "Položky v košíku:";
 //$counter = 0;
 foreach($_SESSION['items'] as $key => $value)
 {
