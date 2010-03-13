@@ -32,13 +32,13 @@ return 2;
 
 function remove(){
 if(isset($_GET['id']) && $this->isitem($_GET['id'])){
-if($this->remove_item($_GET['id'])) {return "Polozka byla odstraněna";} 
-else {return "Polozku se nepodarilo odstranit";
+if($this->remove_item($_GET['id'])) {return MSG_BEGIN."Položka byla odstraněna".MSG_END;} 
+else {return MSG_BEGIN."Položku se nepodařilo odstranit".MSG_END;
 }
 
 }
 else {
-return "Polozka neexistuje";
+return MSG_BEGIN."Polozka neexistuje".MSG_END;
 }
 }
 function get_content($n){
@@ -249,7 +249,7 @@ if ($pridavani->isSubmitted()) {
 		'cena' => '',
     	));*/
 		//echo 'Polo?ka byla úsp??n? p?idána<br><a href="admin.php?add">Přidat dal?í...</a>';
-		return 'Položka byla úspěšně upravena<br><a href="index.php?page=Zbozi_manager&action=manage">Upravit další...</a>';
+		return MSG_BEGIN.'Položka byla úspěšně upravena<br><a href="index.php?page=Zbozi_manager&action=manage">Upravit další...</a>'.MSG_END;
 	}
 
 } else {
@@ -270,7 +270,7 @@ else{
 $q = "insert into items values ('','".$values['cat']."','".$values['subcat']."','".$values['nazev']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
 //echo $q;
 $database->query($q);
-$_SESSION['msg'] = 'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>';
+$_SESSION['msg'] = MSG_BEGIN.'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>'.MSG_END;
 }
 if($id == 0){$id = mysql_insert_id();}
 $this->image_upload ($id,TMP_DIR,IMG_DIR_BIG,IMG_DIR_SMALL,MODWIDTH_SML,MODWIDTH_BIG);
