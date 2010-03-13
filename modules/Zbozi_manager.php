@@ -79,7 +79,7 @@ else {return 1;}
 function manage(){
 $sum = $this->draw_counter("index.php?page=Zbozi_manager&action=manage&");
 if(isset($_SESSION['msg'])){$sum = $sum . $_SESSION['msg']; unset($_SESSION['msg']);}
-$sum = $sum . '<table border="1">';
+$sum = $sum . '<br><br><table><tr><th>Jméno</th><th>Popis</th><th>Cena</th><th colspan="3">Možnosti</th></tr>';
 if(isset($_GET['limit'])){$sum = $sum . $this->get_items(1,$_GET['limit']);} else {$sum = $sum .$this->get_items(1);}
 $sum = $sum . "</table>";
 
@@ -142,7 +142,7 @@ if(isset($_GET['limit']) && $_GET['limit'] >= ITEMS_ON_PAGE)
 }
 
 if(isset($_GET['limit']) && $_GET['limit'] == (($c -1)*ITEMS_ON_PAGE))
-{$sum = $sum. $c. " ";}
+{$sum = $sum. "<strong>" .$c."</strong>" . " ";}
 else {$sum = $sum. "<a href=\"".$page."limit=". $i. "\">".$c."</a> ";}
 if($c  == ceil($count / ITEMS_ON_PAGE) && isset($_GET['limit']) && !(($_GET['limit']+ITEMS_ON_PAGE) >= $count ))
 {
