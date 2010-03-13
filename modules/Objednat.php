@@ -149,7 +149,7 @@ $sum = $sum . "<form action=\"index.php\" method=\"get\">
 <input type=\"hidden\" name=\"action\" value=\"submit\">
 <input type=\"submit\" value=\"Potvrdit objednávku\" />
 </form>";}
-else {$sum = $sum . MSG_BEGIN ."</br>Ve vašem košíku není žádné zboží.".MSG_END;}
+else {$sum = $sum . MSG_BEGIN ."Ve vašem košíku není žádné zboží.".MSG_END;}
 return $sum;
 }
 else {return MSG_BEGIN ."Nebyly vybrány žádné položky".MSG_END;}
@@ -279,7 +279,7 @@ $sum = $sum ."<tr><td width=\"100\">". $nazev."</td><td><a href=index.php?page=O
 }
 return $sum."</table></br>";
 }
-else {return MSG_BEGIN."Nebyly objednány žádné položky".MSG_END;}
+else {return /*MSG_BEGIN."Nebyly objednány žádné položky".MSG_END*/;}
 
 }
 

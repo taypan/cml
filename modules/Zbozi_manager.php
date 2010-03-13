@@ -262,7 +262,7 @@ function add_item($values,$id = 0){
 global $database;
 //echo $id;
 if($id != 0 && $this->isitem($id)){
-$q = "UPDATE items SET nazev = '".$values['nazev']."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
+$q = "UPDATE items SET nazev = '".$values['nazev']."', popis = '".$values['popis']."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
 //echo $q;
 $database->query($q);
 }
