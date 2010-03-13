@@ -7,29 +7,53 @@ var $acl = array(	"test" => "guest",
 					"nevim" => "administrator");
 
 function get_default(){
+if(isset($_GET['id']) && $this->isitem($_GET['id'])){
+$data = $this->fetch_data($_GET['id']);
+return $this->show_item($data);
+} else {return MSG_BEGIN."Zadaná položka neexistuje!".MSG_END;}
 
-return "<img width=\"310px\" height=\"600px\" id=\"imgMain\" />
 
+}
+
+function isitem($id){
+global $database;
+$q = "SELECT id FROM items WHERE id = '$id'";
+$result = $database->query($q);
+if (mysql_num_rows($result) <= 0) {return FALSE;}
+else {return TRUE;}
+}
+
+function show_item($data){
+return "
+<div id=\"obsahNahled\">
+<img src=\"".$this->draw_img($data['id'])."\" width=\"310px\" id=\"imgMain\" />
 <div id=\"productInfo\">
-
-<h2>produkt</h2>
-
+<h2>".$data['nazev']."</h2>
 </div>
-
 <div class=\"zboziContPrice\">
-
-  <div class=\"popis\">s DPH<strong> 543</strong> Kč</div>
-
-    <div class=\"add\"><a href=\"index.php?page=Feeder&id=84\">Přidat do košíku</a></div>
-
+  <div class=\"popis\">s DPH<strong> ".$data['cena']."</strong> Kč</div>
+    <div class=\"add\"><a href=\"index.php?page=Feeder&id=".$data['id']."\">Přidat do košíku</a></div>
     </div>
+    <h3>".$data['nazev']."</h3>
+    <p>".$data['popis']."</p></div>";
+}
 
-    <h3>nadpis</h3>
+function draw_img($id){
+$file = IMG_BIG_DIR . $id.".jpg";
+//echo $file;
+if(file_exists($file)){
+return $file;
+} else {
+return IMG_DIR . NO_IMG;
+}
 
-    <p>&nbsp;</p>
+}
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at libero eget tortor lacinia cursus eget sit amet leo. Curabitur leo magna, ultricies nec varius vel, vehicula pretium sem. Suspendisse potenti. Maecenas eros elit, luctus et vehicula a, interdum at velit. Nullam tincidunt accumsan sollicitudin. Nullam varius vehicula dignissim. Ut varius vulputate ante, volutpat pellentesque magna dictum quis. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut iaculis nisi. Etiam eget nulla urna. Sed vitae orci odio, ac dignissim tellus. Cras at eros id leo blandit venenatis.</p>";
-
+function fetch_data($id){
+global $database;
+$q = "SELECT * FROM items WHERE id = '$id'";
+$result = $database->query($q); 
+return mysql_fetch_assoc($result);
 }
 
 function get_title(){

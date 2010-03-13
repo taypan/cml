@@ -101,7 +101,7 @@ $img_sml = IMG_DIR.NO_IMG;
 //echo IMG_DIR_BIG.$id.".jpg";
 return "
 	<div class=\"zboziCont\">
-	<h2>$nazev</h2>
+	<h2><a href=\"index.php?page=Detail&id=$id\">$nazev</a></h2>
     <div class=\"popis\">cena $cena Kč</div>
     <div class=\"add\"><a href=\"index.php?page=Feeder&id=$id\">Přidat do košíku</a></div>
     </div>";
