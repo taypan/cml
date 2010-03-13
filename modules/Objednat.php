@@ -79,8 +79,13 @@ $reg_form->addText('tel_num', 'Mobilní telefon:')
 	//->addRule(Form::INTEGER, 'Zadané telefoní číslo není platné')
 	->addRule(Form::MIN_LENGTH, 'Zadané telefoní číslo není platné',9);
 
+$doprava = array(0 => "Osobní odběr",1 => "Dobírka",2 => "Kurýr");
+$platba = array(0 => "Při osobním odběru",1 => "Dobírka",2 => "Převodem");
+		/*->setDefaultValue('0');*/
+	/*->addRule(Form::FILLED, 'Musíte vybrat způsob dopravy')*/
 
-
+$reg_form->addRadioList('doprava', 'Způsob dopravy:', $doprava);
+$reg_form->addRadioList('platba', 'Způsob platby:', $platba);
 $reg_form->addCheckbox('podminky', 'Souhlasím s obchodními podmíkami')
 		->addRule(Form::FILLED, 'Musíte souhlasit s obchodnímy podmíkami');
 $reg_form->addSubmit('objednat', 'Potvrdit objednávku ');
@@ -237,7 +242,7 @@ $date = "NOW()";
 $str_objednavatele = "insert into objednatele values ('','$reg','".$credentials['jmeno']."','".$credentials['prijmeni']."','".$credentials['email']."','".$credentials['ulice']."','".$credentials['mesto']."','".$credentials['psc']."','".$credentials['tel_num']."','$user')";
 if($database->query($str_objednavatele))		{
 $objednatel_id = mysql_insert_id();
-$str_objednavka = "insert into objednavky values ('',$date,'$objednatel_id','nepotvrzeno')";
+$str_objednavka = "insert into objednavky values ('',$date,'$objednatel_id',".$credentials['doprava'].",".$credentials['platba'].",'nepotvrzeno')";
 if($database->query($str_objednavka))	{
 $objednavka_id = mysql_insert_id();
 foreach($items as $key => $value)	{
@@ -264,20 +269,23 @@ function draw_kosik_content(){
 //Debug::dump($_SESSION['items_codes']);
 global $database;
 if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){
-$sum = "<table><tr><th colspan=\"2\">Položky v košíku:</th></tr>";
+$sum = "<table><tr><th>Položky</th><th>Cena</th><th>&nbsp;</th></tr>";
 //$counter = 0;
+$price = 0;
 foreach($_SESSION['items'] as $key => $value)
 {
-$q = "SELECT nazev FROM items WHERE id='$value'";
+$q = "SELECT nazev,cena FROM items WHERE id='$value'";
 $result = $database->query($q);
 $nazev = mysql_result($result,0,'nazev');
-$sum = $sum ."<tr><td width=\"100\"><a href=\"index.php?page=Detail&id=$value\">". $nazev."</a></td><td><a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">
+$cena = mysql_result($result,0,'cena');
+$price = $price + $cena;
+$sum = $sum ."<tr><td width=\"100\"><a href=\"index.php?page=Detail&id=$value\">". $nazev."</a></td><td>$cena Kč</td><td><a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">
 <img src=\"".TEMPLATES_DIRECTORY.CURRENT_TEMPLATE."/images/drop.png\" alt=\"Odstranit\"></a></td><tr>";
 
 /*<a href="index.php?page=Settings&action=remove_att&id=14"><img src="templates/Rukodilna/images/drop.png" alt="Odstranit"></a>*/
 
 }
-return $sum."</table></br>";
+return $sum."<tr><th>Cena celkem:</th><th colspan=\"2\">$price Kč</th></tr></table></br>";
 }
 else {return /*MSG_BEGIN."Nebyly objednány žádné položky".MSG_END*/;}
 
