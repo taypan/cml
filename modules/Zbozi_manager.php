@@ -164,16 +164,17 @@ function add(){
 $dostup = array(
 	1 => 'Skladem',
 	2 => 'Na ceste',
+	3 => 'Není skladem',
 );
 $cat = explode(",",CAT);
 $subcat = explode(",",SUBCAT);
 
 $pridavani = new Form;
 $pridavani->setAction("index.php?page=Zbozi_manager&action=add");
-$pridavani->addText('nazev', 'Název:')
+$pridavani->addText('nazev', 'Název:',30)
 	->addRule(Form::FILLED, 'Zadejte název');
 	
-$pridavani->addText('popis', 'Popis:')
+$pridavani->addTextArea('popis', 'Popis:',50,10)
 	->addRule(Form::FILLED, 'Zadejte popis');
 $pridavani->addSelect('cat', 'Kategorie:', $cat);
 $pridavani->addSelect('subcat', 'Podkategorie:', $subcat);

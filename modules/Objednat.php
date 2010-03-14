@@ -151,8 +151,8 @@ $sum = $sum ."<br>". $nazev." <a href=index.php?page=Objednat&action=remove&code
 if(sizeof($_SESSION['items']) != 0){
 $sum = $sum . "<form action=\"index.php\" method=\"get\">
 <input type=\"hidden\" name=\"page\" value=\"Objednat\">
-<input type=\"hidden\" name=\"action\" value=\"submit\">
-<input type=\"submit\" value=\"Potvrdit objednávku\" />
+<input type=\"hidden\" name=\"action\" value=\"submit\">".
+MSG_BEGIN ."<input type=\"submit\" value=\"Potvrdit objednávku\" />".MSG_END."
 </form>";}
 else {$sum = $sum . MSG_BEGIN ."Ve vašem košíku není žádné zboží.".MSG_END;}
 return $sum;

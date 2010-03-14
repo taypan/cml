@@ -44,7 +44,7 @@ default:
 return $this->get_default();
 }}
 else {return $this->get_default();}
-} else {return "Již jste registrován!";}
+} else {return MSG_BEGIN."Již jste registrován!".MSG_END;}
 }
 
 function get_title(){
@@ -104,9 +104,9 @@ if ($reg_form->isSubmitted()) {
 
         $reg_form->getValues();
 		if($this->reg($reg_form->getValues())){
-		return "Registrace proběhla úspěšně. Nyní se můžete přihlásit.";
+		return MSG_BEGIN."Registrace proběhla úspěšně. Nyní se můžete <a href=\"index.php?page=Login_screen\">přihlásit</a>.".MSG_END;
 		} else {
-		return "Registrace se nezdařila. Zkuste to znovu později nebo nás kontaktujte e-mailem na " . SUPPORT_MAIL;
+		return MSG_BEGIN."Registrace se nezdařila. Zkuste to znovu později nebo nás kontaktujte e-mailem na " . SUPPORT_MAIL.MSG_END;
 		} 
 	
         

@@ -37,7 +37,7 @@ try {
 
 } catch (AuthenticationException $e) {
 
-        return 'Chyba: '. stripslashes(htmlspecialchars($e->getMessage()));
+        return MSG_BEGIN.'Chyba: '. stripslashes(htmlspecialchars($e->getMessage())).MSG_END;
 
 }
 }
