@@ -37,7 +37,7 @@ if ($login->isSubmitted()) {
 
 } else {
     // a jestliže nebyl odeslán, nastavíme výchozí hodnoty
-	return $login;
+	return "<div class=\"login\">$login</div>";
 	} 
 }
 
