@@ -5,7 +5,7 @@ var $acl = array(	"get_default" => "guest");
 
 
 function get_content($n){
-return TEMPLATES_DIRECTORY.CURRENT_TEMPLATE;
+return SITE.TEMPLATES_DIRECTORY.CURRENT_TEMPLATE;
 }
 
 }?>

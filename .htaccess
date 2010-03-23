@@ -3,4 +3,21 @@ RewriteRule profil chybovka.html
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^([^/]+)/?$^([^/]+)/?$^([^/]+)/?$ index.php?page=$1&$2=$3
 #RewriteRule ^([^/]+)/?$ index.php?page=$1
+#RewriteRule ^([^/]+)/?$ index.php?page=$1
+#RewriteRule ^browse/[A-Z0-9_-]+-([0-9]+)/[A-Z0-9_-]+-([0-9]+)\.html$ browse.php?category=$1&subcategory=$2 [NC,L]
+ #/browse/animals-24/cats-76.html
+ #/browse.php?category=24&subcategory=76
+ 
+#RewriteRule ^blog/$ index.php?action=blog [NC,L]
+#RewriteRule ^blog/page/(.*)$ index.php?action=blog&page=$1 [NC,L]
+#RewriteRule ^blog/(.*)$ index.php?action=blog&tag=$1 [NC,L]
+#RewriteRule ^([^.]+)$ index.php?page=$1 [L]
+#RewriteRule ^(A-Za-z0-9.)$ index.php?page=$1 [NC,L]
+RewriteRule ^([^.]+)/([^.]+)/([^.]+)/([^.]+)/([^.]+)/$ index.php?page=$1&$2=$3&$4=$5 [L]
+RewriteRule ^([^.]+)/([^.]+)/([^.]+)$ index.php?page=$1&$2=$3 [L]
+RewriteRule ^([^.]+)/$ index.php?page=$1 [L]
+#RewriteRule ^(.*)$ %{DOCUMENT_ROOT}/$1 [L,QSA]
+
+#www.site.com/blog.php?id=421&title=title+of+blog
