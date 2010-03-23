@@ -7,7 +7,7 @@ var $acl = array(	"test" => "guest",
 					"nevim" => "administrator");
 
 function get_default(){
-if(isset($_GET['id']) && $this->isitem($_GET['id'])){
+if(isset($_GET['id']) && $this->isitem(intval($_GET['id']))){
 $data = $this->fetch_data($_GET['id']);
 return $this->show_item($data);
 } else {return MSG_BEGIN."Zadaná položka neexistuje!".MSG_END;}

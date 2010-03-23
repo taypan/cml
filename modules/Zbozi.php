@@ -91,16 +91,16 @@ return $this->item($id,$nazev,$popis,$cena,$dostupnost);
 
 function item($id,$nazev,$popis,$cena,$dostupnost){
 if($dostupnost == 1){ $dostupnost = "Skladem";} else {$dostupnost = "Na cestě";}
-if(is_file(IMG_DIR_BIG.$id.".jpg")){
-$img = IMG_DIR_BIG.$id.".jpg";
-$img_sml = IMG_DIR_SMALL.$id.".jpg";
+if(is_file(IMG_DIR_SMALL.$id.".jpg")){
+$img = IMG_DIR_SMALL.$id.".jpg";
 } else {
 $img = IMG_DIR.NO_IMG;
-$img_sml = IMG_DIR.NO_IMG;
+//$img_sml = IMG_DIR.NO_IMG;
 }
 //echo IMG_DIR_BIG.$id.".jpg";
 return "
 	<div class=\"zboziCont\">
+	<a href=\"index.php?page=Detail&id=$id\"><img src=\"$img\" height=\"110\"></a>
 	<h2><a href=\"index.php?page=Detail&id=$id\">$nazev</a></h2>
     <div class=\"popis\">cena $cena Kč</div>
     <div class=\"add\"><a href=\"index.php?page=Feeder&id=$id\">Přidat do košíku</a></div>
