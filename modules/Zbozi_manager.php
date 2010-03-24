@@ -159,6 +159,30 @@ function get_default(){
 return "<p align=\"center\"><a href=\"index.php?page=Zbozi_manager&action=add\">Přidat</a></br><a href=\"index.php?page=Zbozi_manager&action=manage\">Upravit</a>";
 }
 
+function fetch_cat($level){
+global $database;
+$q = "SELECT id,name,level FROM categories WHERE level > '$level' ORDER BY lft";
+$result = $database->query($q);
+$data = array();
+while($obj = mysql_fetch_object($result)){
+/*
+if($obj->level == 1){
+$data[$obj->id] = "--- ".$obj->name." ---";
+}elseif($obj->level == 2) {
+$data[$obj->id] = $obj->name;
+}
+else {
+$data[$obj->id] = str_repeat("-",($obj->level -1))." ".$obj->name;
+}
+*/
+
+$data[$obj->id] = str_repeat(" -",($obj->level -1))." ".$obj->name;
+
+
+
+}
+return $data;
+}
 
 function add(){
 $dostup = array(
@@ -166,8 +190,13 @@ $dostup = array(
 	2 => 'Na ceste',
 	3 => 'Není skladem',
 );
-$cat = explode(",",CAT);
-$subcat = explode(",",SUBCAT);
+//$cat = explode(",",CAT);
+
+$cat = $this->fetch_cat(0);
+//var_dump($new_cat);
+//Debug::dump($new);
+
+$subcat = array();
 
 $pridavani = new Form;
 $pridavani->setAction("index.php?page=Zbozi_manager&action=add");
@@ -263,12 +292,12 @@ function add_item($values,$id = 0){
 global $database;
 //echo $id;
 if($id != 0 && $this->isitem($id)){
-$q = "UPDATE items SET nazev = '".$values['nazev']."', popis = '".$values['popis']."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
+$q = "UPDATE items SET nazev = '".addslashes($values['nazev'])."', popis = '".addslashes($values['popis'])."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".addslashes($values['rozmery'])."' WHERE id = $id LIMIT 1 ";
 //echo $q;
 $database->query($q);
 }
 else{ 
-$q = "insert into items values ('','".$values['cat']."','".$values['subcat']."','".$values['nazev']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
+$q = "insert into items values ('','".$values['cat']."','".$values['subcat']."','".addslashes($values['nazev'])."','".addslashes($values['popis'])."',".$values['cena'].",'".$values['dostupnost']."','".addslashes($values['rozmery'])."')";
 //echo $q;
 $database->query($q);
 $_SESSION['msg'] = MSG_BEGIN.'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>'.MSG_END;
