@@ -6,10 +6,8 @@ var $acl = array(	"test" => "guest",
 					"nevim" => "administrator");
 
 function get_default($n){
-
 $ids = $this->fetch_ids(1);
 $items = $this->fetch_items($ids);
-
 return "OK";
 }
 
