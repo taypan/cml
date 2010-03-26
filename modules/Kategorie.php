@@ -28,7 +28,6 @@ $obj = mysql_fetch_object($database->query($q));
 //echo 'SELECT id FROM categories WHERE lft BETWEEN '.$obj->lft.' AND '.$obj->rgt.' ORDER BY lft ASC';
 $result = $database->query('SELECT id FROM categories WHERE lft BETWEEN '.$obj->lft.' AND '.$obj->rgt.' ORDER BY lft ASC');
 while($cat = mysql_fetch_object($result)){
-//echo $cat->id."X";
 $cats[] = $cat->id;
 }
 //var_dump($cats);
