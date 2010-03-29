@@ -9,6 +9,9 @@ elseif ($n == 1) {return "Správce - Menu";}
 else {return FALSE;}
 }
 
+function br2nl($text) {
+return preg_replace('/<br\\\\s*?\\/??>/i', "\\n", $text);
+}
 
 function get_area($n)
 {
@@ -210,7 +213,7 @@ $result = $database->query($q);
 //echo mysql_num_rows($result);
 $pridavani->setDefaults(array(
         'nazev' => mysql_result($result,0,"nazev"),
-		'popis' => mysql_result($result,0,"popis"),
+		'popis' => $this->br2nl(mysql_result($result,0,"popis")),
 		'cat' => mysql_result($result,0,"cat"),
 		'subcat' => mysql_result($result,0,"subcat"),
 		'rozmery' => mysql_result($result,0,"rozmery"),
@@ -263,12 +266,12 @@ function add_item($values,$id = 0){
 global $database;
 //echo $id;
 if($id != 0 && $this->isitem($id)){
-$q = "UPDATE items SET nazev = '".$values['nazev']."', popis = '".$values['popis']."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
+$q = "UPDATE items SET nazev = '".$values['nazev']."', popis = '".nl2br($values['popis'])."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
 //echo $q;
 $database->query($q);
 }
 else{ 
-$q = "insert into items values ('','".$values['cat']."','".$values['subcat']."','".$values['nazev']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
+$q = "insert into items values ('','".$values['cat']."','".$values['subcat']."','".$values['nazev']."','".nl2br($values['popis'])."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
 //echo $q;
 $database->query($q);
 $_SESSION['msg'] = MSG_BEGIN.'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>'.MSG_END;
