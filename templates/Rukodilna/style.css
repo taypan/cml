@@ -55,7 +55,7 @@ h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:
 #cont #menu a, #contShop #menu a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
 #cont a:hover, #contShop a:hover {color: #C00; text-decoration:underline;}
 
-#imgMain{ float:left; margin-left:40px; margin-top:50px;}
+#imgMain{ float:left; margin-left:40px; margin-top:50px; margin-bottom: 100px}
 
 #productInfo{font-family:Verdana, Geneva, sans-serif; width:305px; margin-top:50px; font-style:normal; font-weight:normal; float:left;  margin-left:20px;}
 #productInfo h2{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; color:#800; }

@@ -34,8 +34,12 @@ return "
   <div class=\"popis\">s DPH<strong> ".$data['cena']."</strong> Kč</div>
     <div class=\"add\"><a href=\"index.php?page=Feeder&id=".$data['id']."\">Přidat do košíku</a></div>
     </div>
-    <h3>".$data['nazev']."</h3>
-    <p>".$data['popis']."</p></div>";
+	<h3>Rozměry</h3>
+	<p>".$data['rozmery']."</p>
+    <h3>Popis</h3>
+    <p>".$data['popis']."</p>
+	</div>
+	";
 }
 
 function draw_img($id){
