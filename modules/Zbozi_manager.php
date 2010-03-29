@@ -10,7 +10,7 @@ else {return FALSE;}
 }
 
 function br2nl($text) {
-return preg_replace('/<br\\\\s*?\\/??>/i', "\\n", $text);
+return preg_replace('/<br\\s*?\\/??>/i', "", $text);
 }
 
 function get_area($n)
@@ -211,6 +211,7 @@ $q = "SELECT * FROM items WHERE id = '$id'";
 global $database;
 $result = $database->query($q);
 //echo mysql_num_rows($result);
+//echo $this->br2nl(mysql_result($result,0,"popis"));
 $pridavani->setDefaults(array(
         'nazev' => mysql_result($result,0,"nazev"),
 		'popis' => $this->br2nl(mysql_result($result,0,"popis")),
