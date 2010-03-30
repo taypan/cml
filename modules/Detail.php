@@ -24,23 +24,22 @@ else {return TRUE;}
 }
 
 function show_item($data){
-return "
-<div id=\"obsahNahled\">
-<img src=\"".$this->draw_img($data['id'])."\" width=\"310px\" id=\"imgMain\" />
-<div id=\"productInfo\">
-<h2>".$data['nazev']."</h2>
+return '<div id="obsahNahled">
+<img src="http://rukodilna.cz/cml/img/no_img.jpg" width="310px" id="imgMain" />
+<div id="productInfo">
+<h2>'.$data['nazev'].'</h2>
 </div>
-<div class=\"zboziContPrice\">
-  <div class=\"popis\">s DPH<strong> ".$data['cena']."</strong> Kč</div>
-    <div class=\"add\"><a href=\"index.php?page=Feeder&id=".$data['id']."\">Přidat do košíku</a></div>
+<div class="zboziContPrice">
+  <div class="popis">s DPH<strong> '.$data['cena'].'</strong> Kč</div>
+    <div class="add"><a href="index.php?page=Feeder&id='.$data['id'].'">Přidat do košíku</a></div>
     </div>
 	<h3>Rozměry</h3>
-	<p>".$data['rozmery']."</p>
+	<p>'.$data['rozmery'].'</p>
     <h3>Popis</h3>
-    <p>".$data['popis']."</p>
-	</div>
-	";
+    <p>'.$data['popis'].'</p>
+	</div>';
 }
+
 
 function draw_img($id){
 $file = IMG_BIG_DIR . $id.".jpg";
