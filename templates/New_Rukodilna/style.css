@@ -59,7 +59,9 @@ ins {text-decoration: none;}
 
 del {text-decoration: line-through;}
 
-table {border-collapse: collapse; border-spacing: 0;}
+table {border-spacing: 1px; font-family:Verdana, Geneva, sans-serif; font-size:12px; margin-left: 40px; padding: 1px;border: #000000 solid 1px; }
+td {background-color:#d1a373; padding: 2px;}
+th {background-color: #682606; color:#FFFFFF; padding: 2px; vertical-align: middle;}
 
 h1{
 	font-family:Verdana, Geneva, sans-serif;
