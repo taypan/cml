@@ -1,4 +1,5 @@
 <?php
+if(!class_exists("Menu")){
 class Menu extends Modul{
 
 
@@ -49,5 +50,6 @@ return mysql_result($result,0,'title');
 }
 
 
+}
 }
 ?>

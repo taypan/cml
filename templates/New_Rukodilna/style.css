@@ -151,7 +151,7 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 }
 
 
-#obsah p, #obsahShop p, #obsahFill p {font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:30px; color:#333; line-height:18px; float:left; padding-top:15px; width:200px;}
+#obsah p, #obsahShop p, #obsahFill p {font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:30px; color:#333; line-height:18px; float:left; padding-top:15px; width:400px;}
  #onas p {font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:30px; color:#333; line-height:18px; float:left; padding-top:15px; width:400px; margin-right: 40px;}
  #onas img{
 	margin-top: 20px; 
@@ -210,5 +210,9 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 .msg{font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:40px; color: #333;}
 
 
+.level0 {float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px;}
 
+.level1 {float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight: normal; font-size:13px; color:#800; line-height:45px;}
+
+.level2 {float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight: lighter; font-size:13px; color:#800; line-height:45px;}
 

@@ -55,6 +55,8 @@ if(isset($_GET['text'])){$this->popis = $_GET['text'];
 }
 else {
 $this->popis = $popis;}
+if($this->popis == "podminky"){return file_get_contents("files/podminky.html");exit;}
+elseif($this->popis == "kdojsme"){return file_get_contents("files/kdojsme.html");exit;}
 //if (valid($popis)){} TODO
 $q = "SELECT * from texty WHERE jmeno='$this->popis'";
 $result = $database->query($q);
