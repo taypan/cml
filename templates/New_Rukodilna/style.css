@@ -81,7 +81,7 @@ h1{
 #cont #menu a, #contShop #menu a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; }
 #cont a:hover, #contShop a:hover {color: #C00; text-decoration:underline;}
 
-#imgMain{ float:left; margin-left:40px; margin-top:50px; margin-bottom: 300px;}
+#imgMain{ float:left; margin-left:40px; margin-top:50px; margin-bottom: 40px;}
 
 #productInfo{font-family:Verdana, Geneva, sans-serif; width:205px; margin-top:50px; font-style:normal; font-weight:normal; float:left;  margin-left:20px;}
 #productInfo h2{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; color:#800; }
@@ -162,8 +162,8 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 	width:24px;
 	height:17px;
 }
-#kosikU { float:right; margin-right:40px;  margin-top:15px;  background-image: url(images/kosik_09.png); background-position:right; background-repeat:no-repeat; width:224px; height:17px; }
-.kosikTXT{color:#663300; font-family: Arial, Helvetica, sans-serif; text-align:center;  font-size:12px; padding-right:5px; text-decoration:underline; }
+#kosikU { float:right; margin-right:40px;  margin-top:0px;  background-image: url(images/kosik_09.png); background-position:right; background-repeat:no-repeat; width:224px; height:17px; }
+.kosikTXT{color:#663300; font-family: Arial, Helvetica, sans-serif; text-align:center;  font-size:12px; padding-right:5px; text-decoration:underline; margin-top: 50px;}
 /* END OF Obsah */
 
 
