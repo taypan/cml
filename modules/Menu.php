@@ -8,21 +8,30 @@ parent::__construct($info,$arg);
 
 }
 //function 
+function item2temp($level,$link,$alt){
+$temp = file_get_contents(TEMPLATES_DIRECTORY.CURRENT_TEMPLATE."/menu_temp_".$level.".html");
+$temp = str_replace("<!--menu-link -->",$link,$temp);
+$temp = str_replace("<!--menu-alt -->",$alt,$temp);
+return $temp;
+}
 
 function get_content(){
 global $database,$tag,$model,$controler;
 $menu = $this->arg['menu'];
-$q = "SELECT alt,link,id FROM menus_items WHERE menu = '$menu' ORDER BY position";
+$q = "SELECT * FROM menus_items WHERE menu = '$menu' ORDER BY position";
 $result = $database->query($q);
 $sum = "";
 for($i = 0;$i != mysql_numrows($result);$i++){
-$page = mysql_result($result,$i,'link');
+$obj = mysql_fetch_object($result);
+/*$page = mysql_result($result,$i,'link');
 $alt = mysql_result($result,$i,'alt');
-$id = mysql_result($result,$i,'id');
+$id = mysql_result($result,$i,'id');*/
 //TODO hází chybu pri pradani noveho menu resenim je "$controler->acl->hasResource('menus_item_'.$id) && " do podminky, ale to odsud nejde zavolat 
 try {
-if($model->user->isAllowed('menus_item_'.$id,'view')){
-$sum = $sum.$tag->a($page,$alt);}
+if($model->user->isAllowed('menus_item_'.$obj->id,'view')){
+$sum = $sum.$this->item2temp($obj->deep,$obj->link,$obj->alt);
+
+}
 	}
 catch (InvalidStateException $vyjímka) {}
 }

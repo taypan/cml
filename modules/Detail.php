@@ -9,6 +9,7 @@ var $acl = array(	"test" => "guest",
 function get_default(){
 if(isset($_GET['id']) && $this->isitem(intval($_GET['id']))){
 $data = $this->fetch_data($_GET['id']);
+$id = $_GET['id'];
 $data['img'] = $this->draw_img($id);
 return $this->show_item($data);
 
