@@ -279,7 +279,7 @@ $result = $database->query($q);
 $nazev = mysql_result($result,0,'nazev');
 $cena = mysql_result($result,0,'cena');
 $price = $price + $cena;
-$sum = $sum ."<tr><td width=\"100\"><a href=\"index.php?page=Detail&id=$value\">". $nazev."</a></td><td>$cena Kč</td><td><a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">
+$sum = $sum ."<tr><td width=\"300\"><a href=\"index.php?page=Detail&id=$value\">". $nazev."</a></td><td>$cena Kč</td><td><a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">
 <img src=\"".TEMPLATES_DIRECTORY.CURRENT_TEMPLATE."/images/drop.png\" alt=\"Odstranit\"></a></td><tr>";
 
 /*<a href="index.php?page=Settings&action=remove_att&id=14"><img src="templates/Rukodilna/images/drop.png" alt="Odstranit"></a>*/

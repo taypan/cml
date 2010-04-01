@@ -64,7 +64,17 @@ $q = "SELECT * FROM items WHERE cat='$cat' AND subcat='$subcat' ORDER BY id LIMI
 //echo $_SESSION['cat'].":";
 $result = $database->query($q);
 $d = mysql_num_rows($result);
-if($d == 0) {return MSG_BEGIN."Sekce se připravuje".MSG_END;}
+if($d == 0) {return MSG_BEGIN."Sekce se připravuje".MSG_END."<div> 
+	<p>&nbsp;</p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p> 
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p></div>";}
 for($i = 0;$i != $d;$i++)
 {
 
