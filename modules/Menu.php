@@ -8,6 +8,12 @@ parent::__construct($info,$arg);
 //$this->fetch_data();
 
 }
+
+function jeGet($t,$value){
+if(isset($_GET[$t]) && ($_GET[$t] == $value)){return TRUE;} else {return FALSE;}
+}
+
+
 //function 
 function item2temp($level,$link,$alt){
 $temp = file_get_contents(TEMPLATES_DIRECTORY.CURRENT_TEMPLATE."/menu_temp_".$level.".html");
@@ -19,7 +25,20 @@ return $temp;
 function get_content(){
 global $database,$tag,$model,$controler;
 $menu = $this->arg['menu'];
-$q = "SELECT * FROM menus_items WHERE menu = '$menu' ORDER BY position";
+if($this->jeGet("page","Login_screen") || $this->jeGet("page","Registrator")){
+$q = "SELECT * FROM menus_items WHERE ((menu = '$menu' AND deep in (0,1)) OR id = 2) ORDER BY position";
+}
+elseif($this->jeGet("text","doplnky")){
+$q = "SELECT * FROM menus_items WHERE ((menu = '$menu' AND deep in (0,1)) OR id in (43,44,45)) ORDER BY position";
+}
+elseif($this->jeGet("text","rozcestnik") || $this->jeGet("cat","0") || $this->jeGet("cat","1") || $this->jeGet("cat","2") || $this->jeGet("cat","3") || $this->jeGet("cat","4") || $this->jeGet("cat","5")  || $this->jeGet("text","zakazky")){
+$q = "SELECT * FROM menus_items WHERE ((menu = '$menu' AND deep in (0,1)) OR id in (46,47,48,49,50,51)) ORDER BY position";
+}
+else {
+$q = "SELECT * FROM menus_items WHERE menu = '$menu' AND deep in (0,1) ORDER BY position";
+}
+//echo  $q;
+
 $result = $database->query($q);
 $sum = "";
 for($i = 0;$i != mysql_numrows($result);$i++){

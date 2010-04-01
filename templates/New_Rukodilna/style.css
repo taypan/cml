@@ -80,7 +80,7 @@ h1{
 #cont {background-image:url(images/head_02.jpg); background-repeat:no-repeat; width:1026px; height:492px; margin-left:auto; margin-right:auto;}
 #contShop, #contSekce {background-image: url(images/shopBG_03.jpg); background-repeat:no-repeat; width:1026px; height:465px; margin-left:auto;}
 
-#cont #menu a, #contShop #menu a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; }
+#cont #contShop{ float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; }
 #cont a:hover, #contShop a:hover {color: #C00; text-decoration:underline;}
 
 #imgMain{ float:left; margin-left:40px; margin-top:50px; margin-bottom: 40px;}
@@ -149,12 +149,14 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 	background-repeat:no-repeat;
 	float:left;
 }
-
-
+#lCont{float:left; width:450px;}
+#rCont{float:left; width:170px; height:800px;}
+.popis{float:left; font-family:Verdana, Geneva, sans-serif; font-size:12px; color:#666; width:150px; white-space:normal;}
 #obsah p, #obsahShop p, #obsahFill p {font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:30px; color:#333; line-height:18px; float:left; padding-top:15px; width:400px;}
  #onas p {font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:30px; color:#333; line-height:18px; float:left; padding-top:15px; width:400px; margin-right: 40px;}
- #onas img{
+ #rCont img{
 	margin-top: 20px; 
+	float:left;
 	 }
 #kosik {
 	float:left;
@@ -193,7 +195,7 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 	
 }
 #menu p{ width:70px;}
-#menu a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; }
+{ float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; }
 /*END OF MENU*/
 
 /* HOMEPAGE */
@@ -210,9 +212,8 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 .msg{font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:40px; color: #333;}
 
 
-.level0 {float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px;}
+.level0 ,.level0 a:visited{float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; padding-top:25px;}
 
-.level1 {float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight: normal; font-size:13px; color:#800; line-height:45px;}
+.level1 ,.level1 a:visited{float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight: normal; font-size:13px; color:#800; padding-top:25px;}
 
-.level2 {float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight: lighter; font-size:13px; color:#800; line-height:45px;}
-
+.level2 ,.level2 a:visited{float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight: lighter; font-size:13px; color:#800; padding-top:25px;}
