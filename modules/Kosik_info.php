@@ -23,9 +23,10 @@ if($count == 0){$items = "položek";}
 elseif($count == 1){$items = "položku";}
 elseif($count == 2 || $count == 3 || $count == 4){$items = "položky";}
 else{$items = "položek";}
-
-$s = "<a href=\"index.php?page=Objednat\">V košíku máte $count $items za $cena Kč</a>";
-return $s;
+if(isset($_SESSION['shop']) && ((isset($_GET['page']) && $_GET['page'] == "Zbozi") || (isset($_GET['page']) && $_GET['page'] == "Detail") || (isset($_GET['text']) && $_GET['text'] == "rozcestnik")|| (isset($_GET['text']) && $_GET['text'] == "doplnky"))){
+$s = "<div class=\"kosikTXT\" id=\"kosikU\"><a href=\"index.php?page=Objednat\">V košíku máte $count $items za $cena Kč</a></div>";
+return $s;}
+else {return;}
 }
 
 function isitem($id){

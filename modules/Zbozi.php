@@ -5,6 +5,8 @@ class Zbozi extends Modul{
 
 
 function get_content($n){
+unset($_SESSION['cat']);
+unset($_SESSION['subcat']);
 if(isset($this->params_g['limit'])){
 $_SESSION['limit'] = $this->params_g['limit'];
 return $this->draw_counter("index.php?page=Zbozi&").$this->get_items(0,$this->params_g['limit']);
@@ -59,11 +61,10 @@ $cat = $_SESSION['cat'];
 $subcat = $_SESSION['subcat'];
 $q = "SELECT * FROM items WHERE cat='$cat' AND subcat='$subcat' ORDER BY id LIMIT $from,$limit";
 }
-
-//echo $q;
+//echo $_SESSION['cat'].":";
 $result = $database->query($q);
 $d = mysql_num_rows($result);
-if($d == 0) {return MSG_BEGIN."Zadaná kategorie je prázdná".MSG_END;}
+if($d == 0) {return MSG_BEGIN."Sekce se připravuje".MSG_END;}
 for($i = 0;$i != $d;$i++)
 {
 

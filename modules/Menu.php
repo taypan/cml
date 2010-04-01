@@ -23,19 +23,27 @@ return $temp;
 }
 
 function get_content(){
+if(isset($_GET['plain'])){
+unset($_SESSION['shop']);
+}
+
 global $database,$tag,$model,$controler;
 $menu = $this->arg['menu'];
+if(isset($_SESSION['shop'])){
 if($this->jeGet("page","Login_screen") || $this->jeGet("page","Registrator")){
 $q = "SELECT * FROM menus_items WHERE ((menu = '$menu' AND deep in (0,1)) OR id = 2) ORDER BY position";
 }
 elseif($this->jeGet("text","doplnky")){
 $q = "SELECT * FROM menus_items WHERE ((menu = '$menu' AND deep in (0,1)) OR id in (43,44,45)) ORDER BY position";
 }
-elseif($this->jeGet("text","rozcestnik") || $this->jeGet("cat","0") || $this->jeGet("cat","1") || $this->jeGet("cat","2") || $this->jeGet("cat","3") || $this->jeGet("cat","4") || $this->jeGet("cat","5")  || $this->jeGet("text","zakazky")){
+elseif($this->jeGet("text","rozcestnik") || $this->jeGet("cat","0")|| $this->jeGet("cat","9") || $this->jeGet("cat","1") || $this->jeGet("cat","2") || $this->jeGet("cat","3") || $this->jeGet("cat","4") || $this->jeGet("cat","5")  || $this->jeGet("text","zakazky")){
 $q = "SELECT * FROM menus_items WHERE ((menu = '$menu' AND deep in (0,1)) OR id in (46,47,48,49,50,51)) ORDER BY position";
 }
 else {
 $q = "SELECT * FROM menus_items WHERE menu = '$menu' AND deep in (0,1) ORDER BY position";
+}}
+else {
+$q = "SELECT * FROM menus_items_plain WHERE menu = '$menu' ORDER BY position";
 }
 //echo  $q;
 
