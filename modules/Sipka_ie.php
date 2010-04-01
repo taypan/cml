@@ -1,5 +1,5 @@
 <?php
-class Sipka extends Modul{
+class Sipka_ie extends Modul{
 
 var $acl = array(	"get_default" => "guest");
 

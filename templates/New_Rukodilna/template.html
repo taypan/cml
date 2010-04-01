@@ -7,6 +7,10 @@
  <!--[if IE 7]>
 <link rel="stylesheet" type="text/css" href="<!--panel-style -->/ie.css">
 <![endif]-->
+<style>
+#ukazatel  {margin-top:<!--panel-sipka -->;}
+#ukazatel_ie  {margin-top:<!--panel-sipka_ie -->;}
+</style>
 </head>
 
 <body>
@@ -38,7 +42,14 @@
 		 <p>&nbsp;</p>
 		 <p>&nbsp;</p>
    </div>
-   <div id="ukazatel" style="margin-top:<!--panel-sipka -->;"></div>
+   <!--[if IE 7]>
+   <div id="ukazatel_ie"></div>
+	<![endif]-->
+   <div id="ukazatel"></div>
+
+   
+
+
    <div id="obsahSekce"></div>
    <div id="obsahFill">
    <!--panel-kosik -->
