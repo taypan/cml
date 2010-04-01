@@ -27,7 +27,6 @@ a:visited{color:#666;}
 	width:34px;
 	height:34px;
 	float:left;
-	margin-top:410px;
 	margin-left: 12px;
 }
 
@@ -100,7 +99,7 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 .zboziCont h2{ margin-top:8px; color:#FFF; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:12px; font-style:normal; font-weight:normal; padding-left:9px;} 
 .zboziCont h2 a{ margin-top:118px; color:#FFF; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:12px; font-style:normal; font-weight:normal;} 
 .zboziCont .popis{color:#FFF; font-family: Arial, Helvetica, sans-serif; font-size:10px; margin-top:2px; font-style:normal; font-weight:normal; padding-left:9px;}
-.zboziCont .add{ background-color:#FFF; color:#663300; font-family: Arial, Helvetica, sans-serif; text-align:center; text-transform:uppercase; font-size:12px; width:120px; margin-left:9px; margin-top:5px;}
+.zboziCont .add{ background-color:#FFF; color:#663300; font-family: Arial, Helvetica, sans-serif; text-align:center; text-transform:uppercase; font-size:12px; width:120px; margin-left:9px; margin-top:20px;}
 
 #line {float:left;background-image:url(images/line_02.jpg); background-repeat:repeat-y; width:1026px;  margin-left:auto; margin-right:auto;}
 
@@ -194,6 +193,7 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 	margin-left: 10px;
 	
 }
+#menu a:visited{color:#800;}
 #menu p{ width:70px;}
 { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; }
 /*END OF MENU*/
@@ -212,8 +212,8 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 .msg{font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:40px; color: #333;}
 
 
-.level0 ,.level0 a:visited{float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; padding-top:25px;}
+.level0{float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; padding-top:24px;}
 
-.level1 ,.level1 a:visited{float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight: normal; font-size:13px; color:#800; padding-top:25px;}
+.level1 {float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight: normal; font-size:13px; color:#800; padding-top:24px;}
 
-.level2 ,.level2 a:visited{float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight: lighter; font-size:13px; color:#800; padding-top:25px;}
+.level2 {float:left; padding-left:5px; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight: lighter; font-size:11px; color:#996666; padding-top:24px;}
