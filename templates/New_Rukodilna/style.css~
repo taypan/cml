@@ -76,7 +76,7 @@ h1{
 /* Main */
 #zarovnani {width:1026px; margin-left:auto; margin-right:auto;}
 
-#cont {background-image:url(images/head_02.jpg); background-repeat:no-repeat; width:1026px; height:492px; margin-left:auto; margin-right:auto;}
+#cont {background-image:url(images/head_02.jpg); background-repeat:no-repeat; width:1026px; height:492px; margin-left:auto; margin-right:auto;min-height:6000px;}
 #contShop, #contSekce {background-image: url(images/shopBG_03.jpg); background-repeat:no-repeat; width:1026px; height:465px; margin-left:auto;}
 
 #cont #contShop{ float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; }
@@ -92,7 +92,7 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 
 
 .zboziContPrice{ width:171px; height:57px; float:left; background-image: url(images/price.gif);  background-repeat:no-repeat; margin-left:20px; margin-top:25px;  }
-.zboziContPrice .add{ background-color:#FFF; color:#663300; font-family: Arial, Helvetica, sans-serif; text-align:center; text-transform:uppercase; font-size:12px; width:120px; margin-left:9px; margin-top:6px;}
+.zboziContPrice .add{ background-color:#FFF; color:#663300; font-family: Arial, Helvetica, sans-serif; text-align:center; text-transform:uppercase; font-size:12px; width:120px; margin-left:9px; margin-top:23px;}
 .zboziContPrice .popis{color:#FFF; font-family: Arial, Helvetica, sans-serif; font-size:14px; margin-top:8px; font-style:normal; font-weight:normal; padding-left:9px;}
 
 .zboziCont{ width:172px; height:180px; float:left; background-image:url(images/shop_03.png); background-position:bottom; background-repeat:no-repeat; margin-left:40px; margin-top:25px;  }
@@ -105,22 +105,22 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 
 #line {float:left;background-image: url(images/bg_09.png); background-repeat:repeat-y; width:1026px;  margin-left:auto; margin-right:auto;}
 
-#footerg {background-image:url(images/foot_03.gif); position: fixed; width:1026px; height:233px; bottom:0px; float:left;}
-#footer {position: fixed; width:1026px; height:233px; bottom:0px; float:left;}
+#footerg {background-image:url(images/foot_03.gif); position: fixed; width:1026px; height:162px; bottom:0px; float:left;}
+#footer {position: fixed; width:1026px; height:162px; bottom:0px; float:left;}
 
 #footerL{
-	background-image: url(images/foot_03_03.png);
-	width:678px;
-	height:68px;
+	background-image: url(images/footers_03.gif);
+	width:800px;
+	height:49px;
 	bottom:0px;
 	float:left;
-	margin-top:165px;
+	margin-top:113px;
 }
 
 #footerR{
-	background-image: url(images/foot_03_02.png);
-	width:348px;
-	height:233px;
+	background-image: url(images/footers_04.gif);
+	width:226px;
+	height:162px;
 	bottom:0px;
 	float:left;
 }
@@ -138,13 +138,12 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 	height:36px;
 	width:674px;
 	margin-top:94px;
-	min-height:6000px;
 }
 #obsahFill{
 	background-image:url(images/img_05.png);
 	background-color:#FFF;
 	width:674px;
-	min-height:600px;
+	min-height:6000px;
 	background-position:top;
 	background-repeat:no-repeat;
 	float:left;
