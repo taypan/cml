@@ -108,12 +108,15 @@ $img = IMG_DIR_SMALL.$id.".jpg";
 $img = IMG_DIR.NO_IMG;
 //$img_sml = IMG_DIR.NO_IMG;
 }
+if(is_numeric($cena)){
+$cena = $cena. " ".MENA;
+}
 //echo IMG_DIR_BIG.$id.".jpg";
 return "
 	<div class=\"zboziCont\">
 	<a href=\"index.php?page=Detail&id=$id\"><img src=\"$img\" weight=\"156\" height=\"110\"></a>
 	<h2><a href=\"index.php?page=Detail&id=$id\">$nazev</a></h2>
-    <div class=\"popis\">cena $cena Kč</div>
+    <div class=\"popis\">cena $cena</div>
     <div class=\"add\"><a href=\"index.php?page=Feeder&id=$id\">Přidat do košíku</a></div>
     </div>";
 

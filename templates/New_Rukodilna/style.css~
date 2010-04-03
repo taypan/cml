@@ -138,12 +138,13 @@ h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verd
 	height:36px;
 	width:674px;
 	margin-top:94px;
+	min-height:6000px;
 }
 #obsahFill{
 	background-image:url(images/img_05.png);
 	background-color:#FFF;
 	width:674px;
-	min-height:6000px;
+	min-height:600px;
 	background-position:top;
 	background-repeat:no-repeat;
 	float:left;
