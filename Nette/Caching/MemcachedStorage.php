@@ -136,7 +136,7 @@ class MemcachedStorage extends Object implements ICacheStorage
 		}
 
 		$meta = array(
-			self::META_DATA => $data,
+		self::META_DATA => $data,
 		);
 
 		$expire = 0;

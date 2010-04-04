@@ -255,24 +255,24 @@ class RobotLoader extends AutoLoader
 		{
 			if (is_array($token)) {
 				switch ($token[0]) {
-				case T_NAMESPACE:
-				case T_CLASS:
-				case T_INTERFACE:
-					$expected = $token[0];
-					$name = '';
-					continue 2;
+					case T_NAMESPACE:
+					case T_CLASS:
+					case T_INTERFACE:
+						$expected = $token[0];
+						$name = '';
+						continue 2;
 
-				case T_COMMENT:
-				case T_DOC_COMMENT:
-				case T_WHITESPACE:
-					continue 2;
+					case T_COMMENT:
+					case T_DOC_COMMENT:
+					case T_WHITESPACE:
+						continue 2;
 
-				case T_NS_SEPARATOR:
-				case T_STRING:
-					if ($expected) {
-						$name .= $token[1];
-					}
-					continue 2;
+					case T_NS_SEPARATOR:
+					case T_STRING:
+						if ($expected) {
+							$name .= $token[1];
+						}
+						continue 2;
 				}
 			}
 

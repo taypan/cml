@@ -7,7 +7,7 @@ class MyIdentity extends Identity implements IIdentity {
 			return parent::__get($key);
 
 		} else {
-		Debug::dump($this->data[$key]);
+			Debug::dump($this->data[$key]);
 			return "X".$this->data[$key];
 		}
 	}

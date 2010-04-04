@@ -51,11 +51,11 @@ class Permission extends Object implements IAuthorizator
 				'allPrivileges' => array(
 					'type'   => self::DENY,
 					'assert' => NULL,
-				),
+	),
 				'byPrivilege' => array(),
-			),
+	),
 			'byRole' => array(),
-		),
+	),
 		'byResource' => array(),
 	);
 
@@ -217,10 +217,10 @@ class Permission extends Object implements IAuthorizator
 		$this->checkRole($role);
 
 		foreach ($this->roles[$role]['children'] as $child => $foo)
-			unset($this->roles[$child]['parents'][$role]);
+		unset($this->roles[$child]['parents'][$role]);
 
 		foreach ($this->roles[$role]['parents'] as $parent => $foo)
-			unset($this->roles[$parent]['children'][$role]);
+		unset($this->roles[$parent]['children'][$role]);
 
 		unset($this->roles[$role]);
 
@@ -253,7 +253,7 @@ class Permission extends Object implements IAuthorizator
 		$this->roles = array();
 
 		foreach ($this->rules['allResources']['byRole'] as $roleCurrent => $rules)
-			unset($this->rules['allResources']['byRole'][$roleCurrent]);
+		unset($this->rules['allResources']['byRole'][$roleCurrent]);
 
 		foreach ($this->rules['byResource'] as $resourceCurrent => $visitor) {
 			foreach ($visitor['byRole'] as $roleCurrent => $rules) {
@@ -617,9 +617,9 @@ class Permission extends Object implements IAuthorizator
 									'allPrivileges' => array(
 										'type'   => self::DENY,
 										'assert' => NULL
-										),
+								),
 									'byPrivilege' => array()
-									);
+								);
 							}
 							continue;
 						}
@@ -629,7 +629,7 @@ class Permission extends Object implements IAuthorizator
 					} else {
 						foreach ($privileges as $privilege) {
 							if (isset($rules['byPrivilege'][$privilege]) &&
-								$type === $rules['byPrivilege'][$privilege]['type']) {
+							$type === $rules['byPrivilege'][$privilege]['type']) {
 								unset($rules['byPrivilege'][$privilege]);
 							}
 						}
@@ -895,7 +895,7 @@ class Permission extends Object implements IAuthorizator
 
 		$dfs['visited'][$role] = TRUE;
 		foreach ($this->roles[$role]['parents'] as $roleParent => $foo)
-			$dfs['stack'][] = $roleParent;
+		$dfs['stack'][] = $roleParent;
 
 		return NULL;
 	}

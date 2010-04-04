@@ -1,4 +1,4 @@
-<? 
+<?
 /**
  * Mailer.php
  *
@@ -15,26 +15,26 @@
  */
 class Mailer
 {
-   /**
-    * sendWelcome - Sends a welcome message to the newly
-    * registered user, also supplying the username and
-    * password.
-    */
-	  
-	   function sendConfEmail($id, $email,$odkaz){
-	  // echo "X".$id."X";
-      $from = "From: ".EMAIL_FROM_NAME." <".EMAIL_FROM_ADDR.">";
-      $subject = "Objednavka - Overovaci mail";
-      $body = "Pro potvrzeni objednavky navstivte nasledujici adresu: ".SITE."/index.php?page=Confirm&id=".$id."&code=".$odkaz."\n\n"
-             ."Pokud jste si nic neobjednal/a, tento email prosim ignorujte";
-             
-      return mail($email,$subject,$body,$from);
-   }
-   /*****************************************/
+	/**
+	 * sendWelcome - Sends a welcome message to the newly
+	 * registered user, also supplying the username and
+	 * password.
+	 */
+	 
+	function sendConfEmail($id, $email,$odkaz){
+		// echo "X".$id."X";
+		$from = "From: ".EMAIL_FROM_NAME." <".EMAIL_FROM_ADDR.">";
+		$subject = "Objednavka - Overovaci mail";
+		$body = "Pro potvrzeni objednavky navstivte nasledujici adresu: ".SITE."/index.php?page=Confirm&id=".$id."&code=".$odkaz."\n\n"
+		."Pokud jste si nic neobjednal/a, tento email prosim ignorujte";
+		 
+		return mail($email,$subject,$body,$from);
+	}
+	/*****************************************/
 
 }
 
 /* Initialize mailer object */
 
- 
+
 ?>

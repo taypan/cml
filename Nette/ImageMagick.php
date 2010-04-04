@@ -221,8 +221,8 @@ class ImageMagick extends Image
 		$command = str_replace('%input', addcslashes($this->file, ' '), $command);
 		if ($output) {
 			$newFile = is_string($output)
-				? $output
-				: (self::$tempDir ? self::$tempDir : dirname($this->file)) . '/_tempimage' . uniqid() . image_type_to_extension($output);
+			? $output
+			: (self::$tempDir ? self::$tempDir : dirname($this->file)) . '/_tempimage' . uniqid() . image_type_to_extension($output);
 			$command = str_replace('%output', addcslashes($newFile, ' '), $command);
 		}
 

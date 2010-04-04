@@ -226,8 +226,8 @@ final class PresenterHelpers
 		$cache = array();
 		foreach ($rm->getParameters() as $param) {
 			$cache[$param->getName()] = $param->isDefaultValueAvailable()
-				? $param->getDefaultValue()
-				: NULL;
+			? $param->getDefaultValue()
+			: NULL;
 		}
 		return $cache;
 	}

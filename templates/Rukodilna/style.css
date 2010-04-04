@@ -1,12 +1,6 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font-family, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center, li, ul
-dl, dt, dd, li, ul, ol,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font-family,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,li,ul
+dl,dt,dd,li,ul,ol,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
+	{
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -15,123 +9,516 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	vertical-align: baseline;
 	background: transparent;
 }
-a:visited{color:#666;}
+
+a:visited {
+	color: #666;
+}
 
 body {
-	background-image:url(images/bg_05.jpg);
-	background-repeat:repeat;
-	}
-	
-a{text-decoration:none; color:#800;}
+	background-image: url(images/bg_05.jpg);
+	background-repeat: repeat;
+}
 
-ol, ul {list-style: none;}
+a {
+	text-decoration: none;
+	color: #800;
+}
 
-blockquote, q {quotes: none;}
+ol,ul {
+	list-style: none;
+}
 
-blockquote:before, blockquote:after, q:before, q:after {content: ''; content: none;}
+blockquote,q {
+	quotes: none;
+}
 
-:focus {outline: 0;}
+blockquote:before,blockquote:after,q:before,q:after {
+	content: '';
+	content: none;
+}
 
-ins {text-decoration: none;}
+:focus {
+	outline: 0;
+}
 
-del {text-decoration: line-through;}
+ins {
+	text-decoration: none;
+}
 
-table {border-spacing: 1px; font-family:Verdana, Geneva, sans-serif; font-size:12px; margin-left: 40px; padding: 1px;border: #000000 solid 1px; }
-td {background-color:#d1a373; padding: 2px;}
-th {background-color: #682606; color:#FFFFFF; padding: 2px; vertical-align: middle;}
+del {
+	text-decoration: line-through;
+}
 
-h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; color:#800; margin-left:40px; }
-#obsahShop h1, #obsahSekce h1 {font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; padding-top:30px; color:#800; margin-left:40px; }
-#obsahNahled h1{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; padding-top:20px; color:#800; margin-left:40px; }
+table {
+	border-spacing: 1px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	margin-left: 40px;
+	padding: 1px;
+	border: #000000 solid 1px;
+}
 
-/*end of reset*/
+td {
+	background-color: #d1a373;
+	padding: 2px;
+}
 
-/* Main */
-#zarovnani {width:1026px; margin-left:auto; margin-right:auto;}
+th {
+	background-color: #682606;
+	color: #FFFFFF;
+	padding: 2px;
+	vertical-align: middle;
+}
 
-#cont {background-image:url(images/head_02.jpg); background-repeat:no-repeat; width:1026px; height:492px; margin-left:auto; margin-right:auto;}
-#contShop, #contSekce {background-image: url(images/shopBG_03.jpg); background-repeat:no-repeat; width:1026px; height:465px; margin-left:auto;}
+h1 {
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-size: 13px;
+	color: #800;
+	margin-left: 40px;
+}
 
-#cont #menu a, #contShop #menu a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
-#cont a:hover, #contShop a:hover {color: #C00; text-decoration:underline;}
+#obsahShop h1,#obsahSekce h1 {
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-size: 13px;
+	padding-top: 30px;
+	color: #800;
+	margin-left: 40px;
+}
 
-#imgMain{ float:left; margin-left:40px; margin-top:50px; margin-bottom: 100px}
+#obsahNahled h1 {
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-size: 13px;
+	padding-top: 20px;
+	color: #800;
+	margin-left: 40px;
+}
 
-#productInfo{font-family:Verdana, Geneva, sans-serif; width:305px; margin-top:50px; font-style:normal; font-weight:normal; float:left;  margin-left:20px;}
-#productInfo h2{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; color:#800; }
-h3{ float:left; margin-top:20px; margin-left:20px; width:285px; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:13px; color: #333; }
-#productInfo .light{ color: #666;}
+/*end of reset*/ /* Main */
+#zarovnani {
+	width: 1026px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
-.zboziContPrice{ width:171px; height:57px; float:left; background-image: url(images/price.gif);  background-repeat:no-repeat; margin-left:20px; margin-top:25px;  }
-.zboziContPrice .add{ background-color:#FFF; color:#663300; font-family: Arial, Helvetica, sans-serif; text-align:center; text-transform:uppercase; font-size:12px; width:120px; margin-left:9px; margin-top:6px;}
-.zboziContPrice .popis{color:#FFF; font-family: Arial, Helvetica, sans-serif; font-size:14px; margin-top:8px; font-style:normal; font-weight:normal; padding-left:9px;}
+#cont {
+	background-image: url(images/head_02.jpg);
+	background-repeat: no-repeat;
+	width: 1026px;
+	height: 492px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
-.zboziCont{ width:172px; height:180px; float:left; background-image:url(images/shop_03.png); background-position:bottom; background-repeat:no-repeat; margin-left:40px; margin-top:25px;  }
-.zboziCont h2{ margin-top:8px; color:#FFF; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:12px; font-style:normal; font-weight:normal; padding-left:9px;} 
-.zboziCont h2 a{ margin-top:118px; color:#FFF; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-size:12px; font-style:normal; font-weight:normal;} 
-.zboziCont .popis{color:#FFF; font-family: Arial, Helvetica, sans-serif; font-size:10px; margin-top:2px; font-style:normal; font-weight:normal; padding-left:9px;}
-.zboziCont .add{ background-color:#FFF; color:#663300; font-family: Arial, Helvetica, sans-serif; text-align:center; text-transform:uppercase; font-size:12px; width:120px; margin-left:9px; margin-top:5px;}
+#contShop,#contSekce {
+	background-image: url(images/shopBG_03.jpg);
+	background-repeat: no-repeat;
+	width: 1026px;
+	height: 465px;
+	margin-left: auto;
+}
 
-#line {float:left;background-image:url(images/line_02.jpg); background-repeat:repeat-y; width:1026px;  margin-left:auto; margin-right:auto;}
+#cont #menu a,#contShop #menu a {
+	float: left;
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 13px;
+	color: #800;
+	line-height: 45px;
+	width: 200px;
+}
 
-#footerg {background-image:url(images/foot_03.gif); position: fixed; width:1026px; height:233px; bottom:0px; float:left;}
-#footer {position: fixed; width:1026px; height:233px; bottom:0px; float:left;}
+#cont a:hover,#contShop a:hover {
+	color: #C00;
+	text-decoration: underline;
+}
 
-#footerL{
+#imgMain {
+	float: left;
+	margin-left: 40px;
+	margin-top: 50px;
+	margin-bottom: 100px
+}
+
+#productInfo {
+	font-family: Verdana, Geneva, sans-serif;
+	width: 305px;
+	margin-top: 50px;
+	font-style: normal;
+	font-weight: normal;
+	float: left;
+	margin-left: 20px;
+}
+
+#productInfo h2 {
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-size: 13px;
+	color: #800;
+}
+
+h3 {
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 285px;
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-size: 13px;
+	color: #333;
+}
+
+#productInfo .light {
+	color: #666;
+}
+
+.zboziContPrice {
+	width: 171px;
+	height: 57px;
+	float: left;
+	background-image: url(images/price.gif);
+	background-repeat: no-repeat;
+	margin-left: 20px;
+	margin-top: 25px;
+}
+
+.zboziContPrice .add {
+	background-color: #FFF;
+	color: #663300;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 12px;
+	width: 120px;
+	margin-left: 9px;
+	margin-top: 6px;
+}
+
+.zboziContPrice .popis {
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	margin-top: 8px;
+	font-style: normal;
+	font-weight: normal;
+	padding-left: 9px;
+}
+
+.zboziCont {
+	width: 172px;
+	height: 180px;
+	float: left;
+	background-image: url(images/shop_03.png);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	margin-left: 40px;
+	margin-top: 25px;
+}
+
+.zboziCont h2 {
+	margin-top: 8px;
+	color: #FFF;
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	padding-left: 9px;
+}
+
+.zboziCont h2 a {
+	margin-top: 118px;
+	color: #FFF;
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+}
+
+.zboziCont .popis {
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	margin-top: 2px;
+	font-style: normal;
+	font-weight: normal;
+	padding-left: 9px;
+}
+
+.zboziCont .add {
+	background-color: #FFF;
+	color: #663300;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 12px;
+	width: 120px;
+	margin-left: 9px;
+	margin-top: 5px;
+}
+
+#line {
+	float: left;
+	background-image: url(images/line_02.jpg);
+	background-repeat: repeat-y;
+	width: 1026px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#footerg {
+	background-image: url(images/foot_03.gif);
+	position: fixed;
+	width: 1026px;
+	height: 233px;
+	bottom: 0px;
+	float: left;
+}
+
+#footer {
+	position: fixed;
+	width: 1026px;
+	height: 233px;
+	bottom: 0px;
+	float: left;
+}
+
+#footerL {
 	background-image: url(images/foot_03_03.png);
-	width:678px;
-	height:68px;
-	bottom:0px;
-	float:left;
-	margin-top:165px;
+	width: 678px;
+	height: 68px;
+	bottom: 0px;
+	float: left;
+	margin-top: 165px;
 }
 
-#footerR{
+#footerR {
 	background-image: url(images/foot_03_02.png);
-	width:348px;
-	height:233px;
-	bottom:0px;
-	float:left;
+	width: 348px;
+	height: 233px;
+	bottom: 0px;
+	float: left;
 }
-#clicker{width:250px; height:200px; float:right; margin-top:20px;}
-/* END OF Main */
 
-/* Obsah  */
-#zakulaceni	{background-image:url(images/obsah_03.png); background-repeat:no-repeat; float:left; width:770px; height:40px; margin-top:194px;}
+#clicker {
+	width: 250px;
+	height: 200px;
+	float: right;
+	margin-top: 20px;
+}
 
-#obsah {background-color:#FFF; background-image:url(images/obsah_05.png); background-position:top; background-repeat:no-repeat; float:left; width:770px; margin-left:0px;}
-#obsahShop, #obsahSekce, #obsahNahled {background-color:#FFF; background-image: url(images/bgshop_03.jpg);  background-position:top; background-repeat:no-repeat; float:left; min-height:650px; width:770px; margin-left:0px;}
+/* END OF Main */ /* Obsah  */
+#zakulaceni {
+	background-image: url(images/obsah_03.png);
+	background-repeat: no-repeat;
+	float: left;
+	width: 770px;
+	height: 40px;
+	margin-top: 194px;
+}
 
-#obsah p, #obsahShop p {font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:40px; color:#333; line-height:18px; float:left; padding-top:15px; width:450px;}
-#obsahNahled p {font-size:12px; color:#666; font-family:Verdana, Geneva, sans-serif;line-height:18px; margin-left:20px; width:305px; float:left;}
+#obsah {
+	background-color: #FFF;
+	background-image: url(images/obsah_05.png);
+	background-position: top;
+	background-repeat: no-repeat;
+	float: left;
+	width: 770px;
+	margin-left: 0px;
+}
 
-#kosik { float:left; width:600px; margin-left:20px; margin-top:570px; background-image: url(images/kosik_09.png); width:24px; height:17px; }
-#kosikU { float:right; margin-right:40px;  margin-top:15px;  background-image: url(images/kosik_09.png); background-position:right; background-repeat:no-repeat; width:224px; height:17px; }
-.kosikTXT{color:#663300; font-family: Arial, Helvetica, sans-serif; text-align:center;  font-size:12px; padding-right:5px; text-decoration:underline; }
+#obsahShop,#obsahSekce,#obsahNahled {
+	background-color: #FFF;
+	background-image: url(images/bgshop_03.jpg);
+	background-position: top;
+	background-repeat: no-repeat;
+	float: left;
+	min-height: 650px;
+	width: 770px;
+	margin-left: 0px;
+}
+
+#obsah p,#obsahShop p {
+	font-size: 12px;
+	font-family: Verdana, Geneva, sans-serif;
+	margin-left: 40px;
+	color: #333;
+	line-height: 18px;
+	float: left;
+	padding-top: 15px;
+	width: 450px;
+}
+
+#obsahNahled p {
+	font-size: 12px;
+	color: #666;
+	font-family: Verdana, Geneva, sans-serif;
+	line-height: 18px;
+	margin-left: 20px;
+	width: 305px;
+	float: left;
+}
+
+#kosik {
+	float: left;
+	width: 600px;
+	margin-left: 20px;
+	margin-top: 570px;
+	background-image: url(images/kosik_09.png);
+	width: 24px;
+	height: 17px;
+}
+
+#kosikU {
+	float: right;
+	margin-right: 40px;
+	margin-top: 15px;
+	background-image: url(images/kosik_09.png);
+	background-position: right;
+	background-repeat: no-repeat;
+	width: 224px;
+	height: 17px;
+}
+
+.kosikTXT {
+	color: #663300;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 12px;
+	padding-right: 5px;
+	text-decoration: underline;
+}
+
 /* END OF Obsah */
+.sekceCont {
+	background-image: url(images/sekce_03.jpg);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	width: 184px;
+	height: 174px;
+	float: left;
+	margin-left: 40px;
+	margin-top: 45px;
+}
 
+.sekceCont h2 {
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 12px;
+	color: #800;
+	white-space: nowrap;
+}
 
-.sekceCont{ background-image:url(images/sekce_03.jpg); background-position:bottom; background-repeat:no-repeat; width:184px; height:174px; float:left; margin-left:40px; margin-top:45px; }
-.sekceCont h2{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:normal; font-size:12px; color:#800;  white-space:nowrap;}
-.linkCont{ margin-top:110px; float:left; width:184px; height:50px;}
-.linkCont a{font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:10px; color:#fff; float:left; width:154px; line-height:14px; padding-left:5px; white-space:nowrap;}
-.sekceCont a:hover{ text-decoration:underline;}
+.linkCont {
+	margin-top: 110px;
+	float: left;
+	width: 184px;
+	height: 50px;
+}
+
+.linkCont a {
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 10px;
+	color: #fff;
+	float: left;
+	width: 154px;
+	line-height: 14px;
+	padding-left: 5px;
+	white-space: nowrap;
+}
+
+.sekceCont a:hover {
+	text-decoration: underline;
+}
 
 /*MENU*/
-#menu { float:left; width:200px;  margin-top: 420px; margin-left: 10px;}
-#menu a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
-/*END OF MENU*/
+#menu {
+	float: left;
+	width: 200px;
+	margin-top: 420px;
+	margin-left: 10px;
+}
 
-/* HOMEPAGE */
-#contHome { background-image:url(images/index_02.jpg);position: absolute; top: 50%; left: 50%; width:1026px; height:769px; margin: -384px 0 0 -513px;}
-#contHome a { float:left; font-family:Verdana, Geneva, sans-serif; text-transform:uppercase; font-weight:bold; font-size:13px; color:#800; line-height:45px; width:200px;}
-#contHome a:hover {color: #C00; text-decoration:underline;}
+#menu a {
+	float: left;
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 13px;
+	color: #800;
+	line-height: 45px;
+	width: 200px;
+}
 
-#kosikHome { float:left; width:600px; margin-left:70px; margin-top:570px; background-image:url(images/kosik_09.gif); width:24px; height:17px;}
+/*END OF MENU*/ /* HOMEPAGE */
+#contHome {
+	background-image: url(images/index_02.jpg);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 1026px;
+	height: 769px;
+	margin: -384px 0 0 -513px;
+}
 
-#logo {float:left; width:350px; height:210px; margin-left:520px; margin-top:550px;}
+#contHome a {
+	float: left;
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 13px;
+	color: #800;
+	line-height: 45px;
+	width: 200px;
+}
+
+#contHome a:hover {
+	color: #C00;
+	text-decoration: underline;
+}
+
+#kosikHome {
+	float: left;
+	width: 600px;
+	margin-left: 70px;
+	margin-top: 570px;
+	background-image: url(images/kosik_09.gif);
+	width: 24px;
+	height: 17px;
+}
+
+#logo {
+	float: left;
+	width: 350px;
+	height: 210px;
+	margin-left: 520px;
+	margin-top: 550px;
+}
+
 /* END OF HOMEPAGE */
+.counter {
+	font-size: 12px;
+	font-family: Verdana, Geneva, sans-serif;
+	margin-left: 40px;
+	color: #333;
+}
 
-.counter{font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:40px; color: #333;}
-.msg{font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-left:40px; color: #333;}
-.login{font-size:12px; font-family:Verdana, Geneva, sans-serif; color: #333;}
+.msg {
+	font-size: 12px;
+	font-family: Verdana, Geneva, sans-serif;
+	margin-left: 40px;
+	color: #333;
+}
+
+.login {
+	font-size: 12px;
+	font-family: Verdana, Geneva, sans-serif;
+	color: #333;
+}

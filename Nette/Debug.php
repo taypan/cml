@@ -324,7 +324,7 @@ final class Debug
 				$addr = isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : $_SERVER['LOCAL_ADDR'];
 				$oct = explode('.', $addr);
 				self::$productionMode = $addr !== '::1' && (count($oct) !== 4 || ($oct[0] !== '10' && $oct[0] !== '127' && ($oct[0] !== '172' || $oct[1] < 16 || $oct[1] > 31)
-					&& ($oct[0] !== '169' || $oct[1] !== '254') && ($oct[0] !== '192' || $oct[1] !== '168')));
+				&& ($oct[0] !== '169' || $oct[1] !== '254') && ($oct[0] !== '192' || $oct[1] !== '168')));
 
 			} else {
 				self::$productionMode = !self::$consoleMode;
@@ -359,7 +359,7 @@ final class Debug
 			ini_set('log_errors', (bool) self::$logFile);
 
 		} elseif (ini_get('log_errors') != (bool) self::$logFile || // intentionally ==
-			(ini_get('display_errors') != !self::$productionMode && ini_get('display_errors') !== (self::$productionMode ? 'stderr' : 'stdout'))) {
+		(ini_get('display_errors') != !self::$productionMode && ini_get('display_errors') !== (self::$productionMode ? 'stderr' : 'stdout'))) {
 			throw new NotSupportedException('Function ini_set() must be enabled.');
 		}
 
@@ -438,8 +438,8 @@ final class Debug
 	public static function errorHandler($severity, $message, $file, $line, $context)
 	{
 		static $fatals = array(
-			E_USER_ERROR => 1,
-			E_RECOVERABLE_ERROR => 1, // since PHP 5.2
+		E_USER_ERROR => 1,
+		E_RECOVERABLE_ERROR => 1, // since PHP 5.2
 		);
 
 		if (isset($fatals[$severity])) {
@@ -450,13 +450,13 @@ final class Debug
 		}
 
 		static $types = array(
-			E_WARNING => 'Warning',
-			E_USER_WARNING => 'Warning',
-			E_NOTICE => 'Notice',
-			E_USER_NOTICE => 'Notice',
-			E_STRICT => 'Strict standards',
-			E_DEPRECATED => 'Deprecated',
-			E_USER_DEPRECATED => 'Deprecated',
+		E_WARNING => 'Warning',
+		E_USER_WARNING => 'Warning',
+		E_NOTICE => 'Notice',
+		E_USER_NOTICE => 'Notice',
+		E_STRICT => 'Strict standards',
+		E_DEPRECATED => 'Deprecated',
+		E_USER_DEPRECATED => 'Deprecated',
 		);
 
 		$type = isset($types[$severity]) ? $types[$severity] : 'Unknown error';
@@ -486,10 +486,10 @@ final class Debug
 	public static function shutdownHandler()
 	{
 		static $types = array(
-			E_ERROR => 1,
-			E_CORE_ERROR => 1,
-			E_COMPILE_ERROR => 1,
-			E_PARSE => 1,
+		E_ERROR => 1,
+		E_CORE_ERROR => 1,
+		E_COMPILE_ERROR => 1,
+		E_PARSE => 1,
 		);
 
 		$error = error_get_last();
@@ -616,12 +616,12 @@ final class Debug
 	private static function defaultMailer($message)
 	{
 		$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] :
-				(isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '');
+		(isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '');
 
 		$headers = str_replace(
-			array('%host%', '%date%', '%message%'),
-			array($host, @date('Y-m-d H:i:s', Debug::$time), $message), // intentionally @
-			self::$emailHeaders
+		array('%host%', '%date%', '%message%'),
+		array($host, @date('Y-m-d H:i:s', Debug::$time), $message), // intentionally @
+		self::$emailHeaders
 		);
 
 		$subject = $headers['Subject'];

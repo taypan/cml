@@ -109,8 +109,8 @@ class Uri extends Object
 	public function getAbsoluteUri()
 	{
 		return $this->scheme . '://' . $this->getAuthority() . $this->path
-			. ($this->query == '' ? '' : '?' . $this->query)
-			. ($this->fragment == '' ? '' : '#' . $this->fragment);
+		. ($this->query == '' ? '' : '?' . $this->query)
+		. ($this->fragment == '' ? '' : '#' . $this->fragment);
 	}
 
 

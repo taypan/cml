@@ -122,7 +122,7 @@ final class TemplateFilters
 		return preg_replace(
 			'#(src|href|action)\s*=\s*(["\'])(?![a-z]+:|[\x01/\\#])#', // \x01 is PHP snippet
 			'$1=$2<?php echo \\$baseUri ?>',
-			$s
+		$s
 		);
 	}
 
@@ -142,8 +142,8 @@ final class TemplateFilters
 	{
 		return preg_replace_callback(
 			'#(src|href|action|on[a-z]+)\s*=\s*["\'](nette:.*?)([\#"\'])#',
-			array(__CLASS__, 'tnlCb'),
-			$s)
+		array(__CLASS__, 'tnlCb'),
+		$s)
 		;
 	}
 
@@ -160,12 +160,12 @@ final class TemplateFilters
 		$parts = parse_url($uri);
 		if (isset($parts['scheme']) && $parts['scheme'] === 'nette') {
 			return $attr . '="<?php echo $template->escape($control->'
-				. (strncmp($attr, 'on', 2) ? 'link' : 'ajaxLink')
-				. '(\''
-				. (isset($parts['path']) ? $parts['path'] : 'this!')
-				. (isset($parts['query']) ? '?' . $parts['query'] : '')
-				. '\'))?>'
-				. $fragment;
+			. (strncmp($attr, 'on', 2) ? 'link' : 'ajaxLink')
+			. '(\''
+			. (isset($parts['path']) ? $parts['path'] : 'this!')
+			. (isset($parts['query']) ? '?' . $parts['query'] : '')
+			. '\'))?>'
+			. $fragment;
 		} else {
 			return $m[0];
 		}
@@ -191,8 +191,8 @@ final class TemplateFilters
 	{
 		return preg_replace_callback(
 			'#<texy([^>]*)>(.*?)</texy>#s',
-			array(__CLASS__, 'texyCb'),
-			$s
+		array(__CLASS__, 'texyCb'),
+		$s
 		);
 	}
 
@@ -210,9 +210,9 @@ final class TemplateFilters
 		if ($mAttrs) {
 			preg_match_all(
 				'#([a-z0-9:-]+)\s*(?:=\s*(\'[^\']*\'|"[^"]*"|[^\'"\s]+))?()#isu',
-				$mAttrs,
-				$arr,
-				PREG_SET_ORDER
+			$mAttrs,
+			$arr,
+			PREG_SET_ORDER
 			);
 
 			foreach ($arr as $m) {

@@ -74,29 +74,29 @@ class ConventionalRenderer extends Object implements IFormRenderer
 		'form' => array(
 			'container' => NULL,
 			'errors' => TRUE,
-		),
+	),
 
 		'error' => array(
 			'container' => 'ul class=error',
 			'item' => 'li',
-		),
+	),
 
 		'group' => array(
 			'container' => 'fieldset',
 			'label' => 'legend',
 			'description' => 'p',
-		),
+	),
 
 		'controls' => array(
 			'container' => 'table',
-		),
+	),
 
 		'pair' => array(
 			'container' => 'tr',
 			'.required' => 'required',
 			'.optional' => NULL,
 			'.odd' => NULL,
-		),
+	),
 
 		'control' => array(
 			'container' => 'td',
@@ -112,16 +112,16 @@ class ConventionalRenderer extends Object implements IFormRenderer
 			'.submit' => 'button',
 			'.image' => 'imagebutton',
 			'.button' => 'button',
-		),
+	),
 
 		'label' => array(
 			'container' => 'th',
 			'suffix' => NULL,
-		),
+	),
 
 		'hidden' => array(
 			'container' => 'div',
-		),
+	),
 	);
 
 	/** @var Form */

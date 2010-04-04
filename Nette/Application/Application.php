@@ -187,9 +187,9 @@ class Application extends Object
 				} elseif ($this->errorPresenter) {
 					$hasError = TRUE;
 					$request = new PresenterRequest(
-						$this->errorPresenter,
-						PresenterRequest::FORWARD,
-						array('exception' => $e)
+					$this->errorPresenter,
+					PresenterRequest::FORWARD,
+					array('exception' => $e)
 					);
 					continue;
 				}

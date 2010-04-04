@@ -543,8 +543,8 @@ class Html extends Object implements ArrayAccess, Countable, IteratorAggregate
 
 			// add new attribute
 			$s .= ' ' . $key . '="'
-				. str_replace(array('&', '"', '<', '>', '@'), array('&amp;', '&quot;', '&lt;', '&gt;', '&#64;'), $value)
-					. '"';
+			. str_replace(array('&', '"', '<', '>', '@'), array('&amp;', '&quot;', '&lt;', '&gt;', '&#64;'), $value)
+			. '"';
 		}
 		return $s;
 	}

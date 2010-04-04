@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="CachingHelper.php" local="128932592650000000" remote="128909207400000000" testing="129057928200000000" />
-<file name="TemplateHelpers.php" local="128932592650000000" remote="128909207400000000" testing="129057928200000000" />
-<file name="TemplateFilters.php" local="128932592650000000" remote="128909207400000000" testing="129057928200000000" />
-<file name="SnippetHelper.php" local="128932592650000000" remote="128909207400000000" testing="129057928200000000" />
-<file name="CurlyBracketsFilter.php" local="128932592650000000" remote="128909207400000000" testing="129057928200000000" />
+	<file name="CachingHelper.php" local="128932592650000000" remote="128909207400000000"
+		testing="129057928200000000" />
+	<file name="TemplateHelpers.php" local="128932592650000000"
+		remote="128909207400000000" testing="129057928200000000" />
+	<file name="TemplateFilters.php" local="128932592650000000"
+		remote="128909207400000000" testing="129057928200000000" />
+	<file name="SnippetHelper.php" local="128932592650000000" remote="128909207400000000"
+		testing="129057928200000000" />
+	<file name="CurlyBracketsFilter.php" local="128932592650000000"
+		remote="128909207400000000" testing="129057928200000000" />
 </dwsync>

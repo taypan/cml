@@ -29,7 +29,7 @@
  */
 class ApplicationException extends Exception
 {
-	
+
 	function __construct($message = '', $code = 0, Exception $previous = NULL)
 	{
 		if (version_compare(PHP_VERSION , '5.3', '<')) {
@@ -39,5 +39,5 @@ class ApplicationException extends Exception
 			parent::__construct($message, $code, $previous);
 		}
 	}
-	
+
 }

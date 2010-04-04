@@ -158,7 +158,7 @@ class CurlyBracketsFilter extends Object
 		$s = preg_replace(
 			'#@(\\{[^}]+?\\})#s',
 			'<?php } ?>$1<?php if (SnippetHelper::\\$outputAllowed) { ?>',
-			$s
+		$s
 		);
 
 		// process all {tags} and <tags/>
@@ -169,8 +169,8 @@ class CurlyBracketsFilter extends Object
 				(["\'])|                                ## 6) attribute delimiter
 				(\n[ \t]*)?\\{([^\\s\'"{}][^}]*?)(\\|[a-z](?:[^\'"}\s|]+|\\|[a-z]|\'[^\']*\'|"[^"]*")*)?\\}([ \t]*(?=\r|\n))? ## 7,8,9,10) indent & macro & modifiers & newline
 			~xsi',
-			array($this, 'cbContent'),
-			$s
+		array($this, 'cbContent'),
+		$s
 		);
 
 		// named blocks
@@ -185,7 +185,7 @@ class CurlyBracketsFilter extends Object
 		// internal state holder
 		$s = "<?php "
 			
-			. "\$_cb = CurlyBracketsFilter::initState(\$template) ?>" . $s;
+		. "\$_cb = CurlyBracketsFilter::initState(\$template) ?>" . $s;
 
 		return $s;
 	}
@@ -408,9 +408,9 @@ class CurlyBracketsFilter extends Object
 
 		} else { // capture or modifier
 			return ($var === '' && $modifiers === '') ? ''
-				: '} catch (Exception $_e) { ob_end_clean(); throw $_e; } '
-				. ($var === '' ? 'echo ' : $var . '=')
-				. $this->macroModifiers('ob_get_clean()', $modifiers);
+			: '} catch (Exception $_e) { ob_end_clean(); throw $_e; } '
+			. ($var === '' ? 'echo ' : $var . '=')
+			. $this->macroModifiers('ob_get_clean()', $modifiers);
 		}
 	}
 
@@ -424,7 +424,7 @@ class CurlyBracketsFilter extends Object
 		list(, $name, $content) = $matches;
 		$func = '_cbb' . substr(md5(uniqid($name)), 0, 15) . '_' . $name;
 		$this->namedBlocks[$name] = "\$_cb->blks[" . var_export($name, TRUE) . "][] = '$func';\n"
-			. "function $func() { extract(func_get_arg(0)) // block #$name\n?>$content<?php\n}";
+		. "function $func() { extract(func_get_arg(0)) // block #$name\n?>$content<?php\n}";
 		return '';
 	}
 
@@ -564,8 +564,8 @@ class CurlyBracketsFilter extends Object
 		if (!$modifiers) return $var;
 		preg_match_all(
 			'#[^\'"}\s|:]+|[|:]|\'[^\']*\'|"[^"]*"#s',
-			$modifiers . '|',
-			$tokens
+		$modifiers . '|',
+		$tokens
 		);
 		$state = FALSE;
 		foreach ($tokens[0] as $token) {

@@ -158,10 +158,10 @@ final class InstantClientScript extends Object
 
 				} else {
 					$res .= "$script\n\t"
-						. "if (" . ($rule->isNegative ? '' : '!') . "res) { "
-						. "message = " . json_encode((string) vsprintf($rule->control->translate($rule->message), (array) $rule->arg)) . "; "
-						. $this->doAlert
-						. " return false; }\n\t";
+					. "if (" . ($rule->isNegative ? '' : '!') . "res) { "
+					. "message = " . json_encode((string) vsprintf($rule->control->translate($rule->message), (array) $rule->arg)) . "; "
+					. $this->doAlert
+					. " return false; }\n\t";
 				}
 			}
 
@@ -185,9 +185,9 @@ final class InstantClientScript extends Object
 		$s = '';
 		foreach ($rules->getToggles() as $id => $visible) {
 			$s .= "visible = true; {$cond}element = document.getElementById('" . $id . "');\n\t"
-				. ($visible ? '' : 'visible = !visible; ')
-				. $this->doToggle
-				. "\n\t";
+			. ($visible ? '' : 'visible = !visible; ')
+			. $this->doToggle
+			. "\n\t";
 		}
 		foreach ($rules as $rule) {
 			if ($rule->type === Rule::CONDITION && is_string($rule->operation)) {
@@ -216,17 +216,17 @@ final class InstantClientScript extends Object
 	{
 		$tmp = "element = document.getElementById(" . json_encode($control->getHtmlId()) . ");\n\t";
 		switch (TRUE) {
-		case $control instanceof Checkbox:
-			return $tmp . "var val = element.checked;\n\t";
+			case $control instanceof Checkbox:
+				return $tmp . "var val = element.checked;\n\t";
 
-		case $control instanceof RadioList:
-			return "for (var val=null, i=0; i<" . count($control->getItems()) . "; i++) {\n\t\t"
-			. "element = document.getElementById(" . json_encode($control->getHtmlId() . '-') . "+i);\n\t\t"
-			. "if (element.checked) { val = element.value; break; }\n\t"
-			. "}\n\t";
+			case $control instanceof RadioList:
+				return "for (var val=null, i=0; i<" . count($control->getItems()) . "; i++) {\n\t\t"
+				. "element = document.getElementById(" . json_encode($control->getHtmlId() . '-') . "+i);\n\t\t"
+				. "if (element.checked) { val = element.value; break; }\n\t"
+				. "}\n\t";
 
-		default:
-			return $tmp . "var val = element.value.replace(/^\\s+|\\s+\$/g, '');\n\t";
+			default:
+				return $tmp . "var val = element.value.replace(/^\\s+|\\s+\$/g, '');\n\t";
 		}
 	}
 
@@ -236,84 +236,84 @@ final class InstantClientScript extends Object
 	{
 		$operation = strtolower($operation);
 		switch (TRUE) {
-		case $control instanceof HiddenField || $control->isDisabled():
-			return NULL;
+			case $control instanceof HiddenField || $control->isDisabled():
+				return NULL;
 
-		case $operation === ':filled' && $control instanceof RadioList:
-			return $this->getValueScript($control) . "res = val !== null;";
+			case $operation === ':filled' && $control instanceof RadioList:
+				return $this->getValueScript($control) . "res = val !== null;";
 
-		case $operation === ':submitted' && $control instanceof SubmitButton:
-			return "element=null; res=sender && sender.name==" . json_encode($control->getHtmlName()) . ";";
+			case $operation === ':submitted' && $control instanceof SubmitButton:
+				return "element=null; res=sender && sender.name==" . json_encode($control->getHtmlName()) . ";";
 
-		case $operation === ':equal' && $control instanceof MultiSelectBox:
-			$tmp = array();
-			foreach ((is_array($arg) ? $arg : array($arg)) as $item) {
-				$tmp[] = "element.options[i].value==" . json_encode((string) $item);
-			}
-			$first = $control->isFirstSkipped() ? 1 : 0;
-			return "element = document.getElementById(" . json_encode($control->getHtmlId()) . ");\n\tres = false;\n\t"
+			case $operation === ':equal' && $control instanceof MultiSelectBox:
+				$tmp = array();
+				foreach ((is_array($arg) ? $arg : array($arg)) as $item) {
+					$tmp[] = "element.options[i].value==" . json_encode((string) $item);
+				}
+				$first = $control->isFirstSkipped() ? 1 : 0;
+				return "element = document.getElementById(" . json_encode($control->getHtmlId()) . ");\n\tres = false;\n\t"
 				. "for (var i=$first;i<element.options.length;i++)\n\t\t"
 				. "if (element.options[i].selected && (" . implode(' || ', $tmp) . ")) { res = true; break; }";
 
-		case $operation === ':filled' && $control instanceof SelectBox:
-			return "element = document.getElementById(" . json_encode($control->getHtmlId()) . ");\n\t"
+			case $operation === ':filled' && $control instanceof SelectBox:
+				return "element = document.getElementById(" . json_encode($control->getHtmlId()) . ");\n\t"
 				. "res = element.selectedIndex >= " . ($control->isFirstSkipped() ? 1 : 0) . ";";
 
-		case $operation === ':filled' && $control instanceof TextInput:
-			return $this->getValueScript($control) . "res = val!='' && val!=" . json_encode((string) $control->getEmptyValue()) . ";";
+			case $operation === ':filled' && $control instanceof TextInput:
+				return $this->getValueScript($control) . "res = val!='' && val!=" . json_encode((string) $control->getEmptyValue()) . ";";
 
-		case $operation === ':minlength' && $control instanceof TextBase:
-			return $this->getValueScript($control) . "res = val.length>=" . (int) $arg . ";";
+			case $operation === ':minlength' && $control instanceof TextBase:
+				return $this->getValueScript($control) . "res = val.length>=" . (int) $arg . ";";
 
-		case $operation === ':maxlength' && $control instanceof TextBase:
-			return $this->getValueScript($control) . "res = val.length<=" . (int) $arg . ";";
+			case $operation === ':maxlength' && $control instanceof TextBase:
+				return $this->getValueScript($control) . "res = val.length<=" . (int) $arg . ";";
 
-		case $operation === ':length' && $control instanceof TextBase:
-			if (!is_array($arg)) {
-				$arg = array($arg, $arg);
-			}
-			return $this->getValueScript($control) . "res = " . ($arg[0] === NULL ? "true" : "val.length>=" . (int) $arg[0]) . " && "
+			case $operation === ':length' && $control instanceof TextBase:
+				if (!is_array($arg)) {
+					$arg = array($arg, $arg);
+				}
+				return $this->getValueScript($control) . "res = " . ($arg[0] === NULL ? "true" : "val.length>=" . (int) $arg[0]) . " && "
 				. ($arg[1] === NULL ? "true" : "val.length<=" . (int) $arg[1]) . ";";
 
-		case $operation === ':email' && $control instanceof TextBase:
-			return $this->getValueScript($control) . 'res = /^[^@]+@[^@]+\.[a-z]{2,6}$/i.test(val);';
+			case $operation === ':email' && $control instanceof TextBase:
+				return $this->getValueScript($control) . 'res = /^[^@]+@[^@]+\.[a-z]{2,6}$/i.test(val);';
 
-		case $operation === ':url' && $control instanceof TextBase:
-			return $this->getValueScript($control) . 'res = /^.+\.[a-z]{2,6}(\\/.*)?$/i.test(val);';
+			case $operation === ':url' && $control instanceof TextBase:
+				return $this->getValueScript($control) . 'res = /^.+\.[a-z]{2,6}(\\/.*)?$/i.test(val);';
 
-		case $operation === ':regexp' && $control instanceof TextBase:
-			if (strncmp($arg, '/', 1)) {
-				throw new InvalidStateException("Regular expression '$arg' must be JavaScript compatible.");
-			}
-			return $this->getValueScript($control) . "res = $arg.test(val);";
+			case $operation === ':regexp' && $control instanceof TextBase:
+				if (strncmp($arg, '/', 1)) {
+					throw new InvalidStateException("Regular expression '$arg' must be JavaScript compatible.");
+				}
+				return $this->getValueScript($control) . "res = $arg.test(val);";
 
-		case $operation === ':integer' && $control instanceof TextBase:
-			return $this->getValueScript($control) . "res = /^-?[0-9]+$/.test(val);";
+			case $operation === ':integer' && $control instanceof TextBase:
+				return $this->getValueScript($control) . "res = /^-?[0-9]+$/.test(val);";
 
-		case $operation === ':float' && $control instanceof TextBase:
-			return $this->getValueScript($control) . "res = /^-?[0-9]*[.,]?[0-9]+$/.test(val);";
+			case $operation === ':float' && $control instanceof TextBase:
+				return $this->getValueScript($control) . "res = /^-?[0-9]*[.,]?[0-9]+$/.test(val);";
 
-		case $operation === ':range' && $control instanceof TextBase:
-			return $this->getValueScript($control) . "res = " . ($arg[0] === NULL ? "true" : "parseFloat(val)>=" . json_encode((float) $arg[0])) . " && "
+			case $operation === ':range' && $control instanceof TextBase:
+				return $this->getValueScript($control) . "res = " . ($arg[0] === NULL ? "true" : "parseFloat(val)>=" . json_encode((float) $arg[0])) . " && "
 				. ($arg[1] === NULL ? "true" : "parseFloat(val)<=" . json_encode((float) $arg[1])) . ";";
 
-		case $operation === ':filled' && $control instanceof FormControl:
-			return $this->getValueScript($control) . "res = val!='';";
+			case $operation === ':filled' && $control instanceof FormControl:
+				return $this->getValueScript($control) . "res = val!='';";
 
-		case $operation === ':valid' && $control instanceof FormControl:
-			return $this->getValueScript($control) . "res = function(){\n\t" . $this->getValidateScript($control->getRules(), TRUE) . "return true; }();";
+			case $operation === ':valid' && $control instanceof FormControl:
+				return $this->getValueScript($control) . "res = function(){\n\t" . $this->getValidateScript($control->getRules(), TRUE) . "return true; }();";
 
-		case $operation === ':equal' && $control instanceof FormControl:
-			if ($control instanceof Checkbox) $arg = (bool) $arg;
-			$tmp = array();
-			foreach ((is_array($arg) ? $arg : array($arg)) as $item) {
-				if ($item instanceof IFormControl) { // compare with another form control?
-					$tmp[] = "val==function(){var element;" . $this->getValueScript($item). "return val;}()";
-				} else {
-					$tmp[] = "val==" . json_encode($item);
+			case $operation === ':equal' && $control instanceof FormControl:
+				if ($control instanceof Checkbox) $arg = (bool) $arg;
+				$tmp = array();
+				foreach ((is_array($arg) ? $arg : array($arg)) as $item) {
+					if ($item instanceof IFormControl) { // compare with another form control?
+						$tmp[] = "val==function(){var element;" . $this->getValueScript($item). "return val;}()";
+					} else {
+						$tmp[] = "val==" . json_encode($item);
+					}
 				}
-			}
-			return $this->getValueScript($control) . "res = (" . implode(' || ', $tmp) . ");";
+				return $this->getValueScript($control) . "res = (" . implode(' || ', $tmp) . ");";
 		}
 	}
 

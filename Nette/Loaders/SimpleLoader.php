@@ -48,10 +48,10 @@ class SimpleLoader extends AutoLoader
 		$file = strtr($type, '\\', '/') . '.php';
 
 		/*
-		if (strncmp($type, 'Nette\\', 6) === 0) {
+		 if (strncmp($type, 'Nette\\', 6) === 0) {
 			$file = dirname(dirname(dirname(__FILE__))) . '/' . $file;
-		}
-		*/
+			}
+			*/
 
 		@LimitedScope::load($file);
 		self::$count++;

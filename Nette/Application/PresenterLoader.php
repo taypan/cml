@@ -108,7 +108,7 @@ class PresenterLoader implements IPresenterLoader
 	public function formatPresenterClass($presenter)
 	{
 		// PHP 5.3
-		
+
 		return strtr($presenter, ':', '_') . 'Presenter';
 	}
 
@@ -122,7 +122,7 @@ class PresenterLoader implements IPresenterLoader
 	public function unformatPresenterClass($class)
 	{
 		// PHP 5.3
-		
+
 		return strtr(substr($class, 0, -9), '_', ':');
 	}
 

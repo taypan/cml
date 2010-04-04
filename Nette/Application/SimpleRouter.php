@@ -58,7 +58,7 @@ class SimpleRouter extends Object implements IRouter
 		if (is_string($defaults)) {
 			$a = strrpos($defaults, ':');
 			$defaults = array(
-				self::PRESENTER_KEY => substr($defaults, 0, $a),
+			self::PRESENTER_KEY => substr($defaults, 0, $a),
 				'action' => substr($defaults, $a + 1),
 			);
 
@@ -98,12 +98,12 @@ class SimpleRouter extends Object implements IRouter
 		unset($params[self::PRESENTER_KEY]);
 
 		return new PresenterRequest(
-			$presenter,
-			$httpRequest->getMethod(),
-			$params,
-			$httpRequest->getPost(),
-			$httpRequest->getFiles(),
-			array('secured' => $httpRequest->isSecured())
+		$presenter,
+		$httpRequest->getMethod(),
+		$params,
+		$httpRequest->getPost(),
+		$httpRequest->getFiles(),
+		array('secured' => $httpRequest->isSecured())
 		);
 	}
 

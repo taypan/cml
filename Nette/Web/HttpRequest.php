@@ -58,8 +58,8 @@ class HttpRequest extends Object implements IHttpRequest
 
 	/** @var array */
 	protected $uriFilter = array(
-		PHP_URL_PATH => array('#/{2,}#' => '/'), // '%20' => ''
-		0 => array(), // '#[.,)]$#' => ''
+	PHP_URL_PATH => array('#/{2,}#' => '/'), // '%20' => ''
+	0 => array(), // '#[.,)]$#' => ''
 	);
 
 	/** @var string */
@@ -237,7 +237,7 @@ class HttpRequest extends Object implements IHttpRequest
 			$uri->scriptPath = '/';
 
 		} elseif ((strlen($uri->path) >= strlen($scriptPath))
-			&& ((FALSE !== ($pos = strpos($uri->path, $scriptPath))) && ($pos !== 0))) {
+		&& ((FALSE !== ($pos = strpos($uri->path, $scriptPath))) && ($pos !== 0))) {
 			// If using mod_rewrite or ISAPI_Rewrite strip the script filename
 			// out of scriptPath. $pos !== 0 makes sure it is not matching a value
 			// from PATH_INFO or QUERY_STRING

@@ -206,12 +206,12 @@ class Template extends Object implements IFileTemplate
 
 			$content = "<?php\n// template $this->file\n?>$content";
 			$cache->save(
-				$key,
-				$content,
-				array(
-					Cache::FILES => $this->file,
-					Cache::EXPIRE => self::$cacheExpire,
-				)
+			$key,
+			$content,
+			array(
+			Cache::FILES => $this->file,
+			Cache::EXPIRE => self::$cacheExpire,
+			)
 			);
 			$cached = $cache[$key];
 		}

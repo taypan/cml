@@ -28,80 +28,81 @@
 
 <style type="text/css">
 /* <![CDATA[ */
-	#netteProfilerContainer {
-		position: fixed;
-		_position: absolute;
-		right: 5px;
-		bottom: 5px;
-		z-index: 23178;
-	}
+#netteProfilerContainer {
+	position: fixed;
+	_position: absolute;
+	right: 5px;
+	bottom: 5px;
+	z-index: 23178;
+}
 
-	#netteProfiler {
-		font: normal normal 11px/1.4 Consolas, Arial;
-		position: relative;
-		padding: 1px;
-		color: black;
-		background: #EEE;
-		border: 1px dotted gray;
-		cursor: move;
-		opacity: .70;
-		=filter: alpha(opacity=70);
-	}
+#netteProfiler {
+	font: normal normal 11px/ 1.4 Consolas, Arial;
+	position: relative;
+	padding: 1px;
+	color: black;
+	background: #EEE;
+	border: 1px dotted gray;
+	cursor: move;
+	opacity: .70; =
+	filter: alpha(opacity = 70);
+}
 
-	#netteProfiler * {
-		color: inherit;
-		background: inherit;
-		text-align: inherit;
-	}
+#netteProfiler * {
+	color: inherit;
+	background: inherit;
+	text-align: inherit;
+}
 
-	#netteProfilerIcon {
-		position: absolute;
-		right: 0;
-		top: 0;
-		line-height: 1;
-		padding: 4px;
-		color: black;
-		text-decoration: none;
-	}
+#netteProfilerIcon {
+	position: absolute;
+	right: 0;
+	top: 0;
+	line-height: 1;
+	padding: 4px;
+	color: black;
+	text-decoration: none;
+}
 
-	#netteProfiler:hover {
-		opacity: 1;
-		=filter: none;
-	}
+#netteProfiler:hover {
+	opacity: 1; =
+	filter: none;
+}
 
-	#netteProfiler ul {
-		margin: 0;
-		padding: 0;
-		width: 350px;
-	}
+#netteProfiler ul {
+	margin: 0;
+	padding: 0;
+	width: 350px;
+}
 
-	#netteProfiler li {
-		margin: 0;
-		padding: 1px;
-		text-align: left;
-		list-style: none;
-	}
+#netteProfiler li {
+	margin: 0;
+	padding: 1px;
+	text-align: left;
+	list-style: none;
+}
 
-	#netteProfiler span[title] {
-		border-bottom: 1px dotted gray;
-		cursor: help;
-	}
+#netteProfiler span[title] {
+	border-bottom: 1px dotted gray;
+	cursor: help;
+}
 
-	#netteProfiler strong {
-		color: red;
-	}
+#netteProfiler strong {
+	color: red;
+}
 /* ]]> */
 </style>
 
 
 <div id="netteProfilerContainer">
-<div id="netteProfiler">
-	<a id="netteProfilerIcon" href="#"><span>&#x25bc;</span></a
-	><ul>
-	<?php foreach ($colophons as $callback): ?>
-	<?php foreach ((array) call_user_func($callback, 'profiler') as $line): ?><li><?php echo $line, "\n" ?></li><?php endforeach ?>
+<div id="netteProfiler"><a id="netteProfilerIcon" href="#"><span>&#x25bc;</span></a>
+<ul>
+<?php foreach ($colophons as $callback): ?>
+<?php foreach ((array) call_user_func($callback, 'profiler') as $line): ?>
+	<li><?php echo $line, "\n" ?></li>
 	<?php endforeach ?>
-	</ul>
+	<?php endforeach ?>
+</ul>
 </div>
 </div>
 

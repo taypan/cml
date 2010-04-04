@@ -364,7 +364,7 @@ abstract class Presenter extends Control implements IPresenter
 
 		} elseif ($signal === TRUE) {
 			return $component === ''
-				|| strncmp($this->signalReceiver . '-', $component . '-', strlen($component) + 1) === 0;
+			|| strncmp($this->signalReceiver . '-', $component . '-', strlen($component) + 1) === 0;
 
 		} elseif ($signal === NULL) {
 			return $this->signalReceiver === $component;
@@ -509,7 +509,7 @@ abstract class Presenter extends Control implements IPresenter
 		if (!$template) return;
 
 		if ($this->isAjax()) { // TODO!
-			SnippetHelper::$outputAllowed = FALSE;
+		SnippetHelper::$outputAllowed = FALSE;
 		}
 
 		if ($template instanceof IFileTemplate && !$template->getFile()) {
@@ -985,14 +985,14 @@ abstract class Presenter extends Control implements IPresenter
 				}
 
 			} elseif (strpos($signal, self::NAME_SEPARATOR) === FALSE) { // TODO: AppForm exception
-				// counterpart of signalReceived() & tryCall()
-				$method = $component->formatSignalMethod($signal);
-				if (!PresenterHelpers::isMethodCallable($class, $method)) {
-					throw new InvalidLinkException("Unknown signal '$class:$signal!'.");
-				}
-				if ($args) { // convert indexed parameters to named
-					PresenterHelpers::argsToParams($class, $method, $args);
-				}
+			// counterpart of signalReceived() & tryCall()
+			$method = $component->formatSignalMethod($signal);
+			if (!PresenterHelpers::isMethodCallable($class, $method)) {
+				throw new InvalidLinkException("Unknown signal '$class:$signal!'.");
+			}
+			if ($args) { // convert indexed parameters to named
+				PresenterHelpers::argsToParams($class, $method, $args);
+			}
 			}
 
 			// counterpart of IStatePersistent
@@ -1020,16 +1020,16 @@ abstract class Presenter extends Control implements IPresenter
 
 			if ($args || $destination === 'this') {
 				// counterpart of run() & tryCall()
-				 // in PHP 5.3
+				// in PHP 5.3
 				$method = call_user_func(array($presenterClass, 'formatActionMethod'), $action);
 				if (!PresenterHelpers::isMethodCallable($presenterClass, $method)) {
 					$method = 'present' . $action;
 					if (!PresenterHelpers::isMethodCallable($presenterClass, $method)) {// back compatibility
 					 // in PHP 5.3
-					$method = call_user_func(array($presenterClass, 'formatRenderMethod'), $action);
-					if (!PresenterHelpers::isMethodCallable($presenterClass, $method)) {
-						$method = NULL;
-					}
+						$method = call_user_func(array($presenterClass, 'formatRenderMethod'), $action);
+						if (!PresenterHelpers::isMethodCallable($presenterClass, $method)) {
+							$method = NULL;
+						}
 					}
 				}
 
@@ -1076,11 +1076,11 @@ abstract class Presenter extends Control implements IPresenter
 		}
 
 		$this->lastCreatedRequest = new PresenterRequest(
-			$presenter,
-			PresenterRequest::FORWARD,
-			$args,
-			array(),
-			array()
+		$presenter,
+		PresenterRequest::FORWARD,
+		$args,
+		array(),
+		array()
 		);
 		$this->lastCreatedRequestFlag = array('current' => $current);
 
@@ -1117,7 +1117,7 @@ abstract class Presenter extends Control implements IPresenter
 	{
 		if (self::$invalidLinkMode === NULL) {
 			self::$invalidLinkMode = Environment::isProduction()
-				? self::INVALID_LINK_SILENT : self::INVALID_LINK_WARNING;
+			? self::INVALID_LINK_SILENT : self::INVALID_LINK_WARNING;
 		}
 
 		if (self::$invalidLinkMode === self::INVALID_LINK_SILENT) {
@@ -1314,7 +1314,7 @@ abstract class Presenter extends Control implements IPresenter
 	public function hasFlashSession()
 	{
 		return !empty($this->params[self::FLASH_KEY])
-			&& $this->getSession()->hasNamespace('Nette.Application.Flash/' . $this->params[self::FLASH_KEY]);
+		&& $this->getSession()->hasNamespace('Nette.Application.Flash/' . $this->params[self::FLASH_KEY]);
 	}
 
 

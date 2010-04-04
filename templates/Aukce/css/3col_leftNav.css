@@ -1,112 +1,108 @@
 /***********************************************/
-/* 3col_leftNav.css                             */
-/* Use with template 3col_leftNav.html          */
-/***********************************************/
-
-/***********************************************/
-/* HTML tag styles                             */
-/***********************************************/ 
-
-body{
-	font-family: Arial,sans-serif;
+	/* 3col_leftNav.css                             */
+	/* Use with template 3col_leftNav.html          */
+	/***********************************************/
+	/***********************************************/
+	/* HTML tag styles                             */
+	/***********************************************/
+body {
+	font-family: Arial, sans-serif;
 	color: #333333;
-	line-height: 1.166;	
+	line-height: 1.166;
 	margin: 0px;
 	padding: 0px;
 }
 
-a{
+a {
 	color: #006699;
 	text-decoration: none;
 }
 
-a:link{
+a:link {
 	color: #006699;
 	text-decoration: none;
 }
 
-a:visited{
+a:visited {
 	color: #006699;
 	text-decoration: none;
 }
 
-a:hover{
+a:hover {
 	color: #006699;
 	text-decoration: underline;
 }
 
-h1{
- font-family: Verdana,Arial,sans-serif;
- font-size: 120%;
- color: #334d55;
- margin: 0px;
- padding: 0px;
+h1 {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 120%;
+	color: #334d55;
+	margin: 0px;
+	padding: 0px;
 }
 
-h2{
- font-family: Arial,sans-serif;
- font-size: 114%;
- color: #006699;
- margin: 0px;
- padding: 0px;
+h2 {
+	font-family: Arial, sans-serif;
+	font-size: 114%;
+	color: #006699;
+	margin: 0px;
+	padding: 0px;
 }
 
-h3{
- font-family: Arial,sans-serif;
- font-size: 100%;
- color: #334d55;
- margin: 0px;
- padding: 0px;
+h3 {
+	font-family: Arial, sans-serif;
+	font-size: 100%;
+	color: #334d55;
+	margin: 0px;
+	padding: 0px;
 }
 
-h4{
- font-family: Arial,sans-serif;
- font-size: 100%;
- font-weight: normal;
- color: #333333;
- margin: 0px;
- padding: 0px;
+h4 {
+	font-family: Arial, sans-serif;
+	font-size: 100%;
+	font-weight: normal;
+	color: #333333;
+	margin: 0px;
+	padding: 0px;
 }
 
-h5{
- font-family: Verdana,Arial,sans-serif;
- font-size: 100%;
- color: #334d55;
- margin: 0px;
- padding: 0px;
+h5 {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 100%;
+	color: #334d55;
+	margin: 0px;
+	padding: 0px;
 }
 
-ul{
- list-style-type: square;
+ul {
+	list-style-type: square;
 }
 
-ul ul{
- list-style-type: disc;
+ul ul {
+	list-style-type: disc;
 }
 
-ul ul ul{
- list-style-type: none;
+ul ul ul {
+	list-style-type: none;
 }
 
-label{
- font-family: Arial,sans-serif;
- font-size: 100%;
- font-weight: bold;
- color: #334d55;
+label {
+	font-family: Arial, sans-serif;
+	font-size: 100%;
+	font-weight: bold;
+	color: #334d55;
 }
-
 
 /***********************************************/
-/* Layout Divs                                 */
-/***********************************************/
-
-#masthead{
+	/* Layout Divs                                 */
+	/***********************************************/
+#masthead {
 	padding: 10px 0px 0px 0px;
 	border-bottom: 1px solid #cccccc;
 	width: 100%;
 }
 
-#navBar{
+#navBar {
 	float: left;
 	width: 20%;
 	margin: 0px;
@@ -115,53 +111,52 @@ label{
 	border-right: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
 }
-#panel-left{ margin: 1px 1px 1px 1px;
-border: #000000 thin solid;
+
+#panel-left {
+	margin: 1px 1px 1px 1px;
+	border: #000000 thin solid;
 }
 
-#panel-center
-{ 
-margin: 1px 1px 1px 1px;
-border: #000000 thin solid;
+#panel-center {
+	margin: 1px 1px 1px 1px;
+	border: #000000 thin solid;
 }
 
-#headlines{
-  float:right;
+#headlines {
+	float: right;
 	width: 20%;
 	border-left: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
 	padding-right: 10px;
 }
 
-#content{
+#content {
 	float: left;
-  width: 58%;
+	width: 58%;
 }
 
 /***********************************************/
-/* Components                                  */
-/***********************************************/
-
-#siteName{
+	/* Components                                  */
+	/***********************************************/
+#siteName {
 	margin: 0;
 	padding: 0 0 0 10px;
 }
 
-#penel-right{
+#penel-right {
 	margin: 1px 1px 1px 1px;
 	border: #000000 medium solid;
 }
 
 /************* #globalNav styles **************/
-
-#globalNav{
-padding: 0px 0px 5px 10px;
-border-bottom: 1px solid #CCC;
-color: #cccccc;
+#globalNav {
+	padding: 0px 0px 5px 10px;
+	border-bottom: 1px solid #CCC;
+	color: #cccccc;
 }
 
-#globalNav img{
- display: block;
+#globalNav img {
+	display: block;
 }
 
 #globalNav a {
@@ -170,54 +165,46 @@ color: #cccccc;
 }
 
 /*************** #pageName styles **************/
-
-#pageName{
+#pageName {
 	margin: 0px;
 	padding: 0px 0px 0px 10px;
 }
 
 /************* #breadCrumb styles *************/
-
-#breadCrumb{
+#breadCrumb {
 	font-size: 80%;
 	padding: 2px 0px 0 10px;
 }
 
-
 /************** .feature styles ***************/
-
-.feature{
+.feature {
 	padding: 0px 0px 10px 10px;
 	font-size: 80%;
 }
 
-.feature h3{
+.feature h3 {
 	padding: 30px 0px 5px 0px;
 	text-align: center;
 }
 
-.feature img{
+.feature img {
 	float: left;
 	padding: 10px 10px 0px 0px;
 }
 
-
 /************** .story styles *****************/
-
-.story{
+.story {
 	clear: both;
 	padding: 10px 0px 0px 10px;
 	font-size: 80%;
 }
 
-.story p{
+.story p {
 	padding: 0px 0px 10px 0px;
 }
 
-
 /************* #siteInfo styles ***************/
-
-#siteInfo{
+#siteInfo {
 	clear: both;
 	border: 1px solid #cccccc;
 	font-size: 75%;
@@ -225,47 +212,52 @@ color: #cccccc;
 	padding: 10px 10px 10px 10px;
 }
 
-#siteInfo img{
+#siteInfo img {
 	padding: 4px 4px 4px 10px;
 	vertical-align: middle;
 }
 
-
 /************* #search styles ***************/
-
-#search{
+#search {
 	padding: 5px 0px 5px 10px;
 	border-bottom: 1px solid #cccccc;
 	font-size: 90%;
 }
 
-#search form{
- margin: 0px;
- padding: 0px;
+#search form {
+	margin: 0px;
+	padding: 0px;
 }
 
-#search label{
+#search label {
 	display: block;
 	margin: 0px;
 	padding: 0px;
 }
 
-
 /*********** #navBar link styles ***********/
+#navBar ul a:link,#navBar ul a:visited {
+	display: block;
+}
 
-#navBar ul a:link, #navBar ul a:visited {display: block;}
-#navBar ul {list-style: none; margin: 0; padding: 0;}
+#navBar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 
 /* hack to fix IE/Win's broken rendering of block-level anchors in lists */
-#navBar li {border-bottom: 1px solid #EEE;}
+#navBar li {
+	border-bottom: 1px solid #EEE;
+}
 
 /* fix for browsers that don't need the hack */
-html>body #navBar li {border-bottom: none;}
-
+html>body #navBar li {
+	border-bottom: none;
+}
 
 /*********** #sectionLinks styles ***********/
-
-#sectionLinks{
+#sectionLinks {
 	position: relative;
 	margin: 0px;
 	padding: 0px;
@@ -273,7 +265,7 @@ html>body #navBar li {border-bottom: none;}
 	font-size: 90%;
 }
 
-#sectionLinks h3{
+#sectionLinks h3 {
 	padding: 10px 0px 2px 10px;
 }
 
@@ -283,50 +275,42 @@ html>body #navBar li {border-bottom: none;}
 	padding: 2px 0px 2px 10px;
 }
 
-#sectionLinks a:hover{
+#sectionLinks a:hover {
 	background-color: #dddddd;
 }
 
-
 /*********** .relatedLinks styles ***********/
-
-.relatedLinks{
+.relatedLinks {
 	position: relative;
 	margin: 0px;
 	padding: 0px 0px 10px 10px;
 	font-size: 90%;
 }
 
-.relatedLinks h3{
+.relatedLinks h3 {
 	padding: 10px 0px 2px 0px;
 }
 
-.relatedLinks a:link,
-.relatedLinks a:visited {
-	display: block; 
-}
-
-/************** #advert styles **************/
-
-#advert{
-	padding: 30px 0px 10px;
-}
-
-#advert img{
+.relatedLinks a:link,.relatedLinks a:visited {
 	display: block;
 }
 
+/************** #advert styles **************/
+#advert {
+	padding: 30px 0px 10px;
+}
+
+#advert img {
+	display: block;
+}
 
 /************** #headlines styles **************/
-
-#headlines{
+#headlines {
 	margin: 0px;
 	padding: 10px 0px 20px 10px;
 	font-size: 80%;
 }
 
-#headlines p{
+#headlines p {
 	padding: 5px 0px 5px 0px;
 }
-
-

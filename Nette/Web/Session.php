@@ -47,20 +47,20 @@ class Session extends Object
 
 	/** @var array default configuration */
 	private static $defaultConfig = array(
-		// security
+	// security
 		'session.referer_check' => '',    // must be disabled because PHP implementation is invalid
 		'session.use_cookies' => 1,       // must be enabled to prevent Session Hijacking and Fixation
 		'session.use_only_cookies' => 1,  // must be enabled to prevent Session Fixation
 		'session.use_trans_sid' => 0,     // must be disabled to prevent Session Hijacking and Fixation
 
-		// cookies
+	// cookies
 		'session.cookie_lifetime' => 0,   // until the browser is closed
 		'session.cookie_path' => '/',    // cookie is available within the entire domain
 		'session.cookie_domain' => '',    // cookie is available on current subdomain only
 		'session.cookie_secure' => FALSE, // cookie is available on HTTP & HTTPS
 		'session.cookie_httponly' => TRUE,// must be enabled to prevent Session Fixation
 
-		// other
+	// other
 		'session.gc_maxlifetime' => self::DEFAULT_FILE_LIFETIME,// 3 hours
 		'session.cache_limiter' => NULL,  // (default "nocache", special value "\0")
 		'session.cache_expire' => NULL,   // (default "180")
@@ -122,7 +122,7 @@ class Session extends Object
 			nette: __NT
 			data:  __NS->namespace->variable = data
 			meta:  __NM->namespace->EXP->variable = timestamp
-		*/
+			*/
 
 		// initialize structures
 		$verKey = $this->verificationKeyGenerator ? (string) call_user_func($this->verificationKeyGenerator) : '';
@@ -169,7 +169,7 @@ class Session extends Object
 								continue 2;
 							}
 							unset($_SESSION['__NS'][$namespace][$variable],
-								$_SESSION['__NM'][$namespace]['EXP'][$variable]);
+							$_SESSION['__NM'][$namespace]['EXP'][$variable]);
 						}
 					}
 				}

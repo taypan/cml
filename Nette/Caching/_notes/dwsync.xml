@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="DummyStorage.php" local="128932592650000000" remote="128909206800000000" testing="129057925800000000" />
-<file name="Cache.php" local="128932592650000000" remote="128909206800000000" testing="129057926400000000" />
-<file name="FileStorage.php" local="128932592650000000" remote="128909206800000000" testing="129057926400000000" />
-<file name="MemcachedStorage.php" local="128932592650000000" remote="128909206800000000" testing="129057926400000000" />
-<file name="ICacheStorage.php" local="128932592650000000" remote="128909206800000000" testing="129057926400000000" />
+	<file name="DummyStorage.php" local="128932592650000000" remote="128909206800000000"
+		testing="129057925800000000" />
+	<file name="Cache.php" local="128932592650000000" remote="128909206800000000"
+		testing="129057926400000000" />
+	<file name="FileStorage.php" local="128932592650000000" remote="128909206800000000"
+		testing="129057926400000000" />
+	<file name="MemcachedStorage.php" local="128932592650000000"
+		remote="128909206800000000" testing="129057926400000000" />
+	<file name="ICacheStorage.php" local="128932592650000000" remote="128909206800000000"
+		testing="129057926400000000" />
 </dwsync>

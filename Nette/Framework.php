@@ -70,7 +70,7 @@ final class Framework
 	{
 		echo '<a href="http://nettephp.com/" title="Nette Framework - The Most Innovative PHP Framework"><img ',
 			'src="http://nettephp.com/images/nette-powered.gif" alt="Powered by Nette Framework" width="80" height="15"',
-			($xhtml ? ' />' : '>'), '</a>';
+		($xhtml ? ' />' : '>'), '</a>';
 	}
 
 }

@@ -98,68 +98,68 @@ final class SafeStream
 		$append = FALSE;
 
 		switch ($mode) {
-		case 'r':
-		case 'r+':
-			// enter critical section: open and lock EXISTING file for reading/writing
-			$handle = @fopen($path, $mode.$flag, $use_path); // intentionally @
-			if (!$handle) return FALSE;
-			if (flock($handle, $mode == 'r' ? LOCK_SH : LOCK_EX)) {
-				$this->handle = $handle;
-				return TRUE;
-			}
-			fclose($handle);
-			return FALSE;
-
-		case 'a':
-		case 'a+': $append = TRUE;
-		case 'w':
-		case 'w+':
-			// try enter critical section: open and lock EXISTING file for rewriting
-			$handle = @fopen($path, 'r+'.$flag, $use_path); // intentionally @
-
-			if ($handle) {
-				if (flock($handle, LOCK_EX)) {
-					if ($append) {
-						fseek($handle, 0, SEEK_END);
-						$this->startPos = ftell($handle);
-					} else {
-						ftruncate($handle, 0);
-					}
+			case 'r':
+			case 'r+':
+				// enter critical section: open and lock EXISTING file for reading/writing
+				$handle = @fopen($path, $mode.$flag, $use_path); // intentionally @
+				if (!$handle) return FALSE;
+				if (flock($handle, $mode == 'r' ? LOCK_SH : LOCK_EX)) {
 					$this->handle = $handle;
 					return TRUE;
 				}
 				fclose($handle);
-			}
-			// file doesn't exists, continue...
-			$mode{0} = 'x'; // x || x+
+				return FALSE;
 
-		case 'x':
-		case 'x+':
-			if (file_exists($path)) return FALSE;
+			case 'a':
+			case 'a+': $append = TRUE;
+			case 'w':
+			case 'w+':
+				// try enter critical section: open and lock EXISTING file for rewriting
+				$handle = @fopen($path, 'r+'.$flag, $use_path); // intentionally @
 
-			// create temporary file in the same directory
-			$tmp = '~~' . time() . '.tmp';
-
-			// enter critical section: create temporary file
-			$handle = @fopen($path . $tmp, $mode . $flag, $use_path); // intentionally @
-			if ($handle) {
-				if (flock($handle, LOCK_EX)) {
-					$this->handle = $handle;
-					if (!@rename($path . $tmp, $path)) { // intentionally @
-						// rename later - for windows
-						$this->tempFile = realpath($path . $tmp);
-						$this->filePath = substr($this->tempFile, 0, -strlen($tmp));
+				if ($handle) {
+					if (flock($handle, LOCK_EX)) {
+						if ($append) {
+							fseek($handle, 0, SEEK_END);
+							$this->startPos = ftell($handle);
+						} else {
+							ftruncate($handle, 0);
+						}
+						$this->handle = $handle;
+						return TRUE;
 					}
-					return TRUE;
+					fclose($handle);
 				}
-				fclose($handle);
-				unlink($path . $tmp);
-			}
-			return FALSE;
+				// file doesn't exists, continue...
+				$mode{0} = 'x'; // x || x+
 
-		default:
-			trigger_error("Unsupported mode $mode", E_USER_WARNING);
-			return FALSE;
+			case 'x':
+			case 'x+':
+				if (file_exists($path)) return FALSE;
+
+				// create temporary file in the same directory
+				$tmp = '~~' . time() . '.tmp';
+
+				// enter critical section: create temporary file
+				$handle = @fopen($path . $tmp, $mode . $flag, $use_path); // intentionally @
+				if ($handle) {
+					if (flock($handle, LOCK_EX)) {
+						$this->handle = $handle;
+						if (!@rename($path . $tmp, $path)) { // intentionally @
+							// rename later - for windows
+							$this->tempFile = realpath($path . $tmp);
+							$this->filePath = substr($this->tempFile, 0, -strlen($tmp));
+						}
+						return TRUE;
+					}
+					fclose($handle);
+					unlink($path . $tmp);
+				}
+				return FALSE;
+
+			default:
+				trigger_error("Unsupported mode $mode", E_USER_WARNING);
+				return FALSE;
 		} // switch
 
 	} // stream_open

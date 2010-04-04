@@ -59,9 +59,9 @@ class CachingHelper extends Object
 			$obj = new self;
 			$obj->key = $key;
 			$obj->frame = array(
-				Cache::FILES => array($file),
-				Cache::TAGS => $tags,
-				Cache::EXPIRE => rand(86400 * 4, 86400 * 7),
+			Cache::FILES => array($file),
+			Cache::TAGS => $tags,
+			Cache::EXPIRE => rand(86400 * 4, 86400 * 7),
 			);
 			ob_start();
 			return $obj;

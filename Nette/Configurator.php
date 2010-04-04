@@ -56,51 +56,51 @@ class Configurator extends Object
 	public function detect($name)
 	{
 		switch ($name) {
-		case 'environment':
-			// environment name autodetection
-			if ($this->detect('console')) {
-				return Environment::CONSOLE;
+			case 'environment':
+				// environment name autodetection
+				if ($this->detect('console')) {
+					return Environment::CONSOLE;
 
-			} else {
-				return Environment::getMode('production') ? Environment::PRODUCTION : Environment::DEVELOPMENT;
-			}
+				} else {
+					return Environment::getMode('production') ? Environment::PRODUCTION : Environment::DEVELOPMENT;
+				}
 
-		case 'production':
-			// detects production mode by server IP address
-			if (PHP_SAPI === 'cli') {
-				return FALSE;
+			case 'production':
+				// detects production mode by server IP address
+				if (PHP_SAPI === 'cli') {
+					return FALSE;
 
-			} elseif (isset($_SERVER['SERVER_ADDR']) || isset($_SERVER['LOCAL_ADDR'])) {
-				$addr = isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : $_SERVER['LOCAL_ADDR'];
-				$oct = explode('.', $addr);
-				// 10.0.0.0/8   Private network
-				// 127.0.0.0/8  Loopback
-				// 169.254.0.0/16 & ::1  Link-Local
-				// 172.16.0.0/12  Private network
-				// 192.168.0.0/16  Private network
-				return $addr !== '::1' && (count($oct) !== 4 || ($oct[0] !== '10' && $oct[0] !== '127' && ($oct[0] !== '172' || $oct[1] < 16 || $oct[1] > 31)
+				} elseif (isset($_SERVER['SERVER_ADDR']) || isset($_SERVER['LOCAL_ADDR'])) {
+					$addr = isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : $_SERVER['LOCAL_ADDR'];
+					$oct = explode('.', $addr);
+					// 10.0.0.0/8   Private network
+					// 127.0.0.0/8  Loopback
+					// 169.254.0.0/16 & ::1  Link-Local
+					// 172.16.0.0/12  Private network
+					// 192.168.0.0/16  Private network
+					return $addr !== '::1' && (count($oct) !== 4 || ($oct[0] !== '10' && $oct[0] !== '127' && ($oct[0] !== '172' || $oct[1] < 16 || $oct[1] > 31)
 					&& ($oct[0] !== '169' || $oct[1] !== '254') && ($oct[0] !== '192' || $oct[1] !== '168')));
 
-			} else {
-				return TRUE;
-			}
+				} else {
+					return TRUE;
+				}
 
-		case 'debug':
-			// Determines whether the debugger is active
-			if (defined('DEBUG_MODE')) {
-				return (bool) DEBUG_MODE;
+			case 'debug':
+				// Determines whether the debugger is active
+				if (defined('DEBUG_MODE')) {
+					return (bool) DEBUG_MODE;
 
-			} else {
-				return !Environment::getMode('production') && isset($_REQUEST['DBGSESSID']);
-				// function_exists('DebugBreak');
-			}
+				} else {
+					return !Environment::getMode('production') && isset($_REQUEST['DBGSESSID']);
+					// function_exists('DebugBreak');
+				}
 
-		case 'console':
-			return PHP_SAPI === 'cli';
+			case 'console':
+				return PHP_SAPI === 'cli';
 
-		default:
-			// unknown mode
-			return NULL;
+			default:
+				// unknown mode
+				return NULL;
 		}
 	}
 
@@ -146,11 +146,11 @@ class Configurator extends Object
 
 		// check temporary directory - TODO: discuss
 		/*
-		$dir = Environment::getVariable('tempDir');
-		if ($dir && !(is_dir($dir) && is_writable($dir))) {
+		 $dir = Environment::getVariable('tempDir');
+		 if ($dir && !(is_dir($dir) && is_writable($dir))) {
 			trigger_error("Temporary directory '$dir' is not writable", E_USER_NOTICE);
-		}
-		*/
+			}
+			*/
 
 		// process ini settings
 		if ($config->set instanceof Config) {
@@ -169,31 +169,31 @@ class Configurator extends Object
 					ini_set($key, $value);
 				} else {
 					switch ($key) {
-					case 'include_path':
-						set_include_path($value);
-						break;
-					case 'iconv.internal_encoding':
-						iconv_set_encoding('internal_encoding', $value);
-						break;
-					case 'mbstring.internal_encoding':
-						mb_internal_encoding($value);
-						break;
-					case 'date.timezone':
-						date_default_timezone_set($value);
-						break;
-					case 'error_reporting':
-						error_reporting($value);
-						break;
-					case 'ignore_user_abort':
-						ignore_user_abort($value);
-						break;
-					case 'max_execution_time':
-						set_time_limit($value);
-						break;
-					default:
-						if (ini_get($key) != $value) { // intentionally ==
-							throw new NotSupportedException('Required function ini_set() is disabled.');
-						}
+						case 'include_path':
+							set_include_path($value);
+							break;
+						case 'iconv.internal_encoding':
+							iconv_set_encoding('internal_encoding', $value);
+							break;
+						case 'mbstring.internal_encoding':
+							mb_internal_encoding($value);
+							break;
+						case 'date.timezone':
+							date_default_timezone_set($value);
+							break;
+						case 'error_reporting':
+							error_reporting($value);
+							break;
+						case 'ignore_user_abort':
+							ignore_user_abort($value);
+							break;
+						case 'max_execution_time':
+							set_time_limit($value);
+							break;
+						default:
+							if (ini_get($key) != $value) { // intentionally ==
+								throw new NotSupportedException('Required function ini_set() is disabled.');
+							}
 					}
 				}
 			}

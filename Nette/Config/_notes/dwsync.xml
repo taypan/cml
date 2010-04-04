@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="Config.php" local="128932592650000000" remote="128909206200000000" testing="129057924600000000" />
-<file name="ConfigAdapterXml.php" local="128932592650000000" remote="128909206200000000" testing="129057924600000000" />
-<file name="ConfigAdapterIni.php" local="128932592650000000" remote="128909206200000000" testing="129057924600000000" />
-<file name="IConfigAdapter.php" local="128932592650000000" remote="128909206200000000" testing="129057924600000000" />
+	<file name="Config.php" local="128932592650000000" remote="128909206200000000"
+		testing="129057924600000000" />
+	<file name="ConfigAdapterXml.php" local="128932592650000000"
+		remote="128909206200000000" testing="129057924600000000" />
+	<file name="ConfigAdapterIni.php" local="128932592650000000"
+		remote="128909206200000000" testing="129057924600000000" />
+	<file name="IConfigAdapter.php" local="128932592650000000" remote="128909206200000000"
+		testing="129057924600000000" />
 </dwsync>

@@ -64,10 +64,10 @@ final class HttpResponse extends Object implements IHttpResponse
 		$code = (int) $code;
 
 		static $allowed = array(
-			200=>1, 201=>1, 202=>1, 203=>1, 204=>1, 205=>1, 206=>1,
-			300=>1, 301=>1, 302=>1, 303=>1, 304=>1, 307=>1,
-			400=>1, 401=>1, 403=>1, 404=>1, 406=>1, 408=>1, 410=>1, 412=>1, 415=>1, 416=>1,
-			500=>1, 501=>1, 503=>1, 505=>1
+		200=>1, 201=>1, 202=>1, 203=>1, 204=>1, 205=>1, 206=>1,
+		300=>1, 301=>1, 302=>1, 303=>1, 304=>1, 307=>1,
+		400=>1, 401=>1, 403=>1, 404=>1, 406=>1, 408=>1, 410=>1, 412=>1, 415=>1, 416=>1,
+		500=>1, 501=>1, 503=>1, 505=>1
 		);
 
 		if (!isset($allowed[$code])) {
@@ -291,13 +291,13 @@ final class HttpResponse extends Object implements IHttpResponse
 		}
 
 		setcookie(
-			$name,
-			$value,
-			$expire > 0 && $expire <= Tools::YEAR ? $expire + time() : $expire,
-			$path === NULL ? $this->cookiePath : (string) $path,
-			$domain === NULL ? $this->cookieDomain : (string) $domain, //  . '; httponly'
-			$secure === NULL ? $this->cookieSecure : (bool) $secure,
-			TRUE // added in PHP 5.2.0.
+		$name,
+		$value,
+		$expire > 0 && $expire <= Tools::YEAR ? $expire + time() : $expire,
+		$path === NULL ? $this->cookiePath : (string) $path,
+		$domain === NULL ? $this->cookieDomain : (string) $domain, //  . '; httponly'
+		$secure === NULL ? $this->cookieSecure : (bool) $secure,
+		TRUE // added in PHP 5.2.0.
 		);
 	}
 
@@ -319,13 +319,13 @@ final class HttpResponse extends Object implements IHttpResponse
 		}
 
 		setcookie(
-			$name,
-			FALSE,
-			254400000,
-			$path === NULL ? $this->cookiePath : (string) $path,
-			$domain === NULL ? $this->cookieDomain : (string) $domain, //  . '; httponly'
-			$secure === NULL ? $this->cookieSecure : (bool) $secure,
-			TRUE // added in PHP 5.2.0.
+		$name,
+		FALSE,
+		254400000,
+		$path === NULL ? $this->cookiePath : (string) $path,
+		$domain === NULL ? $this->cookieDomain : (string) $domain, //  . '; httponly'
+		$secure === NULL ? $this->cookieSecure : (bool) $secure,
+		TRUE // added in PHP 5.2.0.
 		);
 	}
 

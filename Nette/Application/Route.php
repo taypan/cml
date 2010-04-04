@@ -67,33 +67,33 @@ class Route extends Object implements IRouter
 	/** @var array */
 	public static $styles = array(
 		'#' => array( // default style for path parameters
-			self::PATTERN => '[^/]+',
-			self::FILTER_IN => 'rawurldecode',
-			self::FILTER_OUT => 'rawurlencode',
-		),
+	self::PATTERN => '[^/]+',
+	self::FILTER_IN => 'rawurldecode',
+	self::FILTER_OUT => 'rawurlencode',
+	),
 		'?#' => array( // default style for query parameters
-		),
+	),
 		'module' => array(
-			self::PATTERN => '[a-z][a-z0-9.-]*',
-			self::FILTER_IN => array(__CLASS__, 'path2presenter'),
-			self::FILTER_OUT => array(__CLASS__, 'presenter2path'),
-		),
+	self::PATTERN => '[a-z][a-z0-9.-]*',
+	self::FILTER_IN => array(__CLASS__, 'path2presenter'),
+	self::FILTER_OUT => array(__CLASS__, 'presenter2path'),
+	),
 		'presenter' => array(
-			self::PATTERN => '[a-z][a-z0-9.-]*',
-			self::FILTER_IN => array(__CLASS__, 'path2presenter'),
-			self::FILTER_OUT => array(__CLASS__, 'presenter2path'),
-		),
+	self::PATTERN => '[a-z][a-z0-9.-]*',
+	self::FILTER_IN => array(__CLASS__, 'path2presenter'),
+	self::FILTER_OUT => array(__CLASS__, 'presenter2path'),
+	),
 		'action' => array(
-			self::PATTERN => '[a-z][a-z0-9-]*',
-			self::FILTER_IN => array(__CLASS__, 'path2action'),
-			self::FILTER_OUT => array(__CLASS__, 'action2path'),
-		),
+	self::PATTERN => '[a-z][a-z0-9-]*',
+	self::FILTER_IN => array(__CLASS__, 'path2action'),
+	self::FILTER_OUT => array(__CLASS__, 'action2path'),
+	),
 		'?module' => array(
-		),
+	),
 		'?presenter' => array(
-		),
+	),
 		'?action' => array(
-		),
+	),
 	);
 
 	/** @var string */
@@ -229,12 +229,12 @@ class Route extends Object implements IRouter
 		}
 
 		return new PresenterRequest(
-			$presenter,
-			$httpRequest->getMethod(),
-			$params,
-			$httpRequest->getPost(),
-			$httpRequest->getFiles(),
-			array('secured' => $httpRequest->isSecured())
+		$presenter,
+		$httpRequest->getMethod(),
+		$params,
+		$httpRequest->getPost(),
+		$httpRequest->getFiles(),
+		array('secured' => $httpRequest->isSecured())
 		);
 	}
 
@@ -399,9 +399,9 @@ class Route extends Object implements IRouter
 		if ($pos !== FALSE) {
 			preg_match_all(
 				'/(?:([a-zA-Z0-9_.-]+)=)?<([^># ]+) *([^>#]*)(#?[^>]*)>/', // name=<parameter-name [pattern][#class]>
-				substr($mask, $pos + 1),
-				$matches,
-				PREG_SET_ORDER
+			substr($mask, $pos + 1),
+			$matches,
+			PREG_SET_ORDER
 			);
 			$mask = rtrim(substr($mask, 0, $pos));
 
@@ -447,9 +447,9 @@ class Route extends Object implements IRouter
 		// 2) PARSE URI-PATH PART OF MASK
 		$parts = preg_split(
 			'/<([^># ]+) *([^>#]*)(#?[^>]*)>/',  // <parameter-name [pattern][#class]>
-			$mask,
-			-1,
-			PREG_SPLIT_DELIM_CAPTURE
+		$mask,
+		-1,
+		PREG_SPLIT_DELIM_CAPTURE
 		);
 
 		$optional = TRUE;

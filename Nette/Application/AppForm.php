@@ -69,9 +69,9 @@ class AppForm extends Form implements ISignalReceiver
 	{
 		if ($presenter instanceof Presenter) {
 			$this->setAction(new Link(
-				$presenter,
-				$this->lookupPath('Nette\Application\Presenter') . self::NAME_SEPARATOR . 'submit!',
-				array()
+			$presenter,
+			$this->lookupPath('Nette\Application\Presenter') . self::NAME_SEPARATOR . 'submit!',
+			array()
 			));
 		}
 	}

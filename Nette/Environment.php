@@ -328,7 +328,7 @@ final class Environment
 		static $livelock;
 		if (isset($livelock[$var])) {
 			throw new InvalidStateException("Circular reference detected for variables: "
-				. implode(', ', array_keys($livelock)) . ".");
+			. implode(', ', array_keys($livelock)) . ".");
 		}
 
 		try {
@@ -434,8 +434,8 @@ final class Environment
 	public static function getCache($namespace = '')
 	{
 		return new Cache(
-			self::getService('Nette\Caching\ICacheStorage'),
-			$namespace
+		self::getService('Nette\Caching\ICacheStorage'),
+		$namespace
 		);
 	}
 

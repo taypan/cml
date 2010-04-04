@@ -1,29 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="IComponentContainer.php" local="129064686420000000" remote="128909206200000000" testing="129109004400000000" />
-<file name="ObjectMixin.php" local="129064686420000000" remote="128909206200000000" testing="129109004400000000" />
-<file name="Configurator.php" local="129064686420000000" remote="128909206200000000" testing="129109004400000000" />
-<file name="Framework.php" local="129064686420000000" remote="128909206200000000" testing="129109005000000000" />
-<file name="ITranslator.php" local="129064686420000000" remote="128909206200000000" testing="129109005000000000" />
-<file name="exceptions.php" local="128932592660000000" remote="128909206200000000" testing="129057924600000000" />
-<file name="ServiceLocator.php" local="128932592660000000" remote="128909206200000000" testing="129057924600000000" />
-<file name="Image.php" local="128932592660000000" remote="128909206800000000" testing="129057925200000000" />
-<file name="Object.php" local="128932592660000000" remote="128909206800000000" testing="129057925200000000" />
-<file name="Paginator.php" local="128932592660000000" remote="128909206800000000" testing="129057925200000000" />
-<file name="Environment.php" local="128932592660000000" remote="128909206800000000" testing="129057925800000000" />
-<file name="Debug.php" local="128932592660000000" remote="128909206800000000" testing="129057925800000000" />
-<file name="IServiceLocator.php" local="128932592660000000" remote="128909206800000000" testing="129057925800000000" />
-<file name="ImageMagick.php" local="128932592660000000" remote="128909206800000000" testing="129057925800000000" />
-<file name="ComponentContainer.php" local="128932592660000000" remote="128909206800000000" testing="129057925800000000" />
-<file name="IComponent.php" local="128932592660000000" remote="128909206800000000" testing="129057925800000000" />
-<file name="Component.php" local="128932592660000000" remote="128909206800000000" testing="129057926400000000" />
-<file name="loader.php" local="128932592660000000" remote="128909206800000000" testing="129057926400000000" />
-<file name="Annotations.php" local="128932592660000000" remote="128909206800000000" testing="129057927000000000" />
-<file name="SmartCachingIterator.php" local="128932592660000000" remote="128909207400000000" testing="129057927600000000" />
-<file name="Logger.php" local="128932592660000000" remote="128909207400000000" testing="129057927600000000" />
-<file name="Tools.php" local="128932592660000000" remote="128909207400000000" testing="129057927600000000" />
-<file name="InstanceFilterIterator.php" local="128932592660000000" remote="128909207400000000" testing="129057928200000000" />
-<file name="IDebuggable.php" local="128932592660000000" remote="128909208000000000" testing="129057930000000000" />
-<file name="compatibility.php" local="128932592660000000" remote="128909208000000000" testing="129057930000000000" />
-<file name="String.php" local="128932592660000000" remote="128909208000000000" testing="129057930000000000" />
+	<file name="IComponentContainer.php" local="129064686420000000"
+		remote="128909206200000000" testing="129109004400000000" />
+	<file name="ObjectMixin.php" local="129064686420000000" remote="128909206200000000"
+		testing="129109004400000000" />
+	<file name="Configurator.php" local="129064686420000000" remote="128909206200000000"
+		testing="129109004400000000" />
+	<file name="Framework.php" local="129064686420000000" remote="128909206200000000"
+		testing="129109005000000000" />
+	<file name="ITranslator.php" local="129064686420000000" remote="128909206200000000"
+		testing="129109005000000000" />
+	<file name="exceptions.php" local="128932592660000000" remote="128909206200000000"
+		testing="129057924600000000" />
+	<file name="ServiceLocator.php" local="128932592660000000" remote="128909206200000000"
+		testing="129057924600000000" />
+	<file name="Image.php" local="128932592660000000" remote="128909206800000000"
+		testing="129057925200000000" />
+	<file name="Object.php" local="128932592660000000" remote="128909206800000000"
+		testing="129057925200000000" />
+	<file name="Paginator.php" local="128932592660000000" remote="128909206800000000"
+		testing="129057925200000000" />
+	<file name="Environment.php" local="128932592660000000" remote="128909206800000000"
+		testing="129057925800000000" />
+	<file name="Debug.php" local="128932592660000000" remote="128909206800000000"
+		testing="129057925800000000" />
+	<file name="IServiceLocator.php" local="128932592660000000"
+		remote="128909206800000000" testing="129057925800000000" />
+	<file name="ImageMagick.php" local="128932592660000000" remote="128909206800000000"
+		testing="129057925800000000" />
+	<file name="ComponentContainer.php" local="128932592660000000"
+		remote="128909206800000000" testing="129057925800000000" />
+	<file name="IComponent.php" local="128932592660000000" remote="128909206800000000"
+		testing="129057925800000000" />
+	<file name="Component.php" local="128932592660000000" remote="128909206800000000"
+		testing="129057926400000000" />
+	<file name="loader.php" local="128932592660000000" remote="128909206800000000"
+		testing="129057926400000000" />
+	<file name="Annotations.php" local="128932592660000000" remote="128909206800000000"
+		testing="129057927000000000" />
+	<file name="SmartCachingIterator.php" local="128932592660000000"
+		remote="128909207400000000" testing="129057927600000000" />
+	<file name="Logger.php" local="128932592660000000" remote="128909207400000000"
+		testing="129057927600000000" />
+	<file name="Tools.php" local="128932592660000000" remote="128909207400000000"
+		testing="129057927600000000" />
+	<file name="InstanceFilterIterator.php" local="128932592660000000"
+		remote="128909207400000000" testing="129057928200000000" />
+	<file name="IDebuggable.php" local="128932592660000000" remote="128909208000000000"
+		testing="129057930000000000" />
+	<file name="compatibility.php" local="128932592660000000" remote="128909208000000000"
+		testing="129057930000000000" />
+	<file name="String.php" local="128932592660000000" remote="128909208000000000"
+		testing="129057930000000000" />
 </dwsync>

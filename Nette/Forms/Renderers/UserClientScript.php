@@ -119,7 +119,7 @@ class UserClientScript extends Object
 		/*return array(
 			'rules' => $data,
 			'toggles' => $this->toggles,
-		);*/
+			);*/
 	}
 
 }

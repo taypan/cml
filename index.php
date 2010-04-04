@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("include.php");
 
 $tag = new Tag;
@@ -22,9 +22,9 @@ $controler = new Controler;
 //echo $model->parsed;
 //$scheme_content = array();
 /*foreach($pole as $index => $value) {
-//$data = $funkce->load_file($path_to_template.$value.".html");
-$scheme_content = $scheme_content + array($begin."content-".$value.$end => $model->panels['']);
-}*/
+ //$data = $funkce->load_file($path_to_template.$value.".html");
+ $scheme_content = $scheme_content + array($begin."content-".$value.$end => $model->panels['']);
+ }*/
 
 //$model->add_panel_pure("left");
 //$model->add_panel_pure("header");
@@ -32,11 +32,11 @@ $scheme_content = $scheme_content + array($begin."content-".$value.$end => $mode
 //$model->add_panel_pure("center");
 //$model->add_panel_pure("footer");
 /*
-$model->add_panel("center","CENTER","Hlavní strana1");
-$model->add_panel("center","CENTER","Hlavní strana2");
-$model->add_panel("left","CENTER","Nadpis");
-$model->add_panel("left","Panel 2","Nadpis 2");
-*/
+ $model->add_panel("center","CENTER","Hlavní strana1");
+ $model->add_panel("center","CENTER","Hlavní strana2");
+ $model->add_panel("left","CENTER","Nadpis");
+ $model->add_panel("left","Panel 2","Nadpis 2");
+ */
 
 //$model->add_area("center");
 //$model->add_area("left");
@@ -48,18 +48,18 @@ $model->add_panel("left","Panel 2","Nadpis 2");
 session_start();
 
 /*
-header(`Expires: Mon, 26 Jul 1997 05:00:00 GMT`);
-header(`Last-Modified: `.gmdate(`D, d M Y H:i:s`).` GMT`);
-header(`Cache-Control: no-cache, must-revalidate`);
-header(`Pragma: no-cache`);
-*/
+ header(`Expires: Mon, 26 Jul 1997 05:00:00 GMT`);
+ header(`Last-Modified: `.gmdate(`D, d M Y H:i:s`).` GMT`);
+ header(`Cache-Control: no-cache, must-revalidate`);
+ header(`Pragma: no-cache`);
+ */
 //Debug::dump($_SESSION['items']);
 
 
 /*$objekt = new Clanky;
-echo $objekt->panel_count();
-echo $objekt->get_content(0);
-$model->panel_into_area("left",$objekt->get_content(1),$objekt->get_title(1));*/
+ echo $objekt->panel_count();
+ echo $objekt->get_content(0);
+ $model->panel_into_area("left",$objekt->get_content(1),$objekt->get_title(1));*/
 //$database->query("insert into menus_items values ('','Hlavní strana','index.php',1,0,'second')");
 
 //Debug::dump($_SESSION['items']);
@@ -69,20 +69,20 @@ $controler->display();
 
 
 /*
-$pole = $funkce->parse_arg("");
-echo $pole['hodnota'];
-*/
+ $pole = $funkce->parse_arg("");
+ echo $pole['hodnota'];
+ */
 
 /*
-function tester($opt = ""){
-if($opt == ""){echo "Empty";}
-else {echo "full of: $opt";}
-}
-*/
+ function tester($opt = ""){
+ if($opt == ""){echo "Empty";}
+ else {echo "full of: $opt";}
+ }
+ */
 
 
 
-//$q = "INSERT INTO table VALUES"; 
+//$q = "INSERT INTO table VALUES";
 //echo addslashes("./templates/Aukce/");
 
 
@@ -101,12 +101,12 @@ else {echo "full of: $opt";}
 //}
 
 /*
-$scheme = array( 
-"<!--panel-header -->" =>"Header", 
-"<!--panel-left -->" => "Left",
-"<!--panel-right -->" => "Right", 
-"<!--panel-footer -->" => "Footer"
-);*/
+ $scheme = array(
+ "<!--panel-header -->" =>"Header",
+ "<!--panel-left -->" => "Left",
+ "<!--panel-right -->" => "Right",
+ "<!--panel-footer -->" => "Footer"
+ );*/
 
 //echo "--------------\n";
 //echo $model->complet;

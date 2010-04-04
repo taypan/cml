@@ -62,7 +62,7 @@ class HttpUploadedFile extends Object
 			}
 		}
 		//if (!is_uploaded_file($value['tmp_name'])) {
-			//throw new InvalidStateException("Filename '$value[tmp_name]' is not a valid uploaded file.");
+		//throw new InvalidStateException("Filename '$value[tmp_name]' is not a valid uploaded file.");
 		//}
 		$this->name = $value['name'];
 		$this->type = $value['type'];

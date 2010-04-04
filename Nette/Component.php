@@ -91,10 +91,10 @@ abstract class Component extends Object implements IComponent
 			$monitored = array_key_exists($type, $this->monitors);
 			if ($obj) {
 				$this->monitors[$type] = array(
-					$obj,
-					$depth,
-					substr($path, 1),
-					$monitored,
+				$obj,
+				$depth,
+				substr($path, 1),
+				$monitored,
 				);
 				if ($monitored) {
 					$this->attached($obj);
@@ -327,8 +327,8 @@ abstract class Component extends Object implements IComponent
 	{
 		if ($this->serviceLocator === NULL) {
 			$this->serviceLocator = $this->parent === NULL
-				? Environment::getServiceLocator()
-				: $this->parent->getServiceLocator();
+			? Environment::getServiceLocator()
+			: $this->parent->getServiceLocator();
 		}
 
 		return $this->serviceLocator;

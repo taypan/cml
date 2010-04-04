@@ -89,8 +89,8 @@ class User extends Object implements IUser
 		$this->signOut(TRUE);
 
 		$credentials = array(
-			IAuthenticator::USERNAME => $username,
-			IAuthenticator::PASSWORD => $password,
+		IAuthenticator::USERNAME => $username,
+		IAuthenticator::PASSWORD => $password,
 			'extra' => $extra,
 		);
 

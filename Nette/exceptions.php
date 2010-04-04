@@ -23,19 +23,19 @@
 
 
 /*
-some useful SPL exception:
+ some useful SPL exception:
 
-- LogicException
-	- InvalidArgumentException
-	- LengthException
-- RuntimeException
-	- OutOfBoundsException
-	- UnexpectedValueException
+ - LogicException
+ - InvalidArgumentException
+ - LengthException
+ - RuntimeException
+ - OutOfBoundsException
+ - UnexpectedValueException
 
-other SPL exceptions are ambiguous; do not use them
+ other SPL exceptions are ambiguous; do not use them
 
-ErrorException is corrupted in PHP < 5.3
-*/
+ ErrorException is corrupted in PHP < 5.3
+ */
 
 
 
@@ -57,7 +57,7 @@ class ArgumentOutOfRangeException extends InvalidArgumentException
  */
 class InvalidStateException extends RuntimeException
 {
-	
+
 	function __construct($message = '', $code = 0, Exception $previous = NULL)
 	{
 		if (version_compare(PHP_VERSION , '5.3', '<')) {
@@ -67,7 +67,7 @@ class InvalidStateException extends RuntimeException
 			parent::__construct($message, $code, $previous);
 		}
 	}
-	
+
 }
 
 
@@ -152,11 +152,11 @@ class FatalErrorException extends Exception
 {
 	/** @var int */
 	private $severity;
-	
+
 
 	public function __construct($message, $code, $severity, $file, $line, $context)
 	{
-		
+
 		parent::__construct($message, $code);
 		$this->severity = $severity;
 		$this->file = $file;
@@ -165,11 +165,11 @@ class FatalErrorException extends Exception
 	}
 
 
-	
+
 	public function getSeverity()
 	{
 		return $this->severity;
 	}
-	
+
 
 }

@@ -118,7 +118,7 @@ class FileStorage extends Object implements ICacheStorage
 		do {
 			/*if (!empty($meta[self::META_DELTA]) || !empty($meta[self::META_FILES])) {
 				clearstatcache();
-			}*/
+				}*/
 
 			if (!empty($meta[self::META_DELTA])) {
 				// meta[file] was added by readMeta()
@@ -172,7 +172,7 @@ class FileStorage extends Object implements ICacheStorage
 	public function write($key, $data, array $dp)
 	{
 		$meta = array(
-			self::META_TIME => microtime(),
+		self::META_TIME => microtime(),
 		);
 
 		if (!is_string($data)) {

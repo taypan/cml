@@ -1,7 +1,7 @@
 <?php
 ////////////////// Status //////////////////
 class Status{
-var $displayed = 0;
+	var $displayed = 0;
 
 
 

@@ -99,20 +99,20 @@ class Image extends Object
 		}
 
 		switch ($format = $info[2]) {
-		case self::JPEG:
-			return new self(imagecreatefromjpeg($file));
+			case self::JPEG:
+				return new self(imagecreatefromjpeg($file));
 
-		case self::PNG:
-			return new self(imagecreatefrompng($file));
+			case self::PNG:
+				return new self(imagecreatefrompng($file));
 
-		case self::GIF:
-			return new self(imagecreatefromgif($file));
+			case self::GIF:
+				return new self(imagecreatefromgif($file));
 
-		default:
-			if (self::$useImageMagick) {
-				return new ImageMagick($file, $format);
-			}
-			throw new Exception("Unknown image type in file '$file'.");
+			default:
+				if (self::$useImageMagick) {
+					return new ImageMagick($file, $format);
+				}
+				throw new Exception("Unknown image type in file '$file'.");
 		}
 	}
 
@@ -331,9 +331,9 @@ class Image extends Object
 	public function sharpen()
 	{
 		imageconvolution($this->getImageResource(), array( // my magic numbers ;)
-			array( -1, -1, -1 ),
-			array( -1, 24, -1 ),
-			array( -1, -1, -1 ),
+		array( -1, -1, -1 ),
+		array( -1, 24, -1 ),
+		array( -1, -1, -1 ),
 		), 16, 0);
 		return $this;
 	}
@@ -382,32 +382,32 @@ class Image extends Object
 	{
 		if ($type === NULL) {
 			switch (strtolower(pathinfo($file, PATHINFO_EXTENSION))) {
-			case 'jpg':
-			case 'jpeg':
-				$type = self::JPEG;
-				break;
-			case 'png':
-				$type = self::PNG;
-				break;
-			case 'gif':
-				$type = self::GIF;
+				case 'jpg':
+				case 'jpeg':
+					$type = self::JPEG;
+					break;
+				case 'png':
+					$type = self::PNG;
+					break;
+				case 'gif':
+					$type = self::GIF;
 			}
 		}
 
 		switch ($type) {
-		case self::JPEG:
-			$quality = $quality === NULL ? 85 : max(0, min(100, (int) $quality));
-			return imagejpeg($this->getImageResource(), $file, $quality);
+			case self::JPEG:
+				$quality = $quality === NULL ? 85 : max(0, min(100, (int) $quality));
+				return imagejpeg($this->getImageResource(), $file, $quality);
 
-		case self::PNG:
-			$quality = $quality === NULL ? 9 : max(0, min(9, (int) $quality));
-			return imagepng($this->getImageResource(), $file, $quality);
+			case self::PNG:
+				$quality = $quality === NULL ? 9 : max(0, min(9, (int) $quality));
+				return imagepng($this->getImageResource(), $file, $quality);
 
-		case self::GIF:
-			return imagegif($this->getImageResource(), $file);
+			case self::GIF:
+				return imagegif($this->getImageResource(), $file);
 
-		default:
-			throw new Exception("Unsupported image type.");
+			default:
+				throw new Exception("Unsupported image type.");
 		}
 	}
 

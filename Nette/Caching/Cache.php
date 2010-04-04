@@ -127,9 +127,9 @@ class Cache extends Object implements ArrayAccess
 		$this->adjust($dependencies);
 
 		$this->storage->write(
-			$this->namespace . $key,
-			$data,
-			$dependencies
+		$this->namespace . $key,
+		$data,
+		$dependencies
 		);
 	}
 
