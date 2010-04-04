@@ -42,11 +42,15 @@ if(!class_exists("Menu")){
 				else {
 					$q = "SELECT * FROM menus_items WHERE menu = '$menu' AND deep in (0,1) ORDER BY position";
 				}}
-				else {
-					$q = "SELECT * FROM menus_items_plain WHERE menu = '$menu' ORDER BY position";
+				
+				elseif ($this->jeGet("text","nabytek") || $this->jeGet("text","sub_doplnky")) {
+					$q = "SELECT * FROM menus_items_plain WHERE ((menu = '$menu' AND deep in (0)) OR id in (45)) ORDER BY position,deep";
 				}
-				//echo  $q;
-
+				
+				else {
+					$q = "SELECT * FROM menus_items_plain WHERE menu = '$menu' AND deep = '0' ORDER BY position,deep";
+				}
+							
 				$result = $database->query($q);
 				$sum = "";
 				for($i = 0;$i != mysql_numrows($result);$i++){

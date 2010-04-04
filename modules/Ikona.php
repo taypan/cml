@@ -6,7 +6,12 @@ class Ikona extends Modul{
 
 	function get_content($n){
 		if(isset($_GET['plain']) && !isset($_GET['shop'])){
-			return "602";
+			if((isset($_GET['text']) && $_GET['text']=="nabytek") || (isset($_GET['text']) && $_GET['text']=="sub_doplnky"))
+			{
+				return "645";
+			} else {
+				return "602";
+			}
 		} else {return "485";}
 		return "610";
 	}
