@@ -14,7 +14,7 @@ class Detail extends Modul{
 			//IMG_DIR_BIG
 			$data['img'] = $this->draw_img($id);
 			$files = $this->get_files($id,IMG_DIR_BIG);
-			$data['img'] =  "<a href=\"".$data['img']."\" rel=\"lightbox[img]\" title=\"<!--detail-nazev -->\">
+			$data['img'] =  "<a href=\"".$data['img']."\" rel=\"lightbox[img]\" title=\"Rukodilna.cz\">
 			<img src=\"".$data['img']."\" width=\"310px\" id=\"imgMain\" /></a>";
 			//echo $data['img'];
 

@@ -58,8 +58,9 @@ LightboxOptions = Object.extend({
 
 	// When grouping images this is used to write: Image # of #.
 	// Change it for non-english localization
-	labelImage: "Image",
-	labelOf: "of"
+	labelImage: "Obrázek",
+	labelHelp: " - Pro další klikněte na pravou stranu obrázku. Pro návrat na předchozí klikněte na levou stranu.",
+	labelOf: "/"
 }, window.LightboxOptions || {});
 
 // -----------------------------------------------------------------------------------
@@ -333,7 +334,7 @@ Lightbox.prototype = {
         
         // if image is part of set display 'Image x of x' 
         if (this.imageArray.length > 1){
-            this.numberDisplay.update( LightboxOptions.labelImage + ' ' + (this.activeImage + 1) + ' ' + LightboxOptions.labelOf + '  ' + this.imageArray.length).show();
+            this.numberDisplay.update( LightboxOptions.labelImage + ' ' + (this.activeImage + 1) + ' ' + LightboxOptions.labelOf + '  ' + this.imageArray.length + LightboxOptions.labelHelp).show();
         }
 
         new Effect.Parallel(

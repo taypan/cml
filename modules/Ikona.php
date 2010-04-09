@@ -8,9 +8,9 @@ class Ikona extends Modul{
 		if(isset($_GET['plain']) && !isset($_GET['shop'])){
 			if((isset($_GET['text']) && $_GET['text']=="nabytek") || (isset($_GET['text']) && $_GET['text']=="sub_doplnky"))
 			{
-				return "645";
+				return "635";
 			} else {
-				return "602";
+				return "596";
 			}
 		} else {return "485";}
 		return "610";

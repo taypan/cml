@@ -29,6 +29,9 @@ if(!class_exists("Menu")){
 
 			global $database,$tag,$model,$controler;
 			$menu = $this->arg['menu'];
+			if($this->jeGet("page","Zbozi")){
+				$_SESSION['shop']=TRUE;
+			}
 			if(isset($_SESSION['shop'])){
 				if($this->jeGet("page","Login_screen") || $this->jeGet("page","Registrator")){
 					$q = "SELECT * FROM menus_items WHERE ((menu = '$menu' AND deep in (0,1)) OR id = 2) ORDER BY position";
