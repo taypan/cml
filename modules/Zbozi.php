@@ -102,12 +102,27 @@ class Zbozi extends Modul{
 
 	function item($id,$nazev,$popis,$cena,$dostupnost){
 		if($dostupnost == 1){ $dostupnost = "Skladem";} else {$dostupnost = "Na cestě";}
-		if(is_file(IMG_DIR_SMALL.$id.".jpg")){
-			$img = IMG_DIR_SMALL.$id.".jpg";
+				
+		$file = IMG_DIR_SMALL . $id.".jpg";
+		//echo $file;
+		if(file_exists($file)){
+			$img = $file;
 		} else {
-			$img = IMG_DIR.NO_IMG;
-			//$img_sml = IMG_DIR.NO_IMG;
+			for($i = 1; $i != 1000; $i++){
+				$file_un = IMG_DIR_SMALL . $id."_".$i.".jpg";
+				//echo $file_un;
+				if(file_exists($file_un)){
+					//echo $file_un;
+					$img = $file_un;
+				break;
+				} else {
+					$img = IMG_DIR . NO_IMG;
+				}
+			}
+			
 		}
+		
+		
 		if(is_numeric($cena)){
 			$cena = $cena. " ".MENA;
 		}

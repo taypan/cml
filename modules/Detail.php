@@ -1,6 +1,6 @@
 <?php
 class Detail extends Modul{
-
+	var $used_img;
 	var $acl = array(	"test" => "guest",
 					"get_default" => "guest",
 					"test2" => "administrator",
@@ -10,7 +10,18 @@ class Detail extends Modul{
 		if(isset($_GET['id']) && $this->isitem(intval($_GET['id']))){
 			$data = $this->fetch_data($_GET['id']);
 			$id = $_GET['id'];
+
+			//IMG_DIR_BIG
 			$data['img'] = $this->draw_img($id);
+			$files = $this->get_files($id,IMG_DIR_BIG);
+			$data['img'] =  "<a href=\"".$data['img']."\" rel=\"lightbox[img]\" title=\"<!--detail-nazev -->\">
+			<img src=\"".$data['img']."\" width=\"310px\" id=\"imgMain\" /></a>";
+			//echo $data['img'];
+
+			foreach($files as $key => $value){
+				$data['img'] = $data['img']."\n".'<a href="'.IMG_DIR_BIG.$value.'" rel="lightbox[img]"></a>';
+			}
+
 			return $this->show_item($data);
 
 		} else {return MSG_BEGIN."Zadaná položka neexistuje!".MSG_END;}
@@ -18,6 +29,50 @@ class Detail extends Modul{
 
 	}
 
+	function get_files($id,$dir){
+		$result = $this->dirList($dir);
+		sort($result);
+		//Debug::enable();
+		//Debug::dump($result);
+		$founded = array();
+		$idun = $id."_";
+		$len = strlen($idun);
+		foreach($result as $key => $value){
+			if(substr($value,0,$len) == $idun){
+				if($value != $this->used_img){
+					$founded[] = $value;
+				}
+			}
+		}
+		return $founded;
+
+	}
+
+	function dirList ($directory)
+	{
+
+		// create an array to hold directory list
+		$results = array();
+
+		// create a handler for the directory
+		$handler = opendir($directory);
+
+		// keep going until all files in directory have been read
+		while ($file = readdir($handler)) {
+
+			// if $file isn't this directory or its parent,
+			// add it to the results array
+			if ($file != '.' && $file != '..')
+			$results[] = $file;
+		}
+
+		// tidy up: close the handler
+		closedir($handler);
+
+		// done!
+		return $results;
+
+	}
 	function isitem($id){
 		global $database;
 		$q = "SELECT id FROM items WHERE id = '$id'";
@@ -72,8 +127,16 @@ class Detail extends Modul{
 		$file = IMG_BIG_DIR . $id.".jpg";
 		//echo $file;
 		if(file_exists($file)){
+			$this->used_img = $id.".jpg";
 			return $file;
 		} else {
+			for($i = 1; $i != 1000; $i++){
+				$file_un = IMG_BIG_DIR . $id."_".$i.".jpg";
+				//echo $file_un;
+				if(file_exists($file_un)){
+					$this->used_img = $id."_".$i.".jpg";
+					return $file_un;}
+			}
 			return IMG_DIR . NO_IMG;
 		}
 

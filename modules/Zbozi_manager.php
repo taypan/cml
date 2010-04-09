@@ -57,6 +57,8 @@ class Zbozi_manager extends Modul{
 							return $this->add();
 						case 'remove':
 							return $this->remove();
+						case 'images':
+							return $this->image_manager();
 						default:
 							return $this->manage();
 					}
@@ -70,6 +72,36 @@ class Zbozi_manager extends Modul{
 
 		} else {return $this->get_default();}
 	}
+
+	function image_manager(){
+		if(isset($_GET['id'])){
+			$id = $_GET['id'];
+			$files = $this->get_files($id,IMG_BIG_DIR);
+			$sum = "<table><tr><th>Obrázek</th><th>Odstanit</th></tr>";
+			foreach($files as $key => $value){
+				$strip = str_replace(".jpg","",$value); 
+				$attach = '<tr><td><img width="200" src="'.IMG_BIG_DIR.$value.'"></td><td><a href="index.php?page=Zbozi_manager&action=images&remove='.$strip.'">Odstranit</a></td></tr>';
+				$sum = $sum."\n".$attach;
+			}
+			return $sum."</table>";
+		} elseif(isset($_GET['remove'])) {
+			if(file_exists(IMG_BIG_DIR.$_GET['remove'].".jpg"))
+			{
+				unlink(IMG_BIG_DIR.$_GET['remove'].".jpg");
+				unlink(IMG_DIR_SMALL.$_GET['remove'].".jpg");
+				return MSG_BEGIN."Obrázek byl smazán.".MSG_END;
+			} else 
+			{
+				return MSG_BEGIN."Obrázek neexistuje!".MSG_END;
+			}
+			
+		}
+		else {
+			return MSG_BEGIN."Chyba. Zkuste to znovu".MSG_END;	
+		}
+
+	}
+
 
 	function isitem($id){
 		global $database;
@@ -125,7 +157,51 @@ class Zbozi_manager extends Modul{
     <td> $cena </td>
     <td><a href=\"index.php?page=Zbozi_manager&action=add&id=$id\">Upravit</a></td>
     <td><a href=\"index.php?page=Zbozi_manager&action=remove&id=$id\">Odstranit</a></td>
+    <td><a href=\"index.php?page=Zbozi_manager&action=images&id=$id\">Obrázky</a></td>
   </tr>";
+
+	}
+
+	function get_files($id,$dir){
+		$result = $this->dirList($dir);
+		sort($result);
+		//Debug::enable();
+		//Debug::dump($result);
+		$founded = array();
+		$idun = $id."_";
+		$len = strlen($idun);
+		foreach($result as $key => $value){
+			if(substr($value,0,$len) == $idun || substr($value,0,(strlen($id)+1)) == $id."."){
+				$founded[] = $value;
+			}
+		}
+		return $founded;
+
+	}
+
+	function dirList ($directory)
+	{
+
+		// create an array to hold directory list
+		$results = array();
+
+		// create a handler for the directory
+		$handler = opendir($directory);
+
+		// keep going until all files in directory have been read
+		while ($file = readdir($handler)) {
+
+			// if $file isn't this directory or its parent,
+			// add it to the results array
+			if ($file != '.' && $file != '..')
+			$results[] = $file;
+		}
+
+		// tidy up: close the handler
+		closedir($handler);
+
+		// done!
+		return $results;
 
 	}
 
@@ -151,67 +227,70 @@ class Zbozi_manager extends Modul{
 			{
 				$sum = $sum. "<a href=\"".$page."limit=".($_GET['limit'] + ITEMS_ON_PAGE). "\">Následující</a> ";
 			}
-			elseif (!(isset($_GET['limit'])) && ($c  == ceil($count / ITEMS_ON_PAGE))){$sum = $sum. "<a href=\"".$page."limit=".ITEMS_ON_PAGE. "\">Následující</a> ";
+			elseif (!(isset($_GET['limit'])) && ($c  == ceil($count / ITEMS_ON_PAGE)))
+			{
+				$sum = $sum. "<a href=\"".$page."limit=".ITEMS_ON_PAGE. "\">Následující</a> ";
+			}
 			$c++;
-			}
-
-			return $sum;
 		}
 
-		function get_default(){
-			return "<p align=\"center\"><a href=\"index.php?page=Zbozi_manager&action=add\">Přidat</a></br><a href=\"index.php?page=Zbozi_manager&action=manage\">Upravit</a>";
+		return $sum;
+	}
+
+	function get_default(){
+		return "<p align=\"center\"><a href=\"index.php?page=Zbozi_manager&action=add\">Přidat</a></br><a href=\"index.php?page=Zbozi_manager&action=manage\">Upravit</a>";
+	}
+
+
+	function add(){
+		$dostup = array(
+		1 => 'Skladem',
+		2 => 'Na ceste',
+		3 => 'Není skladem',
+		);
+		$cat = explode(",",CAT);
+		$subcat = explode(",",SUBCAT);
+
+		$pridavani = new Form;
+		$pridavani->setAction("index.php?page=Zbozi_manager&action=add");
+		$pridavani->addText('nazev', 'Název:',30)
+		->addRule(Form::FILLED, 'Zadejte název');
+
+		$pridavani->addTextArea('popis', 'Popis:',50,10)
+		->addRule(Form::FILLED, 'Zadejte popis');
+		$pridavani->addSelect('cat', 'Kategorie:', $cat);
+		$pridavani->addSelect('subcat', 'Podkategorie:', $subcat);
+		$pridavani->addText('rozmery', 'Rozměry:')
+		->addRule(Form::FILLED, 'Zadejte rozměry');
+
+		$pridavani->addRadioList('dostupnost', 'Dostupnost:', $dostup)
+		->addRule(Form::FILLED, 'Zadejte dostupnost');
+		$pridavani->addText('cena', 'Cena:')
+		->addRule(Form::FILLED, 'Zadejte cenu');
+		//->addRule(Form::RANGE, 'Věk musí být v rozmezí od %d do %d', array(5, 120));
+		$pridavani->addFile('new_image', 'Obrázek (pouze JPEG do velikosti 2 MB)')
+		->addCondition(Form::FILLED)
+		->addRule(Form::MIME_TYPE, 'Soubor musí být obrázek', 'image/jpeg');
+		if(isset($_GET['id']))
+		{
+			$pridavani->addHidden('id')->setValue($_GET['id']);
 		}
 
-
-		function add(){
-			$dostup = array(
-			1 => 'Skladem',
-			2 => 'Na ceste',
-			3 => 'Není skladem',
-			);
-			$cat = explode(",",CAT);
-			$subcat = explode(",",SUBCAT);
-
-			$pridavani = new Form;
-			$pridavani->setAction("index.php?page=Zbozi_manager&action=add");
-			$pridavani->addText('nazev', 'Název:',30)
-			->addRule(Form::FILLED, 'Zadejte název');
-
-			$pridavani->addTextArea('popis', 'Popis:',50,10)
-			->addRule(Form::FILLED, 'Zadejte popis');
-			$pridavani->addSelect('cat', 'Kategorie:', $cat);
-			$pridavani->addSelect('subcat', 'Podkategorie:', $subcat);
-			$pridavani->addText('rozmery', 'Rozměry:')
-			->addRule(Form::FILLED, 'Zadejte rozměry');
-
-			$pridavani->addRadioList('dostupnost', 'Dostupnost:', $dostup)
-			->addRule(Form::FILLED, 'Zadejte dostupnost');
-			$pridavani->addText('cena', 'Cena:')
-			->addRule(Form::FILLED, 'Zadejte cenu');
-			//->addRule(Form::RANGE, 'Věk musí být v rozmezí od %d do %d', array(5, 120));
-			$pridavani->addFile('new_image', 'Obrázek (pouze JPEG do velikosti 2 MB)')
-			->addCondition(Form::FILLED)
-			->addRule(Form::MIME_TYPE, 'Soubor musí být obrázek', 'image/jpeg');
-			if(isset($_GET['id']))
-			{
-				$pridavani->addHidden('id')->setValue($_GET['id']);
-			}
-
-			if(isset($_GET['id'])){$text = 'Uložit';} else {$text = 'Přidat';}
-			$pridavani->addSubmit('pridat', $text);
+		if(isset($_GET['id'])){$text = 'Uložit';} else {$text = 'Přidat';}
+		$pridavani->addSubmit('pridat', $text);
 
 
 
-			if (isset($_GET['id'])  && $this->isitem($_GET['id']))
-			{
-				//echo "OK";
-				$id = $_GET['id'];
-				$q = "SELECT * FROM items WHERE id = '$id'";
-				global $database;
-				$result = $database->query($q);
-				//echo mysql_num_rows($result);
-				//echo $this->br2nl(mysql_result($result,0,"popis"));
-				$pridavani->setDefaults(array(
+		if (isset($_GET['id'])  && $this->isitem($_GET['id']))
+		{
+			//echo "OK";
+			$id = $_GET['id'];
+			$q = "SELECT * FROM items WHERE id = '$id'";
+			global $database;
+			$result = $database->query($q);
+			//echo mysql_num_rows($result);
+			//echo $this->br2nl(mysql_result($result,0,"popis"));
+			$pridavani->setDefaults(array(
         'nazev' => mysql_result($result,0,"nazev"),
 		'popis' => $this->br2nl(mysql_result($result,0,"popis")),
 		'cat' => mysql_result($result,0,"cat"),
@@ -219,152 +298,181 @@ class Zbozi_manager extends Modul{
 		'rozmery' => mysql_result($result,0,"rozmery"),
 		'dostupnost' => mysql_result($result,0,"dostupnost"),
 		'cena' => mysql_result($result,0,"cena"),
-				));
-			}
-
-			//echo "X:".$pridavani['pridat']->isSubmittedBy();
-			//if($pridavani['pridat']->isSubmittedBy()){echo " je";} else {echo " neni";}
-
-			if ($pridavani->isSubmitted()) {
-
-				//echo $form->isSubmitted();
-				//$form['pridat']->isSubmittedBy()
-				// a jestli?e jsou v?echny polo?ky vypln?ny správn?
-
-				if ($pridavani->isValid()) {
-					//$form->isValid()
-					$values = $pridavani->getValues();
-					//Debug::dump($values);
-					//image_upload(3);
-					//Debug::dump($_POST);
-					//echo "X".$pridavani['id']->value."X";
-					if(isset($_POST['id'])){$id= $_POST['id'];} else {$id = 0;}
-					//echo "X".$values['id']."X";
-					$this->add_item($values,$id);
-					//image_upload ($name,TMP_DIR,IMG_DIR_BIG,IMG_DIR_SMALL,MODWIDTH_SML,MODWIDTH_BIG);
-
-					//image_upload ($id,$tmpdir,$bigdir,$smldir,$modwidth_sml,$modwidth_big){
-					if(isset($_SESSION['msg'])){return $_SESSION['msg']; unset($_SESSION['msg']);}
-					/*$pridavani->setDefaults(array(
-					 'nazev' => '',
-					 'popis' => '',
-					 'rozmery' => '',
-					 'dostupnost' => '',
-					 'cena' => '',
-					 ));*/
-					//echo 'Polo?ka byla úsp??n? p?idána<br><a href="admin.php?add">Přidat dal?í...</a>';
-					return MSG_BEGIN.'Položka byla úspěšně upravena<br><a href="index.php?page=Zbozi_manager&action=manage">Upravit další...</a>'.MSG_END;
-				}
-
-			} else {
-				return $pridavani;
-			}
-
+			));
 		}
 
-		function add_item($values,$id = 0){
-			global $database;
-			//echo $id;
-			if($id != 0 && $this->isitem($id)){
-				$q = "UPDATE items SET nazev = '".addslashes($values['nazev'])."', popis = '".nl2br(addslashes($values['popis']))."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".addslashes($values['cena'])."', dostupnost = '".$values['dostupnost']."',rozmery = '".addslashes($values['rozmery'])."' WHERE id = $id LIMIT 1 ";
-				//echo $q;
-				$database->query($q);
+		//echo "X:".$pridavani['pridat']->isSubmittedBy();
+		//if($pridavani['pridat']->isSubmittedBy()){echo " je";} else {echo " neni";}
+
+		if ($pridavani->isSubmitted()) {
+
+			//echo $form->isSubmitted();
+			//$form['pridat']->isSubmittedBy()
+			// a jestli?e jsou v?echny polo?ky vypln?ny správn?
+
+			if ($pridavani->isValid()) {
+				//$form->isValid()
+				$values = $pridavani->getValues();
+				//Debug::dump($values);
+				//image_upload(3);
+				//Debug::dump($_POST);
+				//echo "X".$pridavani['id']->value."X";
+				if(isset($_POST['id'])){$id= $_POST['id'];} else {$id = 0;}
+				//echo "X".$values['id']."X";
+				$this->add_item($values,$id);
+				//image_upload ($name,TMP_DIR,IMG_DIR_BIG,IMG_DIR_SMALL,MODWIDTH_SML,MODWIDTH_BIG);
+
+				//image_upload ($id,$tmpdir,$bigdir,$smldir,$modwidth_sml,$modwidth_big){
+				if(isset($_SESSION['msg'])){return $_SESSION['msg']; unset($_SESSION['msg']);}
+				/*$pridavani->setDefaults(array(
+				 'nazev' => '',
+				 'popis' => '',
+				 'rozmery' => '',
+				 'dostupnost' => '',
+				 'cena' => '',
+				 ));*/
+				//echo 'Polo?ka byla úsp??n? p?idána<br><a href="admin.php?add">Přidat dal?í...</a>';
+				return MSG_BEGIN.'Položka byla úspěšně upravena<br><a href="index.php?page=Zbozi_manager&action=manage">Upravit další...</a>'.MSG_END;
 			}
-			else{
-				$q = "insert into items values ('','".$values['cat']."','".$values['subcat']."','".addslashes($values['nazev'])."','".nl2br(addslashes($values['popis']))."','".addslashes($values['cena'])."','".$values['dostupnost']."','".addslashes($values['rozmery'])."')";
-				//echo $q;
-				$database->query($q);
-				$_SESSION['msg'] = MSG_BEGIN.'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>'.MSG_END;
-			}
-			if($id == 0){$id = mysql_insert_id();}
-			$this->image_upload ($id,TMP_DIR,IMG_DIR_BIG,IMG_DIR_SMALL,MODWIDTH_SML,MODWIDTH_BIG);
-			//echo mysql_insert_id();
-			return 0;
+
+		} else {
+			return $pridavani;
 		}
-
-		function image_upload ($id,$tmpdir,$bigdir,$smldir,$modwidth_sml,$modwidth_big){
-			if(isset($_POST['pridat'])){
-				//echo "XXX";
-				if (isset ($_FILES['new_image']) && $_FILES['new_image']['name'] != ""){
-					//echo ":".$_FILES['new_image']['name'].":";
-					$imagename = $_FILES['new_image']['name'];
-			  //echo $imagename;
-					$source = $_FILES['new_image']['tmp_name'];
-			  //if (is_file($source)){echo "OK";} else{echo "XXX";}
-			  //echo $source;
-					$target = $tmpdir . $imagename;
-			  //Debug::enable();
-			  //Debug::dump($_FILES);
-						
-					move_uploaded_file($source, $target);
-
-					$imagepath = $imagename;
-					$save = $bigdir .$id.".jpg"; //This is the new file you saving
-					$file = $tmpdir . $imagepath; //This is the original file
-
-					list($width, $height) = getimagesize($file) ;
-
-					$modwidth = $modwidth_big;
-
-					$diff = $width / $modwidth;
-
-					$modheight = $height / $diff;
-					$tn = imagecreatetruecolor($modwidth, $modheight) ;
-					$image = imagecreatefromjpeg($file) ;
-					imagecopyresampled($tn, $image, 0, 0, 0, 0, $modwidth, $modheight, $width, $height) ;
-						
-			  //mkdir("img/".$id."/",0777);
-					//mkdir("img/".$id."/sml/",0777);
-			  if(file_exists($bigdir .$id.".jpg")){unlink($bigdir .$id.".jpg");}
-			  imagejpeg($tn, $save, 100) ;
-			  $save = $smldir.$id.".jpg"; //This is the new file you saving
-			  $file = $tmpdir . $imagepath; //This is the original file
-
-			  list($width, $height) = getimagesize($file) ;
-
-			  $modwidth = $modwidth_sml;
-
-			  $diff = $width / $modwidth;
-
-			  $modheight = $height / $diff;
-			  $tn = imagecreatetruecolor($modwidth, $modheight) ;
-			  $image = imagecreatefromjpeg($file) ;
-			  imagecopyresampled($tn, $image, 0, 0, 0, 0, $modwidth, $modheight, $width, $height) ;
-			  //mkdir("pictures/".$id."/",0777);
-			  if(file_exists($smldir.$id.".jpg")){unlink($smldir.$id.".jpg");}
-			  	
-			  imagejpeg($tn, $save, 100);
-			  	
-			  	
-			  if (file_exists($tmpdir . $imagepath)) {unlink($tmpdir . $imagepath);}
-			  	
-			  //$_SESSION['big'] = "img/".$id.".jpg";
-			  //$_SESSION['small'] = "img/sml/".$id."/.jpg";
-			  //echo "Thumbnail: <img src='pictures/sml_".$imagepath."'>";
-
-				}
-			}}
 
 	}
-	/*
-	 function add_item($values,$id = 0){
-	 global $database;
-	 //echo $id;
-	 if($id != 0 && $this->isitem($id)){
-	 $q = "UPDATE items SET nazev = '".$values['nazev']."', popis = '".$values['popis']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
-	 //echo $q;
-	 $database->query($q);
-	 }
-	 else{
-	 $q = "insert into items values ('','".$values['nazev']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
-	 //echo $q;
-	 $database->query($q);
-	 $_SESSION['msg'] = 'Polo?ka byla úsp??n? p?idána<br><a href="index.php?page=Zbozi_manager&action=add">P?idat dal?í...</a>';
-	 }
-	 if($id == 0){$id = mysql_insert_id();}
-	 $this->image_upload ($id,TMP_DIR,IMG_DIR_BIG,IMG_DIR_SMALL,MODWIDTH_SML,MODWIDTH_BIG);
-	 //echo mysql_insert_id();
-	 return "Polo?ka byla úsp??n? upravena!";
-	 }*/
 
-	?>
+	function add_item($values,$id = 0){
+		global $database;
+		//echo $id;
+		if($id != 0 && $this->isitem($id)){
+			$q = "UPDATE items SET nazev = '".addslashes($values['nazev'])."', popis = '".nl2br(addslashes($values['popis']))."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".addslashes($values['cena'])."', dostupnost = '".$values['dostupnost']."',rozmery = '".addslashes($values['rozmery'])."' WHERE id = $id LIMIT 1 ";
+			//echo $q;
+			$database->query($q);
+		}
+		else{
+			$q = "insert into items values ('','".$values['cat']."','".$values['subcat']."','".addslashes($values['nazev'])."','".nl2br(addslashes($values['popis']))."','".addslashes($values['cena'])."','".$values['dostupnost']."','".addslashes($values['rozmery'])."')";
+			//echo $q;
+			$database->query($q);
+			$_SESSION['msg'] = MSG_BEGIN.'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>'.MSG_END;
+		}
+		if($id == 0){$id = mysql_insert_id();}
+		$this->image_upload ($id,TMP_DIR,IMG_DIR_BIG,IMG_DIR_SMALL,MODWIDTH_SML,MODWIDTH_BIG);
+		//echo mysql_insert_id();
+		return 0;
+	}
+
+
+
+	function image_upload ($id,$tmpdir,$bigdir,$smldir,$modwidth_sml,$modwidth_big){
+		if(isset($_POST['pridat'])){
+			//echo "XXX";
+			if (isset ($_FILES['new_image']) && $_FILES['new_image']['name'] != ""){
+				//echo ":".$_FILES['new_image']['name'].":";
+				$imagename = $_FILES['new_image']['name'];
+				//echo $imagename;
+				$source = $_FILES['new_image']['tmp_name'];
+				//if (is_file($source)){echo "OK";} else{echo "XXX";}
+				//echo $source;
+				$target = $tmpdir . $imagename;
+				//Debug::enable();
+				//Debug::dump($_FILES);
+
+				move_uploaded_file($source, $target);
+
+				$imagepath = $imagename;
+				$save = $bigdir .$id.".jpg"; //This is the new file you saving
+				$file = $tmpdir . $imagepath; //This is the original file
+
+				list($width, $height) = getimagesize($file) ;
+
+				$modwidth = $modwidth_big;
+
+				$diff = $width / $modwidth;
+
+				$modheight = $height / $diff;
+				$tn = imagecreatetruecolor($modwidth, $modheight) ;
+				$image = imagecreatefromjpeg($file) ;
+				imagecopyresampled($tn, $image, 0, 0, 0, 0, $modwidth, $modheight, $width, $height) ;
+
+				//mkdir("img/".$id."/",0777);
+				//mkdir("img/".$id."/sml/",0777);
+				if(file_exists($bigdir .$id.".jpg"))
+				{
+					//unlink($bigdir .$id.".jpg");
+					for($i = 1;$i != 0 || $i > 1000;$i++){
+						$un = "_".$i;
+						if(!file_exists($bigdir .$id.$un.".jpg"))
+						{
+							$save = $bigdir .$id.$un.".jpg";
+							break;
+						}
+
+					}
+
+				}
+				imagejpeg($tn, $save, 100) ;
+				$save = $smldir.$id.".jpg"; //This is the new file you saving
+				$file = $tmpdir . $imagepath; //This is the original file
+
+				list($width, $height) = getimagesize($file) ;
+
+				$modwidth = $modwidth_sml;
+
+				$diff = $width / $modwidth;
+
+				$modheight = $height / $diff;
+				$tn = imagecreatetruecolor($modwidth, $modheight) ;
+				$image = imagecreatefromjpeg($file) ;
+				imagecopyresampled($tn, $image, 0, 0, 0, 0, $modwidth, $modheight, $width, $height) ;
+				//mkdir("pictures/".$id."/",0777);
+
+				if(file_exists($smldir .$id.".jpg"))
+				{
+					//unlink($bigdir .$id.".jpg");
+					for($i = 1;$i != 0 || $i > 1000;$i++){
+						$un = "_".$i;
+						if(!file_exists($smldir .$id.$un.".jpg"))
+						{
+							$save = $smldir .$id.$un.".jpg";
+							break;
+						}
+
+					}
+
+				}
+
+				imagejpeg($tn, $save, 100);
+
+
+				if (file_exists($tmpdir . $imagepath)) {unlink($tmpdir . $imagepath);}
+
+				//$_SESSION['big'] = "img/".$id.".jpg";
+				//$_SESSION['small'] = "img/sml/".$id."/.jpg";
+				//echo "Thumbnail: <img src='pictures/sml_".$imagepath."'>";
+
+			}
+		}}
+
+}
+/*
+ function add_item($values,$id = 0){
+ global $database;
+ //echo $id;
+ if($id != 0 && $this->isitem($id)){
+ $q = "UPDATE items SET nazev = '".$values['nazev']."', popis = '".$values['popis']."' , cena = '".$values['cena']."', dostupnost = '".$values['dostupnost']."',rozmery = '".$values['rozmery']."' WHERE id = $id LIMIT 1 ";
+ //echo $q;
+ $database->query($q);
+ }
+ else{
+ $q = "insert into items values ('','".$values['nazev']."','".$values['popis']."',".$values['cena'].",'".$values['dostupnost']."','".$values['rozmery']."')";
+ //echo $q;
+ $database->query($q);
+ $_SESSION['msg'] = 'Polo?ka byla úsp??n? p?idána<br><a href="index.php?page=Zbozi_manager&action=add">P?idat dal?í...</a>';
+ }
+ if($id == 0){$id = mysql_insert_id();}
+ $this->image_upload ($id,TMP_DIR,IMG_DIR_BIG,IMG_DIR_SMALL,MODWIDTH_SML,MODWIDTH_BIG);
+ //echo mysql_insert_id();
+ return "Polo?ka byla úsp??n? upravena!";
+ }*/
+
+?>

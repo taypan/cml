@@ -74,11 +74,11 @@
 }
 
 #prevLink:hover,#prevLink:visited:hover {
-	background: url(../images/prevlabel.gif) left 15% no-repeat;
+	background: url(/img/prevlabel.gif) left 15% no-repeat;
 }
 
 #nextLink:hover,#nextLink:visited:hover {
-	background: url(../images/nextlabel.gif) right 15% no-repeat;
+	background: url(/img/nextlabel.gif) right 15% no-repeat;
 }
 
 #imageDataContainer {
