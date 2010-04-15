@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Rukodílna organika</title>
+<link href="<!--panel-style -->/style.css" rel="stylesheet"
+type="text/css" /> <!--LightBox-START -->
+<link href="<!--panel-style -->/lightbox.css" rel="stylesheet"
+type="text/css" /> <script type="text/javascript" src="js/prototype.js"></script>
+<script type="text/javascript"
+	src="js/scriptaculous.js?load=effects,builder"></script> <script
+	type="text/javascript" src="js/lightbox.js"></script> <!--LightBox-END -->
+
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="<!--panel-style -->/ie.css">
+<![endif]-->
+<style>
+#ukazatel {
+	margin-top: <!-- panel-sipka -->;
+}
+
+#ukazatel_ie {
+	margin-top: <!-- panel-sipka_ie -->;
+}
+</style>
+</head>
+
+<body>
+<div id="zarovnani">
+<div id="line">
+<div id="cont">
+<div id="kosik" style="margin-top: "<!--panel-ikona -->px;"></div>
+<div id="menu"><!--panel-left --> <!--<a href="index.php?page=Texty&action=show&text=doplnky">DOPLŇKY 
+      <div class="hracky">A HRAČKY</div>
+     </a><a href="index.php?page=Texty&action=show&text=podminky">Obchodní 
+      <div class="hracky">podmínky</div></a>-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+<!--[if IE 7]>
+   <div id="ukazatel_ie"></div>
+	<![endif]-->
+<div id="ukazatel"></div>
+
+
+
+
+<div id="obsahSekce"></div>
+<div id="obsahFill"><!--panel-kosik --> <!--panel-center --></div>
+<div id="footer">
+<div id="footerL"></div>
+<a href="http://rukodilna.cz">
+<div id="footerR"></div>
+</a></div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

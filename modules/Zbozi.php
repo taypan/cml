@@ -38,28 +38,28 @@ class Zbozi extends Modul{
 			if(isset($_GET['subcat'])) {
 				$subcat = $_GET['subcat'];
 				$_SESSION['subcat'] = $_GET['subcat'];
-				$q = "SELECT * FROM items WHERE cat='$cat' AND subcat='$subcat' ORDER BY id LIMIT $from,$limit";
+				$q = "SELECT * FROM items WHERE cat='$cat' AND subcat='$subcat' ORDER BY cat,subcat,id LIMIT $from,$limit";
 			}
 			else {
 				unset($_SESSION['subcat']);
-				$q = "SELECT * FROM items WHERE cat='$cat' ORDER BY id LIMIT $from,$limit";
+				$q = "SELECT * FROM items WHERE cat='$cat' ORDER BY cat,subcat,id LIMIT $from,$limit";
 			}
 		}
 		else {
-			$q = "SELECT * FROM items ORDER BY id LIMIT $from,$limit";
+			$q = "SELECT * FROM items ORDER BY cat,subcat,id LIMIT $from,$limit";
 		}
 
 		if(isset($_SESSION['cat']) && !(isset($_GET['cat'])))
 		{
 			$cat = $_SESSION['cat'];
-			$q = "SELECT * FROM items WHERE cat='$cat' ORDER BY id LIMIT $from,$limit";
+			$q = "SELECT * FROM items WHERE cat='$cat' ORDER BY cat,subcat,id LIMIT $from,$limit";
 		}
 
 		if(isset($_SESSION['cat']) && !(isset($_GET['cat'])) && isset($_SESSION['subcat']) && !(isset($_GET['subcat'])))
 		{
 			$cat = $_SESSION['cat'];
 			$subcat = $_SESSION['subcat'];
-			$q = "SELECT * FROM items WHERE cat='$cat' AND subcat='$subcat' ORDER BY id LIMIT $from,$limit";
+			$q = "SELECT * FROM items WHERE cat='$cat' AND subcat='$subcat' ORDER BY cat,subcat,id LIMIT $from,$limit";
 		}
 		//echo $_SESSION['cat'].":";
 		$result = $database->query($q);

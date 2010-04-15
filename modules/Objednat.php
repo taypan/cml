@@ -5,6 +5,8 @@ class Objednat extends Modul{
 	var $email;
 	var $code;
 	var $values;
+	var $items;
+	var $jmeno;
 
 
 	function get_content(){
@@ -164,7 +166,9 @@ class Objednat extends Modul{
 	function sendMail(){
 		$mailer = new Mailer;
 		//TODO
-		/*return*/ $mailer->sendConfEmail($this->id_objednavka,$this->email,$this->code);
+		/*return*/
+		$mailer->sendConfEmail($this->id_objednavka,$this->email,$this->code);
+		$mailer->sendNotice($this->email,$this->items,$this->jmeno);
 		//Debug::dump($this->id_objednavka);
 		return TRUE;
 	}
@@ -254,9 +258,11 @@ class Objednat extends Modul{
 			else {
 				return FALSE;}
 		}
+		$this->jmeno = $credentials['jmeno']." ".$credentials['prijmeni'];
 		$this->id_objednavka = $objednavka_id;
 		$this->email = $credentials['email'];
 		$this->code = $this->genCode();
+		$this->items = $items;
 		if(!$this->sendMail()){return FALSE;}
 		else {return TRUE;}
 
@@ -272,20 +278,59 @@ class Objednat extends Modul{
 			$sum = "<table><tr><th>Položky</th><th>Cena</th><th>&nbsp;</th></tr>";
 			//$counter = 0;
 			$price = 0;
+			$doprava_final = 0;
 			foreach($_SESSION['items'] as $key => $value)
 			{
-				$q = "SELECT nazev,cena FROM items WHERE id='$value'";
+				$q = "SELECT nazev,cena,doprava FROM items WHERE id='$value'";
 				$result = $database->query($q);
 				$nazev = mysql_result($result,0,'nazev');
 				$cena = mysql_result($result,0,'cena');
+				$doprava = mysql_result($result,0,'doprava');
 				$price = $price + $cena;
+				if(is_numeric($doprava)){
+					if($doprava_final < $doprava){
+						$doprava_final = $doprava;
+					}
+				}
 				$sum = $sum ."<tr><td width=\"300\"><a href=\"index.php?page=Detail&id=$value\">". $nazev."</a></td><td>$cena Kč</td><td><a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">
 <img src=\"".TEMPLATES_DIRECTORY.CURRENT_TEMPLATE."/images/drop.png\" alt=\"Odstranit\"></a></td><tr>";
 
 				/*<a href="index.php?page=Settings&action=remove_att&id=14"><img src="templates/Rukodilna/images/drop.png" alt="Odstranit"></a>*/
 
 			}
-			return $sum."<tr><th>Cena celkem:</th><th colspan=\"2\">$price Kč</th></tr></table></br>";
+			if(is_numeric($price) && ($price >= DOPRAVA_FREE)){
+				$doprava_final = "ZDARMA";
+			} elseif(!is_numeric($price)){
+				$price = "Bude upřesněna";
+				$doprava_final = "Bude upřesněna";
+			}
+			elseif(is_numeric($price)&& ($price < DOPRAVA_FREE) && ($doprava_final != 0) && ($price != 0))
+			{
+				$price = $price + $doprava_final;
+			}
+			elseif(is_numeric($price)&& ($price < DOPRAVA_FREE) && ($doprava_final === 0) && ($price === 0))
+			{
+				$price = "Bude upřesněna";
+				$doprava_final = "Bude upřesněna";
+			}
+			elseif(is_numeric($price)&& ($price < DOPRAVA_FREE) && ($price === 0))
+			{
+				$price = "Bude upřesněna";
+				//$doprava_final = "Bude upřesněna";
+			}
+			elseif($doprava_final == 0)
+			{
+				$doprava_final = "Bude upřesněna";
+			}
+			if(is_numeric($doprava_final)){
+				$doprava_final = $doprava_final ." ". MENA;
+			}
+			if(is_numeric($price)){
+				$price = $price ." ". MENA;
+			}
+			return $sum."
+			<tr><th>Doprava:</th><th colspan=\"2\">$doprava_final</th></tr></br>
+			<tr><th>Cena celkem:</th><th colspan=\"2\">$price</th></tr></table></br>";
 		}
 		else {return /*MSG_BEGIN."Nebyly objednány žádné položky".MSG_END*/;}
 

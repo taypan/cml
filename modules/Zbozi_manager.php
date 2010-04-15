@@ -262,7 +262,8 @@ class Zbozi_manager extends Modul{
 		$pridavani->addSelect('subcat', 'Podkategorie:', $subcat);
 		$pridavani->addText('rozmery', 'Rozměry:')
 		->addRule(Form::FILLED, 'Zadejte rozměry');
-
+		$pridavani->addText('doprava', 'Doprava:')
+		->addRule(Form::FILLED, 'Zadejte dopravu');
 		$pridavani->addRadioList('dostupnost', 'Dostupnost:', $dostup)
 		->addRule(Form::FILLED, 'Zadejte dostupnost');
 		$pridavani->addText('cena', 'Cena:')
@@ -345,12 +346,12 @@ class Zbozi_manager extends Modul{
 		global $database;
 		//echo $id;
 		if($id != 0 && $this->isitem($id)){
-			$q = "UPDATE items SET nazev = '".addslashes($values['nazev'])."', popis = '".nl2br(addslashes($values['popis']))."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".addslashes($values['cena'])."', dostupnost = '".$values['dostupnost']."',rozmery = '".addslashes($values['rozmery'])."' WHERE id = $id LIMIT 1 ";
+			$q = "UPDATE items SET nazev = '".addslashes($values['nazev'])."', popis = '".nl2br(addslashes($values['popis']))."', cat = '".$values['cat']."', subcat = '".$values['subcat']."' , cena = '".addslashes($values['cena'])."', dostupnost = '".$values['dostupnost']."', doprava = '".$values['doprava']."',rozmery = '".addslashes($values['rozmery'])."' WHERE id = $id LIMIT 1 ";
 			//echo $q;
 			$database->query($q);
 		}
 		else{
-			$q = "insert into items values ('','".$values['cat']."','".$values['subcat']."','".addslashes($values['nazev'])."','".nl2br(addslashes($values['popis']))."','".addslashes($values['cena'])."','".$values['dostupnost']."','".addslashes($values['rozmery'])."')";
+			$q = "insert into items values ('','".$values['cat']."','".$values['subcat']."','".addslashes($values['nazev'])."','".nl2br(addslashes($values['popis']))."','".addslashes($values['cena'])."','".$values['dostupnost']."','".addslashes($values['rozmery'])."','".addslashes($values['doprava'])."')";
 			//echo $q;
 			$database->query($q);
 			$_SESSION['msg'] = MSG_BEGIN.'Položka byla úspěšně přidána<br><a href="index.php?page=Zbozi_manager&action=add">Přidat další...</a>'.MSG_END;
