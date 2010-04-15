@@ -274,6 +274,8 @@ class Objednat extends Modul{
 	function draw_kosik_content(){
 		//Debug::dump($_SESSION['items_codes']);
 		global $database;
+		$num_doprava = TRUE;
+		$num_cena = TRUE;
 		if(isset($_SESSION['items']) && count($_SESSION['items']) != 0){
 			$sum = "<table><tr><th>Položky</th><th>Cena</th><th>&nbsp;</th></tr>";
 			//$counter = 0;
@@ -286,13 +288,22 @@ class Objednat extends Modul{
 				$nazev = mysql_result($result,0,'nazev');
 				$cena = mysql_result($result,0,'cena');
 				$doprava = mysql_result($result,0,'doprava');
+				if(!is_numeric($cena)){
+					$num_cena = FALSE;
+				}
+				if(!is_numeric($doprava)){
+					$num_doprava = FALSE;
+				}
 				$price = $price + $cena;
 				if(is_numeric($doprava)){
 					if($doprava_final < $doprava){
 						$doprava_final = $doprava;
 					}
 				}
-				$sum = $sum ."<tr><td width=\"300\"><a href=\"index.php?page=Detail&id=$value\">". $nazev."</a></td><td>$cena Kč</td><td><a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">
+				if(is_numeric($cena)){
+					$cena = $cena ." ". MENA;
+				}
+				$sum = $sum ."<tr><td width=\"300\"><a href=\"index.php?page=Detail&id=$value\">". $nazev."</a></td><td>$cena</td><td><a href=index.php?page=Objednat&action=remove&code=".$_SESSION['items_codes'][$key].">
 <img src=\"".TEMPLATES_DIRECTORY.CURRENT_TEMPLATE."/images/drop.png\" alt=\"Odstranit\"></a></td><tr>";
 
 				/*<a href="index.php?page=Settings&action=remove_att&id=14"><img src="templates/Rukodilna/images/drop.png" alt="Odstranit"></a>*/
@@ -327,6 +338,12 @@ class Objednat extends Modul{
 			}
 			if(is_numeric($price)){
 				$price = $price ." ". MENA;
+			}
+			if(!$num_doprava){
+				$doprava_final = "Bude upřesněna";
+			}
+			if(!$num_cena){
+				$price = "Bude upřesněna";
 			}
 			return $sum."
 			<tr><th>Doprava:</th><th colspan=\"2\">$doprava_final</th></tr></br>
