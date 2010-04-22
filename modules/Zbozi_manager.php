@@ -79,7 +79,7 @@ class Zbozi_manager extends Modul{
 			$files = $this->get_files($id,IMG_BIG_DIR);
 			$sum = "<table><tr><th>Obrázek</th><th>Odstanit</th></tr>";
 			foreach($files as $key => $value){
-				$strip = str_replace(".jpg","",$value); 
+				$strip = str_replace(".jpg","",$value);
 				$attach = '<tr><td><img width="200" src="'.IMG_BIG_DIR.$value.'"></td><td><a href="index.php?page=Zbozi_manager&action=images&remove='.$strip.'">Odstranit</a></td></tr>';
 				$sum = $sum."\n".$attach;
 			}
@@ -90,14 +90,14 @@ class Zbozi_manager extends Modul{
 				unlink(IMG_BIG_DIR.$_GET['remove'].".jpg");
 				unlink(IMG_DIR_SMALL.$_GET['remove'].".jpg");
 				return MSG_BEGIN."Obrázek byl smazán.".MSG_END;
-			} else 
+			} else
 			{
 				return MSG_BEGIN."Obrázek neexistuje!".MSG_END;
 			}
-			
+				
 		}
 		else {
-			return MSG_BEGIN."Chyba. Zkuste to znovu".MSG_END;	
+			return MSG_BEGIN."Chyba. Zkuste to znovu".MSG_END;
 		}
 
 	}
@@ -297,6 +297,7 @@ class Zbozi_manager extends Modul{
 		'cat' => mysql_result($result,0,"cat"),
 		'subcat' => mysql_result($result,0,"subcat"),
 		'rozmery' => mysql_result($result,0,"rozmery"),
+		'doprava' => mysql_result($result,0,"doprava"),
 		'dostupnost' => mysql_result($result,0,"dostupnost"),
 		'cena' => mysql_result($result,0,"cena"),
 			));
